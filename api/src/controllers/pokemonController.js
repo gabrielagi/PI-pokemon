@@ -34,17 +34,17 @@ const getPokemonsApi = async () => {
     );
 
     console.log("Pokémon de la API obtenidos exitosamente.");
-    return filteredNullPokemons.map((p) => ({
-      id: p.id,
-      name: p.name,
-      imagen: p.sprites.other.dream_world.front_default,
-      hp: p.stats[0].base_stat,
-      attack: p.stats[1].base_stat,
-      defense: p.stats[2].base_stat,
-      speed: p.stats[5].base_stat,
-      height: p.height,
-      weight: p.weight,
-      types: p.types.map((type) => {
+    return filteredNullPokemons.map((pokemonById) => ({
+      id: pokemonById.id,
+      name: pokemonById.name,
+      imagen: pokemonById.sprites.other.dream_world.front_default,
+      hp: pokemonById.stats[0].base_stat,
+      attack: pokemonById.stats[1].base_stat,
+      defense: pokemonById.stats[2].base_stat,
+      speed: pokemonById.stats[5].base_stat,
+      height: pokemonById.height,
+      weight: pokemonById.weight,
+      types: pokemonById.types.map((type) => {
         return { name: type.type.name };
       }),
     }));
@@ -73,6 +73,7 @@ const getPokemonsDb = async () => {
   }
 };
 
+// Obtener todos los pokemones de la Api + pokemones de la Db
 const getAllPokemons = async () => {
   try {
     const pokemonsApi = await getPokemonsApi();
@@ -80,7 +81,7 @@ const getAllPokemons = async () => {
 
     const allPokemons = [...pokemonsApi, ...pokemonsDb];
 
-    console.log("Obtención de todos los Pokémon completa.");
+    console.log("Encontro todos los Pokémon (completa).");
     return allPokemons;
   } catch (error) {
     console.log("Error en getAllPokemons:", error.message);
@@ -88,27 +89,12 @@ const getAllPokemons = async () => {
   }
 };
 
-// Obtener todos los pokemones de la Api + pokemones de la Db
-// const getAllPokemons = async () => {
-//   try {
-//     const pokemonsApi = await getPokemonsApi();
-//     const pokemonsDb = await getPokemonsDb();
-
-//     return pokemonsDb ? [...pokemonsApi, ...pokemonsDb] : pokemonsApi;
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
-
 const getPokemonById = async () => {};
-
-const getPokemonByName = async () => {};
 
 const postPokemon = async () => {};
 
 module.exports = {
   getAllPokemons,
   getPokemonById,
-  getPokemonByName,
   postPokemon,
 };
