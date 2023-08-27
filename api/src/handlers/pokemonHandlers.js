@@ -31,9 +31,28 @@ const getPokemonByNameHandler = async (req, res) => {
   }
 };
 
-const getPokemonByIdHandler = async (req, res) => {};
+const getPokemonByIdHandler = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const allPokemons = await getAllPokemons();
 
-const postPokemonHandler = async (req, res) => {};
+    const pokemonFound = allPokemons.find((pokemon) => pokemon.id === +id);
+
+    if (!pokemonFound.name) {
+      throw new Error(`No se encontró al Pokemon de id: ${id}`);
+    }
+
+    res.status(200).json(pokemonFound);
+  } catch (error) {
+    console.log("Error en getr.message");
+    res.status(500).json({ error: "Error en el servidor." });
+  }
+};
+
+const postPokemonHandler = async (req, res) => {
+  try {
+  } catch (error) {}
+};
 
 module.exports = {
   getAllPokemonsHandler,

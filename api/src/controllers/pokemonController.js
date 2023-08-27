@@ -89,12 +89,9 @@ const getAllPokemons = async () => {
   }
 };
 
-const getPokemonById = async () => {};
-
 const postPokemon = async () => {};
 
 module.exports = {
   getAllPokemons,
-  getPokemonById,
   postPokemon,
 };
