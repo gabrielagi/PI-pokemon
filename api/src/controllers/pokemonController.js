@@ -89,7 +89,44 @@ const getAllPokemons = async () => {
   }
 };
 
-const postPokemon = async () => {};
+const postPokemon = async (
+  name,
+  hp,
+  attack,
+  defense,
+  speed,
+  height,
+  weight,
+  img,
+  type = "unknown"
+) => {
+  try {
+    if (!name || !img || !hp || !attack || !defense) {
+      throw new Error("Faltan completar campos obligatorios");
+    }
+
+    const pokemon = await Pokemon.create({
+      name,
+      hp,
+      attack,
+      defense,
+      speed,
+      height,
+      weight,
+      img,
+    });
+
+    const typeList = type.split(","); // Divido la cadena de types para que sea similar a "fire,water,grass"
+    typeList.map(async (tipo) => {
+      const types = await Type.findOne({ where: { name: tipo } }); // Busco en la tabla Type un registro donde el nombre sea igual a tipo en la base de datos Type
+      pokemon.addType(types); // Asocio el tipo encontrado al Pokémon y establezco una relación entre el registro del Pokémon y el registro del tipo en la tabla de asociación
+    });
+
+    return pokemon;
+  } catch (error) {
+    console.log("Error en postPokemon:", error.message);
+  }
+};
 
 module.exports = {
   getAllPokemons,

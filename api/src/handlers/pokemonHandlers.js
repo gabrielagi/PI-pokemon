@@ -1,5 +1,8 @@
 const axios = require("axios");
-const { getAllPokemons } = require("../controllers/pokemonController");
+const {
+  getAllPokemons,
+  postPokemon,
+} = require("../controllers/pokemonController");
 
 const getAllPokemonsHandler = async (req, res) => {
   try {
@@ -51,7 +54,25 @@ const getPokemonByIdHandler = async (req, res) => {
 
 const postPokemonHandler = async (req, res) => {
   try {
-  } catch (error) {}
+    const { name, hp, attack, defense, speed, height, weight, type, img } =
+      req.body;
+
+    const response = await postPokemon(
+      name,
+      hp,
+      attack,
+      defense,
+      speed,
+      height,
+      weight,
+      type,
+      img
+    );
+
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
 };
 
 module.exports = {
