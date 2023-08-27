@@ -55,29 +55,33 @@ const getPokemonsApi = async () => {
 };
 
 // Obtener todos los pokemones de la tabla Pokemon incluida la relacion con type
-// const getPokemonsDb = async (req, res) => {
-//   try {
-//     const pokemonsDb = await Pokemon.findAll({
-//       include: {
-//         model: Type,
-//         attributes: ["name"],
-//         through: {
-//           attributes: [],
-//         },
-//       },
-//     });
-//     return pokemonsDb;
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
+const getPokemonsDb = async () => {
+  try {
+    const pokemonsDb = await Pokemon.findAll({
+      include: {
+        model: Type,
+        attributes: ["name"],
+        through: {
+          attributes: [],
+        },
+      },
+    });
+    return pokemonsDb;
+  } catch (error) {
+    console.log(error.message);
+    return [];
+  }
+};
 
 const getAllPokemons = async () => {
   try {
     const pokemonsApi = await getPokemonsApi();
+    const pokemonsDb = await getPokemonsDb();
+
+    const allPokemons = [...pokemonsApi, ...pokemonsDb];
 
     console.log("Obtención de todos los Pokémon completa.");
-    return pokemonsApi;
+    return allPokemons;
   } catch (error) {
     console.log("Error en getAllPokemons:", error.message);
     return [];
