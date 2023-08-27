@@ -8,34 +8,37 @@ module.exports = (sequelize) => {
     {
       id: {
         type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
-        allowNull: false,
+        defaultValue: DataTypes.UUIDV4,
       },
-      nombre: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
       },
-      imagen: {
-        type: DataTypes.STRING,
+      img: {
+        type: DataTypes.TEXT,
+        unique: true,
       },
-      vida: {
+      hp: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      attack: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      defense: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      speed: {
         type: DataTypes.INTEGER,
       },
-      ataque: {
+      height: {
         type: DataTypes.INTEGER,
       },
-      defensa: {
-        type: DataTypes.INTEGER,
-      },
-      velocidad: {
-        type: DataTypes.INTEGER,
-      },
-      altura: {
-        type: DataTypes.INTEGER,
-      },
-      peso: {
+      weight: {
         type: DataTypes.INTEGER,
       },
       createdInDb: {

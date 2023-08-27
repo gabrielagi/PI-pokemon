@@ -1,9 +1,10 @@
+const axios = require("axios");
 const { getAllPokemons } = require("../controllers/pokemonController");
 
 const getAllPokemonsHandler = async (req, res) => {
   try {
-    const { data } = await getAllPokemons();
-    res.status(200).json(data);
+    const pokemons = await getAllPokemons();
+    res.status(200).json(pokemons);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }

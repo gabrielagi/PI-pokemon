@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const { getAllPokemonsHandler } = require("../handlers/pokemonHandlers");
 
-const router = require("express").Router();
+const pokemonRouter = Router();
 
-router.get("/", getAllPokemonsHandler);
+pokemonRouter.get("/", getAllPokemonsHandler);
+
+module.exports = pokemonRouter;
