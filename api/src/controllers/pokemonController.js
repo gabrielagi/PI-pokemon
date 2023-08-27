@@ -91,13 +91,13 @@ const getAllPokemons = async () => {
 
 const postPokemon = async (
   name,
+  img,
   hp,
   attack,
   defense,
   speed,
   height,
   weight,
-  img,
   type = "unknown"
 ) => {
   try {
@@ -105,15 +105,27 @@ const postPokemon = async (
       throw new Error("Faltan completar campos obligatorios");
     }
 
+    console.log("Una imagen enviada controller name", name);
+    console.log("Una imagen enviada controller img", img);
+
+    console.log("Una imagen enviada controller hp", hp);
+    console.log("Una imagen enviada controller attack", attack);
+    console.log("Una imagen enviada controller defense", defense);
+    console.log("Una imagen enviada controller speed", speed);
+
+    console.log("Una imagen enviada controller height", height);
+
+    console.log("Una imagen enviada controller weight", weight);
+
     const pokemon = await Pokemon.create({
       name,
+      img,
       hp,
       attack,
       defense,
       speed,
       height,
       weight,
-      img,
     });
 
     const typeList = type.split(","); // Divido la cadena de types para que sea similar a "fire,water,grass"

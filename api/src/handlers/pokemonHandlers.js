@@ -54,19 +54,19 @@ const getPokemonByIdHandler = async (req, res) => {
 
 const postPokemonHandler = async (req, res) => {
   try {
-    const { name, hp, attack, defense, speed, height, weight, type, img } =
+    const { name, img, hp, attack, defense, speed, height, weight, type } =
       req.body;
-
+    console.log("Una imagen enviada", img);
     const response = await postPokemon(
       name,
+      img,
       hp,
       attack,
       defense,
       speed,
       height,
       weight,
-      type,
-      img
+      type
     );
 
     res.status(200).json(response);
