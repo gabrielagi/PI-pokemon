@@ -3,7 +3,7 @@ const { Pokemon, Type } = require("../db");
 const { URL_BASE } = process.env;
 
 // Obtener todos los pokemones de la Api (hasta 40)
-const getPokemonsApi = async (req, res) => {
+const getPokemonsApi = async () => {
   let pokemonsApi = [];
   try {
     const pokemonsResApi = (await axios.get(`${URL_BASE}?limit=40`)).data
@@ -18,7 +18,7 @@ const getPokemonsApi = async (req, res) => {
         allPokemons.push(await axios.get(pokemon.url));
         // Hace un get a la url de cada elemento para obtener su información
       } catch (error) {
-        res.status(404).send(error.message);
+        console.log(error.message);
       }
     });
 
@@ -43,14 +43,14 @@ const getPokemonsApi = async (req, res) => {
     });
     return pokemonsApi;
   } catch (error) {
-    res.status(404).send(error.message);
+    console.log(error.message);
   }
 };
 
-const getPokemonsDb = async (req, res) => {
+// Obtener todos los pokemones de la tabla Pokemon incluida la relacion con type
+const getPokemonsDb = async () => {
   try {
     const pokemonsDb = await Pokemon.findAll({
-      //Traigo todo lo contenido en la tabla Pokemon incluida la relacion con type
       include: {
         model: Type,
         attributes: ["name"],
@@ -61,18 +61,19 @@ const getPokemonsDb = async (req, res) => {
     });
     return pokemonsDb;
   } catch (error) {
-    res.status(404).send(error.message);
+    console.log(error.message);
   }
 };
 
+// Obtener todos los pokemones de la Api + pokemones de la Db
 const getAllPokemons = async () => {
   try {
     const pokemonsApi = await getPokemonsApi();
     const pokemonsDb = await getPokemonsDb();
 
-    return [...pokemonsApi, ...pokemonsDb];
+    return pokemonsDb ? [...pokemonsApi, ...pokemonsDb] : pokemonsApi;
   } catch (error) {
-    res.status(404).send(error.message);
+    console.log(error.message);
   }
 };
 
