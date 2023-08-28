@@ -129,7 +129,7 @@ const postPokemon = async ({
     return "Pokemon created successfully";
   } catch (error) {
     console.log("Error en postPokemon:", error.message);
-    throw error; // Re-lanzar el error para manejarlo en el controlador
+    throw error;
   }
 };
 
