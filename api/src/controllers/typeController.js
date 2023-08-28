@@ -15,3 +15,5 @@ const getTypes = async () => {
     return await Type.findAll();
   }
 };
+
+module.exports = getTypes;

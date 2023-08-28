@@ -36,10 +36,10 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
       },
       height: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL,
       },
       weight: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL,
       },
       createdInDb: {
         type: DataTypes.BOOLEAN,

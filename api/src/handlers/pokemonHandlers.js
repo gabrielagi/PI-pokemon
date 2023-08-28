@@ -54,26 +54,16 @@ const getPokemonByIdHandler = async (req, res) => {
 
 const postPokemonHandler = async (req, res) => {
   try {
-    const { name, img, hp, attack, defense, speed, height, weight, type } =
-      req.body;
-    console.log("Una imagen enviada", img);
-    const response = await postPokemon(
-      name,
-      img,
-      hp,
-      attack,
-      defense,
-      speed,
-      height,
-      weight,
-      type
-    );
+    const pokemon = req.body;
+    console.log("Un type enviado", pokemon.type);
+    const response = await postPokemon(pokemon);
 
     res.status(200).json(response);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
 };
+
 
 module.exports = {
   getAllPokemonsHandler,

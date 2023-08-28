@@ -89,7 +89,7 @@ const getAllPokemons = async () => {
   }
 };
 
-const postPokemon = async (
+const postPokemon = async ({
   name,
   img,
   hp,
@@ -98,26 +98,15 @@ const postPokemon = async (
   speed,
   height,
   weight,
-  type = "unknown"
-) => {
+  type = [],
+}) => {
   try {
     if (!name || !img || !hp || !attack || !defense) {
       throw new Error("Faltan completar campos obligatorios");
     }
 
-    console.log("Una imagen enviada controller name", name);
-    console.log("Una imagen enviada controller img", img);
-
-    console.log("Una imagen enviada controller hp", hp);
-    console.log("Una imagen enviada controller attack", attack);
-    console.log("Una imagen enviada controller defense", defense);
-    console.log("Una imagen enviada controller speed", speed);
-
-    console.log("Una imagen enviada controller height", height);
-
-    console.log("Una imagen enviada controller weight", weight);
-
-    const pokemon = await Pokemon.create({
+    // Crear el Pokémon
+    const pokemonCreated = await Pokemon.create({
       name,
       img,
       hp,
@@ -128,15 +117,19 @@ const postPokemon = async (
       weight,
     });
 
-    const typeList = type.split(","); // Divido la cadena de types para que sea similar a "fire,water,grass"
-    typeList.map(async (tipo) => {
-      const types = await Type.findOne({ where: { name: tipo } }); // Busco en la tabla Type un registro donde el nombre sea igual a tipo en la base de datos Type
-      pokemon.addType(types); // Asocio el tipo encontrado al Pokémon y establezco una relación entre el registro del Pokémon y el registro del tipo en la tabla de asociación
+    // Obtener los registros de tipos según los nombres en el arreglo "type"
+    const typeNames = type.map((t) => t.name);
+    const pokemonTypes = await Type.findAll({
+      where: { name: typeNames },
     });
 
-    return pokemon;
+    // Asociar cada tipo encontrado al Pokémon
+    await pokemonCreated.addType(pokemonTypes);
+
+    return "Pokemon created successfully";
   } catch (error) {
     console.log("Error en postPokemon:", error.message);
+    throw error; // Re-lanzar el error para manejarlo en el controlador
   }
 };
 
