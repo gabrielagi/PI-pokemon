@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const {
   getAllPokemonsHandler,
-  getPokemonByNameHandler,
   getPokemonByIdHandler,
   postPokemonHandler,
 } = require("../handlers/pokemonHandlers");
@@ -9,8 +8,6 @@ const {
 const pokemonRouter = Router();
 
 pokemonRouter.get("/", getAllPokemonsHandler);
-
-pokemonRouter.get("/name", getPokemonByNameHandler);
 
 pokemonRouter.get("/:id", getPokemonByIdHandler);
 

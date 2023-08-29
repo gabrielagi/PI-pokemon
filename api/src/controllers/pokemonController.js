@@ -6,7 +6,7 @@ const API_BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const getPokemonsApi = async () => {
   try {
     console.log("Obteniendo Pokémon de la API...");
-    const response = await axios.get(`${API_BASE_URL}?limit=40`);
+    const response = await axios.get(`${API_BASE_URL}?limit=70`);
     const pokemonsApi = response.data.results;
 
     if (pokemonsApi.length === 0) {
@@ -129,8 +129,12 @@ const postPokemon = async ({
     return true;
   } catch (error) {
     console.log("Error en postPokemon:", error.message);
-    throw error;
+    return false;
   }
+};
+
+const filterPokemonByType = () => {
+  
 };
 
 module.exports = {

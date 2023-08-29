@@ -6,31 +6,26 @@ const {
 
 const getAllPokemonsHandler = async (req, res) => {
   try {
-    const pokemons = await getAllPokemons();
-    res.status(200).json(pokemons);
+    const allPokemons = await getAllPokemons();
+    // Evaluar si llega un name por query y retornarlo, sino devuelvo todos los pokemons
+    const name = req.query.name ? req.query.name.toLowerCase() : null; // Cambio aquí
+
+    if (name !== null) {
+      console.log(`El nombre del parametro name es: ${name}`);
+
+      const pokemonFound = allPokemons.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(name)
+      );
+
+      if (pokemonFound.length === 0) {
+        throw new Error(`No se encontró al Pokemon de nombre: ${name}`);
+      }
+      res.status(200).json(pokemonFound);
+    } else {
+      res.status(200).json(allPokemons);
+    }
   } catch (error) {
     res.status(404).json({ error: error.message });
-  }
-};
-
-const getPokemonByNameHandler = async (req, res) => {
-  try {
-    const name = req.query.name.toLowerCase();
-    console.log(`El nombre del parametro name es: ${name}`);
-    const allPokemons = await getAllPokemons();
-
-    const pokemonFound = allPokemons.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(name)
-    );
-    console.log(`El nombre del pokemonFound es: ${pokemonFound}`);
-    if (pokemonFound.length === 0) {
-      throw new Error(`No se encontró al Pokemon de nombre: ${name}`);
-    }
-
-    res.status(200).json(pokemonFound);
-  } catch (error) {
-    console.log("Error en getPokemonByNameHandler:", error.message);
-    res.status(500).json({ error: "Error en el servidor." });
   }
 };
 
@@ -66,7 +61,6 @@ const postPokemonHandler = async (req, res) => {
 
 module.exports = {
   getAllPokemonsHandler,
-  getPokemonByNameHandler,
   getPokemonByIdHandler,
   postPokemonHandler,
 };
