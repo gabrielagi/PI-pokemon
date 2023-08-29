@@ -5,3 +5,4 @@ export const GET_POKEMON_BY_ID = "GET_POKEMON_BY_ID";
 export const GET_TYPES = "GET_TYPES";
 export const FILTER = "FILTER";
 export const PAGINATE = "PAGINATE";
+export const CLEAR_STATE = "CLEAR_STATE";

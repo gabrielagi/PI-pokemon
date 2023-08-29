@@ -6,6 +6,7 @@ import {
   GET_TYPES,
   FILTER,
   PAGINATE,
+  CLEAR_STATE,
 } from "./action-types";
 
 import axios from "axios";
