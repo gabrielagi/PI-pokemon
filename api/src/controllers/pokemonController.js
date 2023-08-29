@@ -125,8 +125,8 @@ const postPokemon = async ({
 
     // Asociar cada tipo encontrado al Pokémon
     await pokemonCreated.addType(pokemonTypes);
-
-    return "Pokemon created successfully";
+    // Retorno true para la lógica de la action POST_POKEMON
+    return true;
   } catch (error) {
     console.log("Error en postPokemon:", error.message);
     throw error;

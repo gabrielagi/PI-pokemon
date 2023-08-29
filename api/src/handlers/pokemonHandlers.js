@@ -57,13 +57,12 @@ const postPokemonHandler = async (req, res) => {
     const pokemon = req.body;
     console.log("Un type enviado", pokemon.type);
     const response = await postPokemon(pokemon);
-
+    console.log("response", response);
     res.status(200).json(response);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
 };
-
 
 module.exports = {
   getAllPokemonsHandler,
