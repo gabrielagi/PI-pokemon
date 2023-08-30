@@ -4,8 +4,13 @@ const {
   postPokemon,
 } = require("../controllers/pokemonController");
 
+const { getTypesHandler } = require("../handlers/typeHandlers");
+
 const getAllPokemonsHandler = async (req, res) => {
   try {
+    // Primero llamo al conrtoller getTypes para cargar los tipos en la Db
+    const types = await getTypesHandler();
+    console.log("Tengo types en getAllPokemons", types);
     const allPokemons = await getAllPokemons();
     // Evaluar si llega un name por query y retornarlo, sino devuelvo todos los pokemons
     const name = req.query.name ? req.query.name.toLowerCase() : null; // Cambio aquí
