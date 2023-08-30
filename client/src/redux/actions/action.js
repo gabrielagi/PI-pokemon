@@ -7,7 +7,7 @@ import {
   FILTER_POKEMON_BY_TIPE,
   FILTER_POKEMON_BY_DB_CREATED,
   PAGINATE,
-  CLEAR_STATE,
+  CLEAR_FILTER,
 } from "./action-types";
 
 import axios from "axios";
@@ -108,14 +108,13 @@ export const filterPokemonByType = (type) => {
   };
 };
 
-export const filterPokemonByDbCreated = () => {
+export const filterPokemonByDbCreated = (origin) => {
   //const endpoint = "http://localhost:3001/pokemons";
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`${endpoint}/${pokemonTypes}`);
       dispatch({
         type: FILTER_POKEMON_BY_DB_CREATED,
-        payload: data,
+        payload: origin,
       });
     } catch (error) {
       console.log(error.message);

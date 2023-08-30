@@ -7,12 +7,11 @@ import {
   FILTER_POKEMON_BY_TIPE,
   FILTER_POKEMON_BY_DB_CREATED,
   PAGINATE,
-  CLEAR_STATE,
+  CLEAR_FILTER,
 } from "../actions/action-types";
 
 const initialState = {
   allPokemons: [],
-  newPokemon: false,
   pokemonsFilteredByType: [],
   pokemonByName: [],
   pokemonById: [],
@@ -22,9 +21,10 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case POST_POKEMON:
+      const newPokemon = action.payload;
       return {
         ...state,
-        newPokemon: action.payload,
+        allPokemons: [...allPokemons, newPokemon],
       };
     case GET_ALL_POKEMONS:
       return {
@@ -62,7 +62,7 @@ const reducer = (state = initialState, action) => {
       const pokemons = state.allPokemons;
       return {
         ...state,
-        pokemonsFilteredByType: allPokemons.filter(
+        pokemonsFilteredByType: pokemons.filter(
           (pokemon) => pokemon.createdInDb === true
         ),
       };
