@@ -6,7 +6,7 @@ import {
   GET_TYPES,
   FILTER_POKEMON_BY_TIPE,
   FILTER_POKEMON_BY_DB_CREATED,
-  PAGINATE,
+  CHANGE_PAGE,
   CLEAR_FILTER,
 } from "../actions/action-types";
 
@@ -16,9 +16,12 @@ const initialState = {
   pokemonByName: [],
   pokemonById: [],
   pokemonTypes: [],
+  currentPage: 0,
+  pokemonsInActualPage: [],
 };
 
 const reducer = (state = initialState, action) => {
+  const pokemonsPerPage = 12;
   switch (action.type) {
     case POST_POKEMON:
       const newPokemon = action.payload;
@@ -30,6 +33,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allPokemons: action.payload,
+        pokemonsPerPage: [...action.payload].slice(0, pokemonsPerPage),
       };
     case GET_POKEMON_BY_NAME:
       return {
@@ -66,6 +70,33 @@ const reducer = (state = initialState, action) => {
           (pokemon) => pokemon.createdInDb === true
         ),
       };
+    case CHANGE_PAGE:
+      const currentPage = state.currentPage;
+      const totalPages = Math.ceil(
+        state.allPokemons.length / state.pokemonsPerPage
+      );
+      if (action.payload === "next" && currentPage < totalPages - 1) {
+        return {
+          ...state,
+          currentPage: currentPage + 1,
+          pokemonsInActualPage: [...state.allPokemons].slice(
+            (currentPage + 1) * state.pokemonsPerPage,
+            (currentPage + 2) * state.pokemonsPerPage
+          ),
+        };
+      }
+
+      if (action.payload === "prev" && currentPage > 0) {
+        return {
+          ...state,
+          currentPage: currentPage - 1,
+          pokemonsInActualPage: [...state.allPokemons].slice(
+            (currentPage - 1) * state.pokemonsPerPage,
+            currentPage * state.pokemonsPerPage
+          ),
+        };
+      }
+      return state;
     default:
       return {
         ...state,
