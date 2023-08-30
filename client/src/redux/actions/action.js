@@ -5,6 +5,7 @@ import {
   GET_POKEMON_BY_ID,
   GET_TYPES,
   FILTER_POKEMON_BY_TIPE,
+  FILTER_POKEMON_BY_DB_CREATED,
   PAGINATE,
   CLEAR_STATE,
 } from "./action-types";
@@ -29,10 +30,29 @@ export const postPokemon = (pokemon) => {
   };
 };
 
-export const getAllPokemons = () => {
+export const getTypes = () => {
   //const endpoint = "http://localhost:3001/pokemons";
   return async (dispatch) => {
     try {
+      const { data } = await axios.get(endpointTypes);
+      const typesOrdered = data.sort((a, b) => {
+        return a - b;
+      });
+      dispatch({
+        type: GET_TYPES,
+        payload: typesOrdered,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const getAllPokemons = () => {
+  return async (dispatch) => {
+    try {
+      // Llama a la acción getTypes para cargar los tipos en la Db
+      await dispatch(getTypes());
       const { data } = await axios.get(endpoint);
       dispatch({
         type: GET_ALL_POKEMONS,
@@ -74,17 +94,13 @@ export const getPokemonById = (id) => {
   };
 };
 
-export const getTypes = () => {
+export const filterPokemonByType = (type) => {
   //const endpoint = "http://localhost:3001/pokemons";
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(endpointTypes);
-      const typesOrdered = data.sort((a, b) => {
-        return a - b;
-      });
       dispatch({
-        type: GET_TYPES,
-        payload: typesOrdered,
+        type: FILTER_POKEMON_BY_TIPE,
+        payload: type,
       });
     } catch (error) {
       console.log(error.message);
@@ -92,13 +108,13 @@ export const getTypes = () => {
   };
 };
 
-export const filterPokemonByType = (type) => {
+export const filterPokemonByDbCreated = () => {
   //const endpoint = "http://localhost:3001/pokemons";
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`${endpoint}/${pokemonTypes}`);
       dispatch({
-        type: FILTER_POKEMON_BY_TIPE,
+        type: FILTER_POKEMON_BY_DB_CREATED,
         payload: data,
       });
     } catch (error) {
@@ -106,4 +122,3 @@ export const filterPokemonByType = (type) => {
     }
   };
 };
-

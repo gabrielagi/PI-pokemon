@@ -5,6 +5,7 @@ import {
   GET_POKEMON_BY_ID,
   GET_TYPES,
   FILTER_POKEMON_BY_TIPE,
+  FILTER_POKEMON_BY_DB_CREATED,
   PAGINATE,
   CLEAR_STATE,
 } from "../actions/action-types";
@@ -48,13 +49,22 @@ const reducer = (state = initialState, action) => {
     case FILTER_POKEMON_BY_TIPE:
       const allPokemons = state.allPokemons;
       const typeFiltered =
-        action.payload === "type"
+        action.payload === "none"
           ? allPokemons
-          : allPokemons.filter((e) => e.types.includes(action.payload));
-
+          : allPokemons.filter((pokemon) =>
+              pokemon.type.includes(action.payload)
+            );
       return {
         ...state,
-        pokemonsFilteredByType: action.payload,
+        pokemonsFilteredByType: typeFiltered,
+      };
+    case FILTER_POKEMON_BY_DB_CREATED:
+      const pokemons = state.allPokemons;
+      return {
+        ...state,
+        pokemonsFilteredByType: allPokemons.filter(
+          (pokemon) => pokemon.createdInDb === true
+        ),
       };
     default:
       return {
