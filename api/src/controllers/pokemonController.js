@@ -66,6 +66,9 @@ const getPokemonsDb = async () => {
         },
       },
     });
+
+    console.log("Pokémon de la DB obtenidos exitosamente.");
+    console.log("Pokemons db", pokemonsDb);
     return pokemonsDb;
   } catch (error) {
     console.log(error.message);

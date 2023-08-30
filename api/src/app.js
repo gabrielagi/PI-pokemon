@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes/index.js");
 
+const { loadTypesAndPokemons } = require("./dataLoader.js");
+
 require("./db.js");
 
 const server = express();
@@ -24,6 +26,9 @@ server.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
+
+//Ejecuto la carga de los pokemons antes de iniciar el servidor
+loadTypesAndPokemons();
 
 server.use("/", routes);
 
