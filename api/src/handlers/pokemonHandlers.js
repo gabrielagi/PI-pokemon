@@ -1,30 +1,40 @@
 const axios = require("axios");
 const {
   getAllPokemons,
+  getPokemonsDb,
+  getPokemonsApi,
   postPokemon,
 } = require("../controllers/pokemonController");
 
+// Función para obtener pokemones filtrados por nombre y origen ("db" o "api")
+const getPokemonsFiltered = async (name, origin) => {
+  let allPokemons = [];
+
+  if (origin === "db") {
+    allPokemons = await getPokemonsDb();
+  } else if (origin === "api") {
+    allPokemons = await getPokemonsApi();
+  } else {
+    allPokemons = [...(await getPokemonsDb()), ...(await getPokemonsApi())];
+  }
+
+  if (name) {
+    return allPokemons.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(name)
+    );
+  }
+
+  return allPokemons;
+};
+
 const getAllPokemonsHandler = async (req, res) => {
   try {
-    const allPokemons = await getAllPokemons();
-
     const name = req.query.name ? req.query.name.toLowerCase() : null;
+    const origin = req.query.origin ? req.query.origin.toLowerCase() : null; // Puedes usar "db" o "api"
 
-    if (name !== null) {
-      const pokemonFound = allPokemons.find(
-        (pokemon) => pokemon.name.toLowerCase() === name
-      );
+    const filteredPokemons = await getPokemonsFiltered(name, origin);
 
-      if (!pokemonFound) {
-        res
-          .status(404)
-          .json({ error: `No se encontró al Pokemon de nombre: ${name}` });
-      } else {
-        res.status(200).json(pokemonFound);
-      }
-    } else {
-      res.status(200).json(allPokemons);
-    }
+    res.status(200).json(filteredPokemons);
   } catch (error) {
     res.status(500).json({ error: "Error en el servidor" });
   }

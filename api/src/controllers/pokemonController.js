@@ -133,11 +133,11 @@ const postPokemon = async ({
   }
 };
 
-const filterPokemonByType = () => {
-  
-};
+const filterPokemonByType = () => {};
 
 module.exports = {
   getAllPokemons,
+  getPokemonsDb,
+  getPokemonsApi,
   postPokemon,
 };
