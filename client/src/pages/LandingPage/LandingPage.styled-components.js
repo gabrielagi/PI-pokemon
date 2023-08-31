@@ -51,7 +51,7 @@ export const StartButtonContainer = styled.div`
   left: 270px;
 
   @media screen and (max-width: 768px) {
-    bottom: 100px;
+    bottom: 80px;
     left: 100px;
   }
 `;
@@ -71,7 +71,7 @@ export const StartButtonContainerShadow = styled(StartButtonContainer)`
   left: 278px;
 
   @media screen and (max-width: 768px) {
-    bottom: 95px;
+    bottom: 75px;
     left: 105px;
   }
 `;

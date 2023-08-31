@@ -7,8 +7,7 @@ import {
   FILTER_POKEMON_BY_TIPE,
   FILTER_POKEMON_BY_DB_CREATED,
   CHANGE_PAGE,
-  CLEAR_FILTER,
-} from "../actions/action-types";
+} from "./actions/action-types";
 
 const initialState = {
   allPokemons: [],

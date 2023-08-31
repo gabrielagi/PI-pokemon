@@ -1,18 +1,21 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"; // Asegúrate de importar BrowserRouter
+import React from "react";
+import { useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import Home from "./pages/Home/Home";
+import Nav from "./components/Nav/Nav";
 
 function App() {
+  const location = useLocation();
+
   return (
-    <BrowserRouter>
-      <div>
-        {/* {path !== "/" && <Navbar />} */}
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/home" element={<Home />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <div>
+      {location.pathname !== "/" && <Nav />}
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<Home />} />
+      </Routes>
+    </div>
   );
 }
 
