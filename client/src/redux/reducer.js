@@ -16,11 +16,9 @@ const initialState = {
   pokemonById: [],
   pokemonTypes: [],
   currentPage: 0,
-  pokemonsInActualPage: [],
 };
 
 const reducer = (state = initialState, action) => {
-  const pokemonsPerPage = 12;
   switch (action.type) {
     case POST_POKEMON:
       const newPokemon = action.payload;
@@ -32,7 +30,10 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allPokemons: action.payload,
-        pokemonsInActualPage: [...action.payload].slice(0, pokemonsPerPage),
+        pokemonsInActualPage: [...action.payload].slice(
+          0,
+          state.pokemonsPerPage
+        ),
       };
 
     case GET_POKEMON_BY_NAME:
@@ -71,17 +72,18 @@ const reducer = (state = initialState, action) => {
         ),
       };
     case CHANGE_PAGE:
+      console.log("currentPage in reducer", state.currentPage);
       const currentPage = state.currentPage;
-      const totalPages = Math.ceil(
-        state.allPokemons.length / state.pokemonsPerPage
-      );
+      const pokemonsPerPage = state.pokemonsPerPage;
+      const totalPages = Math.ceil(state.allPokemons.length / pokemonsPerPage);
+
       if (action.payload === "next" && currentPage < totalPages - 1) {
         return {
           ...state,
           currentPage: currentPage + 1,
-          pokemonsInActualPage: [...state.allPokemons].slice(
-            (currentPage + 1) * state.pokemonsPerPage,
-            (currentPage + 2) * state.pokemonsPerPage
+          pokemonsInActualPage: state.allPokemons.slice(
+            (currentPage + 1) * pokemonsPerPage,
+            (currentPage + 2) * pokemonsPerPage
           ),
         };
       }
@@ -90,12 +92,13 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           currentPage: currentPage - 1,
-          pokemonsInActualPage: [...state.allPokemons].slice(
-            (currentPage - 1) * state.pokemonsPerPage,
-            currentPage * state.pokemonsPerPage
+          pokemonsInActualPage: state.allPokemons.slice(
+            (currentPage - 1) * pokemonsPerPage,
+            currentPage * pokemonsPerPage
           ),
         };
       }
+
       return state;
 
     default:
