@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllPokemons } from "../../redux/actions/getPokemon/action";
 import Cards from "../../components/Cards/Cards";
 import { StartButton, StartButtonContainer } from "./Home.styled-components";
-import HandlePagination from "./HandlePagination";
+import Pagination from "../../components/Pagination/Pagination";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const Home = () => {
         <Cards pokemons={pokemonsInActualPage} /> */}
       <p>cantidad total de {totalPokemons}</p>
       <p>cantidad limite de paginas num {totalPages}</p>
-      <HandlePagination
+      <Pagination
         pokemonsPerPage={pokemonsPerPage}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
