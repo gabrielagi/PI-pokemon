@@ -32,8 +32,9 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allPokemons: action.payload,
-        pokemonsPerPage: [...action.payload].slice(0, pokemonsPerPage),
+        pokemonsInActualPage: [...action.payload].slice(0, pokemonsPerPage),
       };
+
     case GET_POKEMON_BY_NAME:
       return {
         ...state,
@@ -96,6 +97,7 @@ const reducer = (state = initialState, action) => {
         };
       }
       return state;
+
     default:
       return {
         ...state,
