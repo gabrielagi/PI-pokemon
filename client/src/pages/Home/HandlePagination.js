@@ -1,6 +1,4 @@
-import React from "react";
-
-const pageNumbers = [];
+import React, { useMemo } from "react";
 
 const HandlePagination = ({
   pokemonsPerPage,
@@ -10,20 +8,28 @@ const HandlePagination = ({
 }) => {
   const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
 
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers = useMemo(() => {
+    const pages = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(i);
+    }
+    return pages;
+  }, [totalPages]);
 
   const onPreviousPage = () => {
-    setCurrentPage(currentPage - 1);
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
   };
 
   const onNextPage = () => {
-    setCurrentPage(currentPage + 1);
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
-  const onSpecificPage = (event) => {
-    setCurrentPage(event);
+  const onSpecificPage = (page) => {
+    setCurrentPage(page);
   };
 
   return (
@@ -32,28 +38,38 @@ const HandlePagination = ({
       role="navigation"
       aria-label="pagination"
     >
-      <a
-        // className={`pagination-previous ${currentPage === 1 ? "diseable" : ""}`}
+      <button
         onClick={onPreviousPage}
+        className={`pagination-previous button ${
+          currentPage === 1 ? "is-disabled" : ""
+        }`}
+        disabled={currentPage === 1}
       >
         Previous
-      </a>
-      <a
-        // className={`pagination-previous ${currentPage === 1 ? "diseable" : ""}`}
+      </button>
+      <button
         onClick={onNextPage}
+        className={`pagination-next button ${
+          currentPage === totalPages ? "is-disabled" : ""
+        }`}
+        disabled={currentPage === totalPages}
       >
         Next page
-      </a>
-      <ul className="pagination-list">
+      </button>
+      <div className="pagination-list">
         {pageNumbers.map((pageNum) => (
-          <ul key={pageNum}>
-            {/* className=
-            {`pagination-link ${pageNum === currentPage ? isActive : ""}`}
-            aria-label="Goto page 1" */}
-            <button onClick={() => onSpecificPage(pageNum)}>{pageNum}</button>
-          </ul>
+          <button
+            key={pageNum}
+            onClick={() => onSpecificPage(pageNum)}
+            className={`pagination-link button ${
+              pageNum === currentPage ? "is-current" : ""
+            }`}
+            aria-label={`Goto page ${pageNum}`}
+          >
+            {pageNum}
+          </button>
         ))}
-      </ul>
+      </div>
     </nav>
   );
 };
