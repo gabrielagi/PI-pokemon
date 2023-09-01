@@ -48,7 +48,7 @@ export const PokemonName = styled.h2`
   font-size: 22px;
   margin: 10px;
   color: #08bae3;
-  font-family: "Get Schwifty", Roboto, sans-serif;
+  font-family: Roboto, sans-serif;
   font-weight: 600;
 `;
 

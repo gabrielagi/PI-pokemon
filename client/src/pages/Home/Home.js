@@ -41,7 +41,7 @@ const Home = () => {
           Next {pokemonsInActualPage.length}
         </StartButton>
       </StartButtonContainer>
-      {/* <Cards pokemons={pokemonsInActualPage} /> */}
+      <Cards pokemons={pokemonsInActualPage} />
     </div>
   );
 };
