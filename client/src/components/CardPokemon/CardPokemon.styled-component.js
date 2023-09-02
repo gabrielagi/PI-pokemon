@@ -63,6 +63,7 @@ export const CardContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* Agregar esta línea para centrar verticalmente */
 `;
 
 export const PokemonImage = styled.img`
@@ -70,23 +71,6 @@ export const PokemonImage = styled.img`
   height: 150px;
   object-fit: cover;
   border-radius: 0px 0px 8px 8px;
-  height: 62%;
   margin-top: 14px;
-`;
-
-export const CloseButton = styled.button`
-  position: absolute;
-  top: 6px;
-  right: 7px;
-  background-color: red;
-  color: #ffffff;
-  border: none;
-  cursor: pointer;
-  font-size: 9px; /* Tamaño de fuente más pequeño */
-  border-radius: 50%; /* Para hacerlo redondo */
-  width: 16px; /* Ancho del botón */
-  height: 16px; /* Alto del botón */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-left: 100px;
 `;
