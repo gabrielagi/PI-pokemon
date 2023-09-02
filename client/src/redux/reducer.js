@@ -6,7 +6,6 @@ import {
   GET_TYPES,
   FILTER_POKEMON_BY_TIPE,
   FILTER_POKEMON_BY_DB_CREATED,
-  CHANGE_PAGE,
 } from "./actions/action-types";
 
 const initialState = {
@@ -15,7 +14,6 @@ const initialState = {
   pokemonByName: [],
   pokemonById: [],
   pokemonTypes: [],
-  currentPage: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -71,36 +69,6 @@ const reducer = (state = initialState, action) => {
           (pokemon) => pokemon.createdInDb === true
         ),
       };
-    case CHANGE_PAGE:
-      console.log("currentPage in reducer", state.currentPage);
-      const currentPage = state.currentPage;
-      const pokemonsPerPage = state.pokemonsPerPage;
-      const totalPages = Math.ceil(state.allPokemons.length / pokemonsPerPage);
-
-      if (action.payload === "next" && currentPage < totalPages - 1) {
-        return {
-          ...state,
-          currentPage: currentPage + 1,
-          pokemonsInActualPage: state.allPokemons.slice(
-            (currentPage + 1) * pokemonsPerPage,
-            (currentPage + 2) * pokemonsPerPage
-          ),
-        };
-      }
-
-      if (action.payload === "prev" && currentPage > 0) {
-        return {
-          ...state,
-          currentPage: currentPage - 1,
-          pokemonsInActualPage: state.allPokemons.slice(
-            (currentPage - 1) * pokemonsPerPage,
-            currentPage * pokemonsPerPage
-          ),
-        };
-      }
-
-      return state;
-
     default:
       return {
         ...state,

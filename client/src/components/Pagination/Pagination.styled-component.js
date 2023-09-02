@@ -9,11 +9,15 @@ export const PaginationContainer = styled.nav`
 `;
 
 export const Button = styled.button`
-  width: 40px;
-  height: 40px;
-  margin: 0 5px;
-  border: none;
-  background-color: ${(props) => (props.isSelected ? "green" : "transparent")};
+  padding: 12px 20px;
+  font-size: 16px;
+  text-align: center;
+  background-color: #9ce5b8;
+  color: white;
+  border: solid 1px #9ce5b8;
+  border-radius: 6px;
+  margin: 3px;
+  background-color: ${(props) => (props.isSelected ? "#9ce5b8" : "#adfec6")};
   color: ${(props) => (props.isSelected ? "white" : "black")};
   cursor: pointer;
 

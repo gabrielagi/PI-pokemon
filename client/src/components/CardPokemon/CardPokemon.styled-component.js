@@ -86,8 +86,8 @@ export const CardContentWrapper = styled.div`
 `;
 
 export const PokemonImage = styled.img`
-  width: 220px;
-  height: 220px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border-radius: 0px 0px 8px 8px;
   height: 62%;

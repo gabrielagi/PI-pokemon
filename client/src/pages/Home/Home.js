@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPokemons } from "../../redux/actions/getPokemon/action";
-import Cards from "../../components/Cards/Cards";
-import { StartButton, StartButtonContainer } from "./Home.styled-components";
+import CardPokemon from "../../components/CardPokemon/CardPokemon";
+import { PokemonCardContainer } from "./Home.styled-components";
 import Pagination from "../../components/Pagination/Pagination";
 
 const Home = () => {
@@ -26,25 +26,19 @@ const Home = () => {
 
   return (
     <>
-      <div>
+      <PokemonCardContainer>
         {allPokemons
           .map((pokemon) => (
             <div>
-              <p>
-                NombrePokemon: {pokemon.id}
-                {pokemon.name}
-              </p>
+              <CardPokemon key={pokemon.id} pokemon={pokemon} />
             </div>
           ))
           .slice(firstIndex, lastIndex)}
-      </div>
-      {/* <StartButtonContainer>
-          <StartButton onClick={() => paginate("prev")}>Prev</StartButton>
-        <StartButton onClick={() => paginate("next")}>Next</StartButton>
-        </StartButtonContainer>
-        <Cards pokemons={pokemonsInActualPage} /> */}
+      </PokemonCardContainer>
+
       <p>cantidad total de {totalPokemons}</p>
       <p>cantidad limite de paginas num {totalPages}</p>
+
       <Pagination
         pokemonsPerPage={pokemonsPerPage}
         currentPage={currentPage}

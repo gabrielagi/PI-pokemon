@@ -34,17 +34,17 @@ const getPokemonsApi = async () => {
     );
 
     console.log("Pokémon de la API obtenidos exitosamente.");
-    return filteredNullPokemons.map((pokemonById) => ({
-      id: pokemonById.id,
-      name: pokemonById.name,
-      imagen: pokemonById.sprites.other.dream_world.front_default,
-      hp: pokemonById.stats[0].base_stat,
-      attack: pokemonById.stats[1].base_stat,
-      defense: pokemonById.stats[2].base_stat,
-      speed: pokemonById.stats[5].base_stat,
-      height: pokemonById.height,
-      weight: pokemonById.weight,
-      types: pokemonById.types.map((type) => {
+    return filteredNullPokemons.map((pokemon) => ({
+      id: pokemon.id,
+      name: pokemon.name,
+      imagen: pokemon.sprites.other["official-artwork"].front_default,
+      hp: pokemon.stats[0].base_stat,
+      attack: pokemon.stats[1].base_stat,
+      defense: pokemon.stats[2].base_stat,
+      speed: pokemon.stats[5].base_stat,
+      height: pokemon.height,
+      weight: pokemon.weight,
+      types: pokemon.types.map((type) => {
         return { name: type.type.name };
       }),
     }));

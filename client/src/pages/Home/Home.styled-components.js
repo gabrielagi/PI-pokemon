@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
-export const StartButtonContainer = styled.div`
+export const PokemonCardContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 60px;
+`;
+
+export const FilterButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -14,7 +22,7 @@ export const StartButtonContainer = styled.div`
   }
 `;
 
-export const StartButton = styled.button`
+export const FilterButton = styled.button`
   display: inline-block;
   padding: 12px 70px;
   font-size: 16px;
