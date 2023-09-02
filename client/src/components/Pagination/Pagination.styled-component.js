@@ -5,12 +5,12 @@ export const PaginationContainer = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 export const Button = styled.button`
-  padding: 12px 20px;
-  font-size: 16px;
+  padding: 10px 14px;
+  font-size: 12px;
   text-align: center;
   background-color: #9ce5b8;
   color: white;
@@ -36,8 +36,8 @@ export const FixedPaginationContainer = styled(PaginationContainer)`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: white;
-  padding: 10px;
+  background-color: transparent;
+  padding: 5px;
   display: flex;
   justify-content: center;
   z-index: 999;

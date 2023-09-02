@@ -1,41 +1,22 @@
-import styled, { keyframes } from "styled-components";
-
-const borderAnimation = keyframes`
-  0% {
-    border-color: #ff6bd6;
-  }
-  25% {
-    border-color: #8DF904;
-  }
-  50% {
-    border-color: #FF4800;
-  }
-  75% {
-    border-color: #66BDFF;
-  }
-  100% {
-    border-color: #ff6bd6;
-  }
-`;
+import styled from "styled-components";
 
 export const CardWrapper = styled.div`
   position: relative;
   background-color: rgba(30, 13, 58, 0.7);
   color: #ffffff;
-  padding: 10px;
+  padding: 60px;
   /* Arriba | Derecha | Abajo | Izquierda */
-  margin: 55px 15px 5px 15px;
+  margin: 25px 5px 5px 5px;
   border-radius: 8px;
   width: 170px;
   height: 220px;
   box-shadow: rgba(100, 100, 111, 0.6) 0px 7px 18px 2px;
   transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
-  /* animation: ${borderAnimation} 5s linear infinite;  Aplica la animación al borde */
 
   &:hover {
     transform: scale(1.05);
-    border: 1.5px solid #8df904;
+    /* border: 1.5px solid #8df904 */
   }
 
   @media screen and (max-width: 768px) {
@@ -54,7 +35,7 @@ export const PokemonName = styled.h2`
 
 export const PokemonTypes = styled.p`
   font-size: 14px;
-  margin: 0; /* Elimina el margen para ajustar el tamaño */
+  margin: 0;
   font-family: Roboto, sans-serif;
   font-weight: 400;
   color: #ffffff;
@@ -62,9 +43,9 @@ export const PokemonTypes = styled.p`
 
 export const DetailsButton = styled.button`
   position: absolute;
-  bottom: 10px; /* Posición desde abajo */
-  left: 50%; /* Centrar horizontalmente */
-  transform: translateX(-50%); /* Centrar horizontalmente */
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #1d252d;
   color: #ffffff;
   border: none;
@@ -82,7 +63,6 @@ export const CardContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 114%; /* Ocupa todo el alto disponible en el CardWrapper */
 `;
 
 export const PokemonImage = styled.img`

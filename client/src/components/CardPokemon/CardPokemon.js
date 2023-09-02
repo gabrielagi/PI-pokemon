@@ -5,6 +5,7 @@ import {
   CardContentWrapper,
   PokemonImage,
   PokemonTypes,
+  CardWrapper,
 } from "./CardPokemon.styled-component";
 
 const CardPokemon = ({ pokemon }) => {
@@ -16,24 +17,27 @@ const CardPokemon = ({ pokemon }) => {
         title={`Más información sobre ${pokemon.name}`}
         alt="Más información sobre el personaje"
       > */}
-      <PokemonName>
-        {pokemon.name &&
-          pokemon.name[0].toUpperCase().concat(pokemon.name.slice(1))}
-      </PokemonName>
-      {/* </NavLink> */}
-      <CardContentWrapper>
-        <p>
-          Pokemon Types:{" "}
-          {pokemon.types.map((type, index) => (
-            <span key={index}>{type.name}</span>
-          ))}
-        </p>
-        <PokemonImage
-          // src={`images/sprites/${pokemon.image}`}
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/2.gif"
-          alt={`Imagen de ${pokemon.name}`}
-        />
-      </CardContentWrapper>
+      <CardWrapper>
+        <img src={pokemon.image} alt="imagen" width="120px" height="120px" />
+        <PokemonName>
+          {pokemon.name &&
+            pokemon.name[0].toUpperCase().concat(pokemon.name.slice(1))}
+        </PokemonName>
+        {/* </NavLink> */}
+        <CardContentWrapper>
+          <p>
+            Pokemon Types:{" "}
+            {pokemon.types.map((type, index) => (
+              <span key={index}>{type.name}</span>
+            ))}
+          </p>
+          {/* <PokemonImage
+            // src={`images/sprites/${pokemon.image}`}
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/2.gif"
+            alt={`Imagen de ${pokemon.name}`}
+          /> */}
+        </CardContentWrapper>
+      </CardWrapper>
     </div>
   );
 };
