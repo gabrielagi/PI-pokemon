@@ -27,9 +27,10 @@ const CardPokemon = ({ pokemon }) => {
         <CardContentWrapper>
           <p>
             Pokemon Types:{" "}
-            {pokemon.types.map((type, index) => (
-              <span key={index}>{type.name}</span>
-            ))}
+            {pokemon.types &&
+              pokemon.types.map((type, index) => (
+                <span key={index}>{type.name}</span>
+              ))}
           </p>
           {/* <PokemonImage
             // src={`images/sprites/${pokemon.image}`}

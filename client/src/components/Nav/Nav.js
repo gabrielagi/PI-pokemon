@@ -9,7 +9,7 @@ import {
 
 import SearchBar from "../SearchBar/SearchBar";
 
-const Navbar = ({ onSearch }) => {
+const Navbar = () => {
   return (
     <NavBar>
       <NavContainer>
@@ -21,7 +21,7 @@ const Navbar = ({ onSearch }) => {
         </NavLink>
       </NavContainer>
       <NavContainer>
-        <SearchBar onSearch={onSearch} />
+        <SearchBar />
       </NavContainer>
       <NavButtonLogOut>Salir</NavButtonLogOut>
     </NavBar>

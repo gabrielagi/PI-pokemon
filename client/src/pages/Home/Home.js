@@ -1,51 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPokemons } from "../../redux/actions/getPokemon/action";
+import {
+  getAllPokemons,
+  clearSearch,
+} from "../../redux/actions/getPokemon/action";
 import CardPokemon from "../../components/CardPokemon/CardPokemon";
-import { PokemonCardContainer } from "./Home.styled-components";
-import Pagination from "../../components/Pagination/Pagination";
+import Cards from "../../components/Cards/Cards";
+import { HomeContainer, PokemonCardContainer } from "./Home.styled-components";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonsInActualPage, setPokemonsInActualPage] = useState([]);
-  const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
+  const pokemonById = useSelector((state) => state.pokemonById);
 
   useEffect(() => {
     dispatch(getAllPokemons());
   }, [dispatch]);
 
-  const allPokemons = useSelector((state) => state.allPokemons);
-
-  const totalPokemons = allPokemons.length;
-
-  const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
-
-  const lastIndex = currentPage * pokemonsPerPage;
-  const firstIndex = lastIndex - pokemonsPerPage;
+  const handleChange = () => {
+    dispatch(clearSearch());
+  };
 
   return (
-    <>
+    <HomeContainer>
       <PokemonCardContainer>
-        {allPokemons
-          .map((pokemon) => (
-            <div>
-              <CardPokemon key={pokemon.id} pokemon={pokemon} />
-            </div>
-          ))
-          .slice(firstIndex, lastIndex)}
+        {pokemonById.name ? (
+          <div>
+            <p>Pokemon name: {pokemonById.name}</p>
+            <CardPokemon key={pokemonById.id} pokemon={pokemonById} />
+            <button onClick={handleChange}>Cerrar</button>
+          </div>
+        ) : (
+          <Cards />
+        )}
+        <SearchBar />
       </PokemonCardContainer>
-
-      <p>cantidad total de {totalPokemons}</p>
-      <p>cantidad limite de paginas num {totalPages}</p>
-
-      <Pagination
-        pokemonsPerPage={pokemonsPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalPokemons={totalPokemons}
-      />
-    </>
+    </HomeContainer>
   );
 };
 

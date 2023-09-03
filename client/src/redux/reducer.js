@@ -6,13 +6,14 @@ import {
   GET_TYPES,
   FILTER_POKEMON_BY_TIPE,
   FILTER_POKEMON_BY_DB_CREATED,
+  CLEAR_SEARCH,
 } from "./actions/action-types";
 
 const initialState = {
   allPokemons: [],
   pokemonsFilteredByType: [],
   pokemonByName: [],
-  pokemonById: [],
+  pokemonById: {},
   pokemonTypes: [],
 };
 
@@ -48,6 +49,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         pokemonTypes: action.payload,
+      };
+    case CLEAR_SEARCH:
+      return {
+        ...state,
+        pokemonById: {},
       };
     case FILTER_POKEMON_BY_TIPE:
       const allPokemons = state.allPokemons;

@@ -1,12 +1,21 @@
 import styled from "styled-components";
+import homebackground from "../../assets/homebackground.png";
+
+export const HomeContainer = styled.div`
+  background-color: #1d252d;
+  background-image: url(${homebackground});
+  min-height: 100vh;
+  background-size: cover;
+  background-attachment: fixed;
+`;
 
 export const PokemonCardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 20px;
+
   /* Arriba | Derecha | Abajo | Izquierda */
-  margin: 45px 45px 5px 45px;
+  margin: 45px 25px 5px 25px;
 `;
 
 export const FilterButtonContainer = styled.div`

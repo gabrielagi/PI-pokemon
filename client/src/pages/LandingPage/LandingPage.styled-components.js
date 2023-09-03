@@ -1,5 +1,4 @@
 import styled from "styled-components";
-//import { Link } from "react-router-dom";
 import LandingBackground from "../../assets/pokemon-landingpage.jpg";
 import LandingBackgroundMobile from "../../assets/pokemon-landingpage-mobile.jpg";
 

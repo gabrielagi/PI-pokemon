@@ -2,6 +2,7 @@ import {
   GET_ALL_POKEMONS,
   GET_POKEMON_BY_NAME,
   GET_POKEMON_BY_ID,
+  CLEAR_SEARCH,
 } from "../action-types";
 
 import axios from "axios";
@@ -44,6 +45,18 @@ export const getPokemonById = (id) => {
       dispatch({
         type: GET_POKEMON_BY_ID,
         payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const clearSearch = () => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: CLEAR_SEARCH,
       });
     } catch (error) {
       console.log(error.message);
