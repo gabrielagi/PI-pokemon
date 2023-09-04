@@ -47,7 +47,7 @@ export const getPokemonById = (id) => {
         payload: data,
       });
     } catch (error) {
-      console.log(error.message);
+      console.log("El Pokemon no se encuentra en la lista de Pokemones");
     }
   };
 };

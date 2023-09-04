@@ -7,7 +7,6 @@ import {
 import CardPokemon from "../../components/CardPokemon/CardPokemon";
 import Cards from "../../components/Cards/Cards";
 import { HomeContainer, PokemonCardContainer } from "./Home.styled-components";
-import SearchBar from "../../components/SearchBar/SearchBar";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -33,7 +32,6 @@ const Home = () => {
         ) : (
           <Cards />
         )}
-        <SearchBar />
       </PokemonCardContainer>
     </HomeContainer>
   );

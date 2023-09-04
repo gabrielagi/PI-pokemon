@@ -6,7 +6,7 @@ export const PokemonCardContainer = styled.div`
   justify-content: space-between;
   gap: 11px;
   /* Arriba | Derecha | Abajo | Izquierda */
-  margin: 45px 45px 5px 45px;
+  margin: 45px 15px 5px 15px;
 `;
 
 export const FilterButtonContainer = styled.div`
