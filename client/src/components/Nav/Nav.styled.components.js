@@ -5,7 +5,7 @@ export const NavBar = styled.nav`
   top: 0;
   width: 100%;
   z-index: 100;
-  background-color: #080a09;
+  background-color: #08225f;
   padding: 3px 0px;
   display: flex;
   flex-direction: column;
@@ -26,20 +26,24 @@ export const NavContainer = styled.div`
 `;
 
 export const NavButton = styled.button`
-  margin: 5px 15px 0px;
-  background-color: transparent;
-  color: #39ff14;
-  font-size: 12px;
-  padding: 6px 18px;
-  border: 1px solid #39ff14;
-  border-radius: 4px;
+  display: inline-block;
+  padding: 5px 18px;
+  font-size: 14px;
+  text-align: center;
+  background-color: #e4c0be;
+  color: white;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  &:active,
-  &:focus {
-    border: 1px solid #ff44cc;
-    color: #ff44cc;
-    box-shadow: 0 0 10px 2px rgba(255, 105, 180, 0.5);
+  font-weight: 700px;
+  margin-left: 40px;
+
+  &:hover {
+    background-color: #adfec6;
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 `;
 

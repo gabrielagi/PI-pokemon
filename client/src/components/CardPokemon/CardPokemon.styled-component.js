@@ -4,8 +4,9 @@ export const CardWrapper = styled.div`
   position: relative;
   background-color: rgba(30, 13, 58, 0.7);
   color: #ffffff;
+  justify-content: center;
   padding: 20px;
-  margin: 5px 5px 5px 5px;
+  margin: 40px 5px 5px 5px;
   border-radius: 8px;
   width: 160px;
   height: 220px;

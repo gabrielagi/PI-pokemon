@@ -9,21 +9,26 @@ import {
 
 import SearchBar from "../SearchBar/SearchBar";
 
+import FileOrder from "../FilterOrder/FileOrder";
+
 const Navbar = () => {
   return (
     <NavBar>
       <NavContainer>
         <NavLink to="/home" className="home">
-          <NavButton>Crear Pokemon</NavButton>
+          <NavButton>Home</NavButton>
         </NavLink>
-        <NavLink to="/formulario" className="home">
+        <NavLink to="/crearpokemon" className="home">
           <NavButton>Crear Pokemon</NavButton>
         </NavLink>
       </NavContainer>
       <NavContainer>
         <SearchBar />
       </NavContainer>
-      <NavButtonLogOut>Salir</NavButtonLogOut>
+      <NavLink to="/" className="home">
+        <NavButtonLogOut>Salir</NavButtonLogOut>
+      </NavLink>
+      <FileOrder />
     </NavBar>
   );
 };

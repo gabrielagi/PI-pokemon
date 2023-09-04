@@ -11,11 +11,16 @@ export const HomeContainer = styled.div`
 
 export const PokemonCardContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+`;
 
-  /* Arriba | Derecha | Abajo | Izquierda */
-  margin: 45px 25px 5px 25px;
+export const PokemonIndividualCardContainer = styled.div`
+  position: absolute;
+  top: 65px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 export const FilterButtonContainer = styled.div`
@@ -52,4 +57,18 @@ export const FilterButton = styled.button`
   &:active {
     transform: translateY(0);
   }
+`;
+
+export const CloseButton = styled.button`
+  top: 6px;
+  right: 7px;
+  background-color: red;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  margin-top: 380px;
+  border-radius: 20px;
+  font-size: 10px;
+  width: 56px;
+  height: 26px;
 `;

@@ -14,11 +14,11 @@ export const Button = styled.button`
   text-align: center;
   background-color: #9ce5b8;
   color: white;
-  border: solid 1px #9ce5b8;
+  border: solid 1px #fff;
   border-radius: 6px;
   margin: 3px;
-  background-color: ${(props) => (props.isSelected ? "#9ce5b8" : "#adfec6")};
-  color: ${(props) => (props.isSelected ? "white" : "black")};
+  background-color: ${(props) => (props.isSelected ? "#E8E8E8" : "#8ca8be")};
+  color: ${(props) => (props.isSelected ? "black" : "white")};
   cursor: pointer;
 
   &:disabled {

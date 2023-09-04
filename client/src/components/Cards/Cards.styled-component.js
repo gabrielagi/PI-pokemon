@@ -3,10 +3,11 @@ import styled from "styled-components";
 export const PokemonCardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+
+  justify-content: center;
   gap: 11px;
   /* Arriba | Derecha | Abajo | Izquierda */
-  margin: 45px 15px 5px 15px;
+  /*margin: 45px 15px 5px 15px*/
 `;
 
 export const FilterButtonContainer = styled.div`

@@ -6,7 +6,12 @@ import {
 } from "../../redux/actions/getPokemon/action";
 import CardPokemon from "../../components/CardPokemon/CardPokemon";
 import Cards from "../../components/Cards/Cards";
-import { HomeContainer, PokemonCardContainer } from "./Home.styled-components";
+import {
+  HomeContainer,
+  PokemonCardContainer,
+  CloseButton,
+  PokemonIndividualCardContainer,
+} from "./Home.styled-components";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -22,17 +27,23 @@ const Home = () => {
 
   return (
     <HomeContainer>
-      <PokemonCardContainer>
-        {pokemonById.name ? (
-          <div>
-            <p>Pokemon name: {pokemonById.name}</p>
+      {pokemonById.name ? (
+        <PokemonCardContainer>
+          <PokemonIndividualCardContainer>
             <CardPokemon key={pokemonById.id} pokemon={pokemonById} />
-            <button onClick={handleChange}>Cerrar</button>
-          </div>
-        ) : (
+          </PokemonIndividualCardContainer>
+          <CloseButton
+            onClick={handleChange}
+            alt="Cerrar tarjeta del personaje"
+          >
+            Cerrar
+          </CloseButton>
+        </PokemonCardContainer>
+      ) : (
+        <PokemonIndividualCardContainer>
           <Cards />
-        )}
-      </PokemonCardContainer>
+        </PokemonIndividualCardContainer>
+      )}
     </HomeContainer>
   );
 };

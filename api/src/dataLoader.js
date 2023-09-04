@@ -1,7 +1,7 @@
 const { getTypes } = require("./controllers/typeController");
 
 // Función para cargar tipos y pokemons en la base de datos
-const loadTypesAndPokemons = async () => {
+const loadTypes = async () => {
   try {
     // Carga los tipos en la base de datos
     const types = await getTypes();
@@ -12,4 +12,4 @@ const loadTypesAndPokemons = async () => {
   }
 };
 
-module.exports = { loadTypesAndPokemons };
+module.exports = { loadTypes };
