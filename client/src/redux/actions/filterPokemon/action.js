@@ -7,6 +7,7 @@ import {
 export const filterPokemonByType = (pokemonsByType) => {
   return async (dispatch) => {
     try {
+      console.log("LLegue al dispatch de type");
       dispatch({
         type: FILTER_POKEMON_BY_TYPE,
         payload: pokemonsByType,

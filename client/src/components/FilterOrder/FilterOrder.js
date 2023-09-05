@@ -32,12 +32,16 @@ const FilterOrder = ({ setFilteredPokemon }) => {
 
   const handleFilter = (event) => {
     const type = event.target.value;
-    const filteredPokemons = pokemonsByTypes({
-      allPokemons: allPokemons,
-      type: type,
-    });
-    console.log("filteredPokemons:", filteredPokemons);
-    //dispatch(filterPokemonByType(pokemonsByType));
+    if (type !== "none") {
+      const filteredPokemons = pokemonsByTypes({
+        allPokemons: allPokemons,
+        type: type,
+      });
+      console.log("filteredPokemons:", filteredPokemons);
+      dispatch(filterPokemonByType(filteredPokemons));
+    } else {
+      dispatch(clearFilter());
+    }
   };
 
   return (
@@ -59,6 +63,16 @@ const FilterOrder = ({ setFilteredPokemon }) => {
                 </option>
               ))}
               <option value="none">All Pokemons</option>
+            </CustomSelect>
+          </SelectorWrapper>
+
+          <SelectorWrapper>
+            <CustomSelect onChange={handleFilter}>
+              <option value="" disabled selected>
+                Filtro x Origin
+              </option>
+              <option value="db">From Db</option>
+              <option value="api">From Api</option>
             </CustomSelect>
           </SelectorWrapper>
 

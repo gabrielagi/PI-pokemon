@@ -60,6 +60,7 @@ const reducer = (state = initialState, action) => {
         pokemonById: {},
       };
     case FILTER_POKEMON_BY_TYPE:
+      console.log("LLegue al reducer de type");
       return {
         ...state,
         pokemonsFilteredByType: action.payload,
