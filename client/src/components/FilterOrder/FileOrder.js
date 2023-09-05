@@ -7,7 +7,9 @@ import {
   CustomSelect,
 } from "./FileOrder.styled-component";
 
-const FileOrder = ({ show, toggle }) => {
+import { FilterButton } from "../Buttons/Buttons.styled-components";
+
+const FileOrder = () => {
   const [showContent, setShowContent] = useState(false);
 
   const toggleContent = () => {
@@ -15,9 +17,9 @@ const FileOrder = ({ show, toggle }) => {
   };
   return (
     <PageContainer>
-      <button onClick={toggleContent}>
+      <FilterButton onClick={toggleContent}>
         {showContent ? "Cerrar Filtro / Orden" : "Filtrar / Ordenar"}
-      </button>
+      </FilterButton>
       {showContent && (
         <SelectorContainer>
           <SelectorContainer>

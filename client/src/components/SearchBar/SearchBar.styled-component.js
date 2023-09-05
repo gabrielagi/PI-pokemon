@@ -40,9 +40,9 @@ export const SearchInput = styled.input`
   transition: border-color 0.3s ease-in-out;
 
   &::placeholder {
-    font-size: 16px;
-    padding-left: 10px;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    padding-left: 2px;
+    color: rgba(140, 168, 190, 0.6);
   }
 
   &:focus {

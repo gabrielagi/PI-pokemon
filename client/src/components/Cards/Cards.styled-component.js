@@ -23,25 +23,3 @@ export const FilterButtonContainer = styled.div`
     left: 100px;
   }
 `;
-
-export const FilterButton = styled.button`
-  display: inline-block;
-  padding: 12px 70px;
-  font-size: 16px;
-  text-align: center;
-  background-color: #9ce5b8;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 700px;
-
-  &:hover {
-    transform: translateY(-2px);
-    background-color: #adfec6;
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
-`;

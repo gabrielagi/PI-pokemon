@@ -1,9 +1,10 @@
 import React, { useMemo } from "react";
+import { FixedPaginationContainer } from "./Pagination.styled-component";
+
 import {
-  FixedPaginationContainer,
-  Button,
   PrevNextButton,
-} from "./Pagination.styled-component";
+  PaginationButton,
+} from "../Buttons/Buttons.styled-components";
 
 const Pagination = ({
   pokemonsPerPage,
@@ -47,14 +48,14 @@ const Pagination = ({
         Previous
       </PrevNextButton>
       {pageNumbers.map((pageNum) => (
-        <Button
+        <PaginationButton
           key={pageNum}
           onClick={() => onSpecificPage(pageNum)}
           isSelected={pageNum === currentPage}
           disabled={pageNum === currentPage}
         >
           {pageNum}
-        </Button>
+        </PaginationButton>
       ))}
       <PrevNextButton
         onClick={onNextPage}

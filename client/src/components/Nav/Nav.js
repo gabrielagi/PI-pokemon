@@ -1,11 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { NavBar, NavContainer } from "./Nav.styled.components";
 import {
-  NavBar,
-  NavContainer,
   NavButton,
   NavButtonLogOut,
-} from "./Nav.styled.components";
+} from "../Buttons/Buttons.styled-components";
 
 import SearchBar from "../SearchBar/SearchBar";
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const PageContainer = styled.nav`
   position: fixed;
-  margin-top: 50px;
+  margin-top: 100px;
   width: 100%;
   z-index: 100;
   padding: 3px 0px;
@@ -34,7 +34,7 @@ export const CustomSelect = styled.select`
   padding: 4px 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin: 40px 15px 0 15px;
+  margin: 0px 15px 0 15px;
 
   &:hover {
     background-color: #dae1e5;
@@ -42,4 +42,3 @@ export const CustomSelect = styled.select`
     color: #000;
   }
 `;
-
