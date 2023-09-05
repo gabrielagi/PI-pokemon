@@ -18,7 +18,7 @@ import {
 
 import { pokemonsByTypes } from "./FilterOrder.actions";
 
-const FilterOrder = ({ setFilteredPokemon }) => {
+const FilterOrder = () => {
   const [showContent, setShowContent] = useState(false);
 
   const dispatch = useDispatch();
