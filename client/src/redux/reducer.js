@@ -4,17 +4,21 @@ import {
   GET_POKEMON_BY_NAME,
   GET_POKEMON_BY_ID,
   GET_TYPES,
-  FILTER_POKEMON_BY_TIPE,
-  FILTER_POKEMON_BY_DB_CREATED,
+  FILTER_POKEMON_BY_TYPE,
+  FILTER_POKEMON_BY_ORIGIN,
   CLEAR_SEARCH,
+  CLEAR_FILTER,
 } from "./actions/action-types";
 
 const initialState = {
   allPokemons: [],
   pokemonsFilteredByType: [],
+  pokemonsFilteredByOrigin: [],
+  pokemonsOrdered: [],
   pokemonByName: [],
   pokemonById: {},
   pokemonTypes: [],
+  isFiltered: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -23,7 +27,7 @@ const reducer = (state = initialState, action) => {
       const newPokemon = action.payload;
       return {
         ...state,
-        allPokemons: [...allPokemons, newPokemon],
+        allPokemons: [...state.allPokemons, newPokemon],
       };
     case GET_ALL_POKEMONS:
       return {
@@ -55,25 +59,31 @@ const reducer = (state = initialState, action) => {
         ...state,
         pokemonById: {},
       };
-    case FILTER_POKEMON_BY_TIPE:
-      const allPokemons = state.allPokemons;
-      const typeFiltered =
-        action.payload === "none"
-          ? allPokemons
-          : allPokemons.filter((pokemon) =>
-              pokemon.type.includes(action.payload)
+    case FILTER_POKEMON_BY_TYPE:
+      return {
+        ...state,
+        pokemonsFilteredByType: action.payload,
+        isFiltered: true,
+      };
+    case FILTER_POKEMON_BY_ORIGIN:
+      const pokemons = state.allPokemons;
+      const originFiltered =
+        action.payload === "db"
+          ? pokemons.filter((pokemon) => pokemon.createdInDb === true)
+          : pokemons.filter(
+              (pokemon) => pokemon.hasOwnProperty("createdInDb") === false
             );
       return {
         ...state,
-        pokemonsFilteredByType: typeFiltered,
+        pokemonsFilteredByOrigin: originFiltered,
+        isFiltered: true,
       };
-    case FILTER_POKEMON_BY_DB_CREATED:
-      const pokemons = state.allPokemons;
+    case CLEAR_FILTER:
       return {
         ...state,
-        pokemonsFilteredByType: pokemons.filter(
-          (pokemon) => pokemon.createdInDb === true
-        ),
+        pokemonsFilteredByType: [],
+        pokemonsFilteredByOrigin: [],
+        isFiltered: false,
       };
     default:
       return {

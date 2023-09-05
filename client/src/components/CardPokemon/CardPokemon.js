@@ -1,10 +1,10 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+//import { NavLink } from "react-router-dom";
 import {
   PokemonName,
   CardContentWrapper,
-  PokemonImage,
-  PokemonTypes,
+  // PokemonImage,
+  // PokemonTypes,
   CardWrapper,
 } from "./CardPokemon.styled-component";
 
@@ -29,9 +29,31 @@ const CardPokemon = ({ pokemon }) => {
             Pokemon Types:{" "}
             {pokemon.types &&
               pokemon.types.map((type, index) => (
-                <span key={index}>{type.name}</span>
+                <span key={index}>
+                  {type.name}
+                  {index < pokemon.types.length - 1 ? ", " : ""}
+                </span>
               ))}
           </p>
+
+          {
+            //Si quiero agregar una imagen por cada tipo
+            /* <p>
+            Pokemon Types:{" "}
+            {pokemon.types &&
+              pokemon.types.map((type, index) => (
+                <span key={index}>
+                  <img
+                    src={getTypeImage(type.name)}
+                    alt={type.name}
+                    style={{ width: "20px", height: "20px" }}
+                  />
+                  {type.name}
+                  {index < pokemon.types.length - 1 ? ", " : ""}
+                </span>
+              ))}
+          </p> */
+          }
           {/* <PokemonImage
             // src={`images/sprites/${pokemon.image}`}
             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/2.gif"

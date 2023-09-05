@@ -4,6 +4,7 @@ import {
   getAllPokemons,
   clearSearch,
 } from "../../redux/actions/getPokemon/action";
+import { getTypes } from "../../redux/actions/getTypes/action";
 import CardPokemon from "../../components/CardPokemon/CardPokemon";
 import Cards from "../../components/Cards/Cards";
 import {
@@ -19,6 +20,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getAllPokemons());
+    dispatch(getTypes());
   }, [dispatch]);
 
   const handleChange = () => {

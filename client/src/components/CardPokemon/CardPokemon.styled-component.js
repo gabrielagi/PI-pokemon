@@ -6,7 +6,8 @@ export const CardWrapper = styled.div`
   color: #ffffff;
   justify-content: center;
   padding: 20px;
-  margin: 40px 5px 5px 5px;
+  margin: 25px 5px 5px 5px;
+  /* Arriba | Derecha | Abajo | Izquierda */
   border-radius: 8px;
   width: 160px;
   height: 220px;

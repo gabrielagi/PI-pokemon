@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const PageContainer = styled.nav`
   position: fixed;
-  margin-top: 100px;
   width: 100%;
   z-index: 100;
   padding: 3px 0px;

@@ -6,6 +6,7 @@ export const PokemonCardContainer = styled.div`
 
   justify-content: center;
   gap: 11px;
+  margin-top: 35px;
   /* Arriba | Derecha | Abajo | Izquierda */
   /*margin: 45px 15px 5px 15px*/
 `;

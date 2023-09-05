@@ -8,7 +8,7 @@ import {
 
 import SearchBar from "../SearchBar/SearchBar";
 
-import FileOrder from "../FilterOrder/FileOrder";
+// import FileOrder from "../FilterOrder/FileOrder";
 
 const Navbar = () => {
   return (
@@ -27,7 +27,7 @@ const Navbar = () => {
       <NavLink to="/" className="home">
         <NavButtonLogOut>Salir</NavButtonLogOut>
       </NavLink>
-      <FileOrder />
+      {/* <FileOrder /> */}
     </NavBar>
   );
 };

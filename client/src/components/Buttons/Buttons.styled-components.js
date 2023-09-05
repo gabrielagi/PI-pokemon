@@ -4,23 +4,20 @@ import styled from "styled-components";
 
 export const FilterButton = styled.button`
   display: inline-block;
-  padding: 8px 30px;
+  padding: 7px 25px;
   font-size: 14px;
   text-align: center;
-  background-color: #9ce5b8;
+  background-color: ${(props) =>
+    props.showContent ? "red" : "#C788F3"}; /* #A06CC5  #C788F3  #A468CF */
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: 700px;
+  font-weight: 500;
 
   &:hover {
-    transform: translateY(-2px);
-    background-color: #adfec6;
-  }
-
-  &:active {
-    transform: translateY(0);
+    background-color: ${(props) =>
+      props.showContent ? "red" : "#9A37DF"}; /* #9ce5b8 #adfec6 #A468CF */
   }
 `;
 
@@ -74,8 +71,9 @@ export const PaginationButton = styled.button`
   color: white;
   border: solid 1px #fff;
   border-radius: 6px;
+  font-weight: 600;
   margin: 3px;
-  background-color: ${(props) => (props.isSelected ? "#E8E8E8" : "#8ca8be")};
+  background-color: ${(props) => (props.isSelected ? "#E8E8E8" : "#C788F3")};
   color: ${(props) => (props.isSelected ? "black" : "white")};
   cursor: pointer;
 

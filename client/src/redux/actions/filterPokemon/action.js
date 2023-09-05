@@ -1,15 +1,15 @@
 import {
-  FILTER_POKEMON_BY_TIPE,
-  FILTER_POKEMON_BY_DB_CREATED,
+  FILTER_POKEMON_BY_TYPE,
+  FILTER_POKEMON_BY_ORIGIN,
   CLEAR_FILTER,
 } from "../action-types";
 
-export const filterPokemonByType = (type) => {
+export const filterPokemonByType = (pokemonsByType) => {
   return async (dispatch) => {
     try {
       dispatch({
-        type: FILTER_POKEMON_BY_TIPE,
-        payload: type,
+        type: FILTER_POKEMON_BY_TYPE,
+        payload: pokemonsByType,
       });
     } catch (error) {
       console.log(error.message);
@@ -17,11 +17,11 @@ export const filterPokemonByType = (type) => {
   };
 };
 
-export const filterPokemonByDbCreated = (origin) => {
+export const filterPokemonByOrigin = (origin) => {
   return async (dispatch) => {
     try {
       dispatch({
-        type: FILTER_POKEMON_BY_DB_CREATED,
+        type: FILTER_POKEMON_BY_ORIGIN,
         payload: origin,
       });
     } catch (error) {
@@ -35,7 +35,6 @@ export const clearFilter = () => {
     try {
       dispatch({
         type: CLEAR_FILTER,
-        payload: origin,
       });
     } catch (error) {
       console.log(error.message);

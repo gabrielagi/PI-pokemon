@@ -17,7 +17,7 @@ export const PokemonCardContainer = styled.div`
 
 export const PokemonIndividualCardContainer = styled.div`
   position: absolute;
-  top: 65px;
+  top: 53px;
   width: 100%;
   display: flex;
   justify-content: center;

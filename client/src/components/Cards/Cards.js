@@ -4,14 +4,17 @@ import CardPokemon from "../CardPokemon/CardPokemon";
 import { PokemonCardContainer } from "./Cards.styled-component";
 import Pagination from "../Pagination/Pagination";
 
+import FilterOrder from "../../components/FilterOrder/FilterOrder";
+
 const Cards = () => {
   const allPokemons = useSelector((state) => state.allPokemons);
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemons, setPokemons] = useState([]);
-  const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
+  const [filteredPokemon, setFilteredPokemon] = useState([]);
 
+  const pokemonsPerPage = 12;
   const totalPokemons = allPokemons.length;
-  const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
+  //const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
   const lastIndex = currentPage * pokemonsPerPage;
   const firstIndex = lastIndex - pokemonsPerPage;
 
@@ -21,6 +24,7 @@ const Cards = () => {
 
   return (
     <>
+      <FilterOrder setFilteredPokemon={setFilteredPokemon} />
       <PokemonCardContainer>
         {pokemons
           .map((pokemon) => (
