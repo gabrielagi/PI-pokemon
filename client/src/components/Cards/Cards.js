@@ -17,10 +17,12 @@ const Cards = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemons, setPokemons] = useState([]);
-  const [filteredPokemon, setFilteredPokemon] = useState([]);
 
   const pokemonsPerPage = 12;
-  const totalPokemons = allPokemons.length;
+  const totalPokemons = isFiltered
+    ? pokemonsFilteredByType.length // Uso la longitud del pokemons filtrados por type
+    : allPokemons.length; // Uso la longitud de todos los pokemones
+
   //const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
   const lastIndex = currentPage * pokemonsPerPage;
   const firstIndex = lastIndex - pokemonsPerPage;

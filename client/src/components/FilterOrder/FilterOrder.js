@@ -47,7 +47,7 @@ const FilterOrder = () => {
   return (
     <PageContainer>
       <FilterButton showContent={showContent} onClick={toggleContent}>
-        {showContent ? "Cerrar Filtro / Orden" : "Filtrar / Ordenar"}
+        {showContent ? "Hide Filter / Order" : "Filter / Order"}
       </FilterButton>
 
       {showContent && (
@@ -57,12 +57,12 @@ const FilterOrder = () => {
               <option value="" disabled selected>
                 Filtro x Type
               </option>
+              <option value="none">All Pokemons</option>
               {allTypes.map((type) => (
                 <option key={type.id} value={type.name}>
                   {type.name}
                 </option>
               ))}
-              <option value="none">All Pokemons</option>
             </CustomSelect>
           </SelectorWrapper>
 
