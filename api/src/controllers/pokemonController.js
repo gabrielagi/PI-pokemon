@@ -92,14 +92,33 @@ const getAllPokemons = async () => {
   }
 };
 
-const postPokemon = async ({name, img, hp, attack, defense, speed, height, weight, type = [] }) => {
+const postPokemon = async ({
+  name,
+  img,
+  hp,
+  attack,
+  defense,
+  speed,
+  height,
+  weight,
+  type = [],
+}) => {
   try {
     if (!name || !img || !hp || !attack || !defense) {
       throw new Error("Faltan completar campos obligatorios");
     }
 
     // Crear el Pokémon
-    const pokemonCreated = await Pokemon.create({ name, img, hp, attack, defense, speed, height, weight });
+    const pokemonCreated = await Pokemon.create({
+      name,
+      img,
+      hp,
+      attack,
+      defense,
+      speed,
+      height,
+      weight,
+    });
 
     // Obtener los registros de tipos según los nombres en el arreglo "type"
     const typeNames = type.map((t) => t.name);
@@ -116,8 +135,6 @@ const postPokemon = async ({name, img, hp, attack, defense, speed, height, weigh
     return false;
   }
 };
-
-const filterPokemonByType = () => {};
 
 module.exports = {
   getAllPokemons,
