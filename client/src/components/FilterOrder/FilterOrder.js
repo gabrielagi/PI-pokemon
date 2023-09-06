@@ -9,8 +9,9 @@ import { FilterButton } from "../Buttons/Buttons.styled-components";
 import {
   handleFilterType,
   handleFilterByOrigin,
-  handleOrder,
-} from "./Handlers/handlerFilter"; // Importa los manejadores correctamente
+} from "./Handlers/handlerFilter";
+import { handleOrder } from "./Handlers/handlerOrder";
+
 import { useDispatch, useSelector } from "react-redux";
 
 const FilterOrder = () => {

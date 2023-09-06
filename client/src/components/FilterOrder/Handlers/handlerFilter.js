@@ -10,7 +10,6 @@ import {
   pokemonsByTypes,
   pokemonsByOrigin,
 } from "../Operations/Filter.operations";
-import { pokemonsOrdered } from "../Operations/Order.operations";
 
 // Hanlder de types
 export const handleFilterType = ({ allPokemons, type, dispatch }) => {
@@ -35,20 +34,6 @@ export const handleFilterByOrigin = ({ allPokemons, origin, dispatch }) => {
     });
     console.log("filteredPokemons:", filteredPokemons);
     dispatch(filterPokemonByOrigin(filteredPokemons));
-  } else {
-    dispatch(clearFilter());
-  }
-};
-
-//Handler de Order
-export const handleOrder = ({ allPokemons, order, dispatch }) => {
-  if (order) {
-    const orderedPokemons = pokemonsOrdered({
-      allPokemons: allPokemons,
-      order: order,
-    });
-    console.log("orderedPokemons:", orderedPokemons);
-    dispatch(filterPokemonByOrigin(orderedPokemons));
   } else {
     dispatch(clearFilter());
   }
