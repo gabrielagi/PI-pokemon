@@ -1,8 +1,7 @@
 import {
   POST_POKEMON,
   GET_ALL_POKEMONS,
-  GET_POKEMON_BY_NAME,
-  GET_POKEMON_BY_ID,
+  GET_POKEMON_BY_SEARCHBAR,
   GET_TYPES,
   FILTER_POKEMON_BY_TYPE,
   FILTER_POKEMON_BY_ORIGIN,
@@ -15,8 +14,7 @@ const initialState = {
   pokemonsFilteredByType: [],
   pokemonsFilteredByOrigin: [],
   pokemonsOrdered: [],
-  pokemonByName: [],
-  pokemonById: {},
+  pokemonBySearchbar: {},
   pokemonTypes: [],
   isFiltered: false,
 };
@@ -38,16 +36,11 @@ const reducer = (state = initialState, action) => {
           state.pokemonsPerPage
         ),
       };
-
-    case GET_POKEMON_BY_NAME:
+    case GET_POKEMON_BY_SEARCHBAR:
+      console.log("pokemon por nombre", action.payload);
       return {
         ...state,
-        pokemonByName: action.payload,
-      };
-    case GET_POKEMON_BY_ID:
-      return {
-        ...state,
-        pokemonById: action.payload,
+        pokemonBySearchbar: action.payload,
       };
     case GET_TYPES:
       return {
@@ -57,7 +50,7 @@ const reducer = (state = initialState, action) => {
     case CLEAR_SEARCH:
       return {
         ...state,
-        pokemonById: {},
+        pokemonBySearchbar: {},
       };
     case FILTER_POKEMON_BY_TYPE:
       console.log("LLegue al reducer de type");

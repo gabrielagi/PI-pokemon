@@ -16,7 +16,7 @@ import {
 
 const Home = () => {
   const dispatch = useDispatch();
-  const pokemonById = useSelector((state) => state.pokemonById);
+  const pokemonBySearchbar = useSelector((state) => state.pokemonBySearchbar);
 
   useEffect(() => {
     dispatch(getAllPokemons());
@@ -29,10 +29,13 @@ const Home = () => {
 
   return (
     <HomeContainer>
-      {pokemonById.name ? (
+      {pokemonBySearchbar.name ? (
         <PokemonCardContainer>
           <PokemonIndividualCardContainer>
-            <CardPokemon key={pokemonById.id} pokemon={pokemonById} />
+            <CardPokemon
+              key={pokemonBySearchbar.id}
+              pokemon={pokemonBySearchbar}
+            />
           </PokemonIndividualCardContainer>
           <CloseButton
             onClick={handleChange}

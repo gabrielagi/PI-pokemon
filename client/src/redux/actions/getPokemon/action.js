@@ -1,7 +1,6 @@
 import {
   GET_ALL_POKEMONS,
-  GET_POKEMON_BY_NAME,
-  GET_POKEMON_BY_ID,
+  GET_POKEMON_BY_SEARCHBAR,
   CLEAR_SEARCH,
 } from "../action-types";
 
@@ -27,12 +26,17 @@ export const getPokemonByName = (name) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`${endpoint}/?name=${name}`);
-      dispatch({
-        type: GET_POKEMON_BY_NAME,
-        payload: data,
-      });
+      if (Array.isArray(data) && data.length > 0) {
+        const dataPokemon = data[0];
+        dispatch({
+          type: GET_POKEMON_BY_SEARCHBAR,
+          payload: dataPokemon,
+        });
+      } else {
+        alert("El Pokemon no se encuentra en la lista de Pokemons");
+      }
     } catch (error) {
-      console.log(error.message);
+      alert("Hubo un error al buscar el Pokemon");
     }
   };
 };
@@ -43,11 +47,11 @@ export const getPokemonById = (id) => {
     try {
       const { data } = await axios.get(`${endpoint}/${id}`);
       dispatch({
-        type: GET_POKEMON_BY_ID,
+        type: GET_POKEMON_BY_SEARCHBAR,
         payload: data,
       });
     } catch (error) {
-      console.log("El Pokemon no se encuentra en la lista de Pokemones");
+      alert("El Pokemon no se encuentra en la lista de Pokemons");
     }
   };
 };
