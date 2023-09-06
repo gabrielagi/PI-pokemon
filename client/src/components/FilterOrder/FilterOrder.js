@@ -1,79 +1,26 @@
 import React, { useState } from "react";
-//import { NavLink } from "react-router-dom";
 import {
   PageContainer,
   SelectorContainer,
   SelectorWrapper,
   CustomSelect,
 } from "./FilterOrder.styled-component";
-
 import { FilterButton } from "../Buttons/Buttons.styled-components";
-
-import { useDispatch, useSelector } from "react-redux";
 import {
-  filterPokemonByType,
-  filterPokemonByOrigin,
-  clearFilter,
-} from "../../redux/actions/filterPokemon/action";
-
-import { pokemonsByTypes, pokemonsByOrigin } from "./Filter.operations";
-import { pokemonsOrdered } from "./Order.operations";
+  handleFilterType,
+  handleFilterByOrigin,
+  handleOrder,
+} from "./Handlers/handlerFilter"; // Importa los manejadores correctamente
+import { useDispatch, useSelector } from "react-redux";
 
 const FilterOrder = () => {
   const [showContent, setShowContent] = useState(false);
-
   const dispatch = useDispatch();
-
-  const allPokemons = useSelector((state) => state.allPokemons);
   const allTypes = useSelector((state) => state.pokemonTypes);
+  const allPokemons = useSelector((state) => state.allPokemons);
 
   const toggleContent = () => {
     setShowContent(!showContent);
-  };
-
-  // Hanlder de types
-  const handleFilterByType = (event) => {
-    const type = event.target.value;
-    if (type !== "none") {
-      const filteredPokemons = pokemonsByTypes({
-        allPokemons: allPokemons,
-        type: type,
-      });
-      console.log("filteredPokemons:", filteredPokemons);
-      dispatch(filterPokemonByType(filteredPokemons));
-    } else {
-      dispatch(clearFilter());
-    }
-  };
-
-  // Handler de Origin
-  const handleFilterByOrigin = (event) => {
-    const origin = event.target.value;
-    if (origin) {
-      const filteredPokemons = pokemonsByOrigin({
-        allPokemons: allPokemons,
-        origin: origin,
-      });
-      console.log("filteredPokemons:", filteredPokemons);
-      dispatch(filterPokemonByOrigin(filteredPokemons));
-    } else {
-      dispatch(clearFilter());
-    }
-  };
-
-  //Handler de Order
-  const handleOrder = (event) => {
-    const order = event.target.value;
-    if (order) {
-      const orderedPokemons = pokemonsOrdered({
-        allPokemons: allPokemons,
-        order: order,
-      });
-      console.log("orderedPokemons:", orderedPokemons);
-      dispatch(filterPokemonByOrigin(orderedPokemons));
-    } else {
-      dispatch(clearFilter());
-    }
   };
 
   return (
@@ -85,7 +32,15 @@ const FilterOrder = () => {
       {showContent && (
         <SelectorContainer>
           <SelectorWrapper>
-            <CustomSelect onChange={handleFilterByType}>
+            <CustomSelect
+              onChange={(event) =>
+                handleFilterType({
+                  allPokemons,
+                  type: event.target.value,
+                  dispatch,
+                })
+              }
+            >
               <option value="" disabled selected>
                 Filter x Type
               </option>
@@ -99,7 +54,15 @@ const FilterOrder = () => {
           </SelectorWrapper>
 
           <SelectorWrapper>
-            <CustomSelect onChange={handleFilterByOrigin}>
+            <CustomSelect
+              onChange={(event) =>
+                handleFilterByOrigin({
+                  allPokemons,
+                  origin: event.target.value,
+                  dispatch,
+                })
+              }
+            >
               <option value="" disabled selected>
                 Filter x Origin
               </option>
@@ -109,7 +72,15 @@ const FilterOrder = () => {
           </SelectorWrapper>
 
           <SelectorContainer>
-            <CustomSelect onChange={handleOrder}>
+            <CustomSelect
+              onChange={(event) =>
+                handleOrder({
+                  allPokemons,
+                  order: event.target.value,
+                  dispatch,
+                })
+              }
+            >
               <option value="" disabled selected>
                 Order
               </option>

@@ -45,9 +45,9 @@ const Home = () => {
           </CloseButton>
         </PokemonCardContainer>
       ) : (
-        <PokemonIndividualCardContainer>
+        <PokemonCardContainer>
           <Cards />
-        </PokemonIndividualCardContainer>
+        </PokemonCardContainer>
       )}
     </HomeContainer>
   );

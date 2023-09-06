@@ -9,13 +9,13 @@ export const HomeContainer = styled.div`
   background-attachment: fixed;
 `;
 
-export const PokemonCardContainer = styled.div`
+export const PokemonIndividualCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const PokemonIndividualCardContainer = styled.div`
+export const PokemonCardContainer = styled.div`
   position: absolute;
   top: 53px;
   width: 100%;
@@ -60,13 +60,14 @@ export const FilterButton = styled.button`
 `;
 
 export const CloseButton = styled.button`
+  position: absolute;
   top: 6px;
-  right: 7px;
+  left: 710px;
   background-color: red;
   color: #ffffff;
   border: none;
   cursor: pointer;
-  margin-top: 380px;
+  margin-top: 300px;
   border-radius: 20px;
   font-size: 10px;
   width: 56px;

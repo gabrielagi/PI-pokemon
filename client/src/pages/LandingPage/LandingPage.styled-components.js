@@ -8,11 +8,11 @@ export const LandingContainer = styled.div`
   background-position: center;
   width: 100vw;
   height: 100vh;
+  position: relative;
+  background-attachment: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  background-attachment: fixed;
 
   @media (max-width: 768px) {
     background-image: url(${LandingBackgroundMobile});
