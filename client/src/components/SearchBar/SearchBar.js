@@ -21,6 +21,7 @@ export default function SearchBar() {
     } else {
       dispatch(getPokemonById(inputValue));
     }
+    setInputValue("");
   };
 
   const handleChange = (event) => {

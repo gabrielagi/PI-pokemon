@@ -6,3 +6,19 @@ export const pokemonsByTypes = ({ allPokemons, type }) => {
   console.log("allPokemonsFiltered:", allPokemonsFiltered);
   return allPokemonsFiltered;
 };
+
+export const pokemonsByOrigin = ({ allPokemons, origin }) => {
+  if (origin === "db") {
+    const allPokemonsFiltered = allPokemons.filter(
+      (pokemon) => pokemon.createdInDb === true
+    );
+    console.log("allPokemonsOriginDb:", allPokemonsFiltered);
+    return allPokemonsFiltered;
+  } else {
+    const allPokemonsFiltered = allPokemons.filter(
+      (pokemon) => pokemon.createdInDb !== true
+    );
+    console.log("allPokemonsFiltered:", allPokemonsFiltered);
+    return allPokemonsFiltered;
+  }
+};

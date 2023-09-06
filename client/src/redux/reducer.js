@@ -16,7 +16,8 @@ const initialState = {
   pokemonsOrdered: [],
   pokemonBySearchbar: {},
   pokemonTypes: [],
-  isFiltered: false,
+  isFilteredByType: false,
+  isOrdered: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -31,10 +32,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allPokemons: action.payload,
-        pokemonsInActualPage: [...action.payload].slice(
-          0,
-          state.pokemonsPerPage
-        ),
       };
     case GET_POKEMON_BY_SEARCHBAR:
       console.log("pokemon por nombre", action.payload);
@@ -57,7 +54,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         pokemonsFilteredByType: action.payload,
-        isFiltered: true,
+        isFilteredByType: true,
       };
     case FILTER_POKEMON_BY_ORIGIN:
       const pokemons = state.allPokemons;
@@ -77,7 +74,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         pokemonsFilteredByType: [],
         pokemonsFilteredByOrigin: [],
-        isFiltered: false,
+        isFilteredByType: false,
       };
     default:
       return {
