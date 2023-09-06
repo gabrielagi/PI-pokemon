@@ -16,7 +16,7 @@ import {
   clearFilter,
 } from "../../redux/actions/filterPokemon/action";
 
-import { pokemonsByTypes } from "./FilterOrder.actions";
+import { pokemonsByTypes, pokemonsByOrigin } from "./Filter.operations";
 
 const FilterOrder = () => {
   const [showContent, setShowContent] = useState(false);
@@ -30,7 +30,8 @@ const FilterOrder = () => {
     setShowContent(!showContent);
   };
 
-  const handleFilter = (event) => {
+  // Hanlder de types
+  const handleFilterByType = (event) => {
     const type = event.target.value;
     if (type !== "none") {
       const filteredPokemons = pokemonsByTypes({
@@ -44,6 +45,23 @@ const FilterOrder = () => {
     }
   };
 
+  // Handler de Origin
+  const handleFilterByOrigin = (event) => {
+    const origin = event.target.value;
+    if (origin) {
+      const filteredPokemons = pokemonsByOrigin({
+        allPokemons: allPokemons,
+        origin: origin,
+      });
+      console.log("filteredPokemons:", filteredPokemons);
+      dispatch(filterPokemonByOrigin(filteredPokemons));
+    } else {
+      dispatch(clearFilter());
+    }
+  };
+
+  //Handler de Order
+
   return (
     <PageContainer>
       <FilterButton showContent={showContent} onClick={toggleContent}>
@@ -53,7 +71,7 @@ const FilterOrder = () => {
       {showContent && (
         <SelectorContainer>
           <SelectorWrapper>
-            <CustomSelect onChange={handleFilter}>
+            <CustomSelect onChange={handleFilterByType}>
               <option value="" disabled selected>
                 Filtro x Type
               </option>
@@ -67,7 +85,7 @@ const FilterOrder = () => {
           </SelectorWrapper>
 
           <SelectorWrapper>
-            <CustomSelect onChange={handleFilter}>
+            <CustomSelect onChange={handleFilterByOrigin}>
               <option value="" disabled selected>
                 Filtro x Origin
               </option>

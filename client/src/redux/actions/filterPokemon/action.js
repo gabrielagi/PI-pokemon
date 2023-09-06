@@ -18,12 +18,12 @@ export const filterPokemonByType = (pokemonsByType) => {
   };
 };
 
-export const filterPokemonByOrigin = (origin) => {
+export const filterPokemonByOrigin = (pokemonsByOrigin) => {
   return async (dispatch) => {
     try {
       dispatch({
         type: FILTER_POKEMON_BY_ORIGIN,
-        payload: origin,
+        payload: pokemonsByOrigin,
       });
     } catch (error) {
       console.log(error.message);

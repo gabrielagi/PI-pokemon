@@ -17,6 +17,7 @@ const initialState = {
   pokemonBySearchbar: {},
   pokemonTypes: [],
   isFilteredByType: false,
+  isFilteredByOrigin: false,
   isOrdered: false,
 };
 
@@ -50,24 +51,18 @@ const reducer = (state = initialState, action) => {
         pokemonBySearchbar: {},
       };
     case FILTER_POKEMON_BY_TYPE:
-      console.log("LLegue al reducer de type");
+      console.log("LLegue al reducer TYPE");
       return {
         ...state,
         pokemonsFilteredByType: action.payload,
         isFilteredByType: true,
       };
     case FILTER_POKEMON_BY_ORIGIN:
-      const pokemons = state.allPokemons;
-      const originFiltered =
-        action.payload === "db"
-          ? pokemons.filter((pokemon) => pokemon.createdInDb === true)
-          : pokemons.filter(
-              (pokemon) => pokemon.hasOwnProperty("createdInDb") === false
-            );
+      console.log("LLegue al reducer ORIGIN");
       return {
         ...state,
-        pokemonsFilteredByOrigin: originFiltered,
-        isFiltered: true,
+        pokemonsFilteredByOrigin: action.payload,
+        isFilteredByOrigin: true,
       };
     case CLEAR_FILTER:
       return {
