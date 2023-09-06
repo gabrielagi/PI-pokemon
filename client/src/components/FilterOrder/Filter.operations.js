@@ -17,9 +17,9 @@ export const pokemonsByOrigin = ({ allPokemons, origin }) => {
   } else {
     const allPokemonsFiltered = allPokemons.filter(
       (pokemon) => !pokemon.hasOwnProperty("createdInDb")
-    );
-
+    )
     console.log("allPokemonsOriginByApi:", allPokemonsFiltered);
     return allPokemonsFiltered;
   }
 };
+

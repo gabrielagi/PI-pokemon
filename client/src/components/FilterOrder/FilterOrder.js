@@ -17,6 +17,7 @@ import {
 } from "../../redux/actions/filterPokemon/action";
 
 import { pokemonsByTypes, pokemonsByOrigin } from "./Filter.operations";
+import { pokemonsOrdered } from "./Order.operations";
 
 const FilterOrder = () => {
   const [showContent, setShowContent] = useState(false);
@@ -61,6 +62,19 @@ const FilterOrder = () => {
   };
 
   //Handler de Order
+  const handleOrder = (event) => {
+    const order = event.target.value;
+    if (order) {
+      const orderedPokemons = pokemonsOrdered({
+        allPokemons: allPokemons,
+        order: order,
+      });
+      console.log("orderedPokemons:", orderedPokemons);
+      dispatch(filterPokemonByOrigin(orderedPokemons));
+    } else {
+      dispatch(clearFilter());
+    }
+  };
 
   return (
     <PageContainer>
@@ -73,7 +87,7 @@ const FilterOrder = () => {
           <SelectorWrapper>
             <CustomSelect onChange={handleFilterByType}>
               <option value="" disabled selected>
-                Filtro x Type
+                Filter x Type
               </option>
               <option value="none">All Pokemons</option>
               {allTypes.map((type) => (
@@ -87,7 +101,7 @@ const FilterOrder = () => {
           <SelectorWrapper>
             <CustomSelect onChange={handleFilterByOrigin}>
               <option value="" disabled selected>
-                Filtro x Origin
+                Filter x Origin
               </option>
               <option value="db">From Db</option>
               <option value="api">From Api</option>
@@ -95,12 +109,14 @@ const FilterOrder = () => {
           </SelectorWrapper>
 
           <SelectorContainer>
-            <CustomSelect>
+            <CustomSelect onChange={handleOrder}>
               <option value="" disabled selected>
-                Orden
+                Order
               </option>
-              <option value="A">Ascendente</option>
-              <option value="D">Descendente</option>
+              <option value="A">Name Ascendent</option>
+              <option value="D">Name Descendent</option>
+              <option value="AA">Attack Ascendent</option>
+              <option value="AD">Attack Descendent</option>
             </CustomSelect>
           </SelectorContainer>
         </SelectorContainer>

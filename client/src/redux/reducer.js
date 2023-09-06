@@ -5,6 +5,7 @@ import {
   GET_TYPES,
   FILTER_POKEMON_BY_TYPE,
   FILTER_POKEMON_BY_ORIGIN,
+  ORDERED_POKEMON,
   CLEAR_SEARCH,
   CLEAR_FILTER,
 } from "./actions/action-types";
@@ -65,11 +66,19 @@ const reducer = (state = initialState, action) => {
         isFilteredByOrigin: true,
       };
     case CLEAR_FILTER:
+      console.log("Todos los pokemons", state.allPokemons);
       return {
         ...state,
         pokemonsFilteredByType: [],
         pokemonsFilteredByOrigin: [],
         isFilteredByType: false,
+      };
+    case ORDERED_POKEMON:
+      console.log("Llegue a Ordered");
+      return {
+        ...state,
+        pokemonsOrdered: action.payload,
+        isOrdered: true,
       };
     default:
       return {
