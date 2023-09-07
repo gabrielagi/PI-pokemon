@@ -4,9 +4,9 @@ import formbackground from "../../assets/formbackground.jpg";
 export const CreatePokemonContainer = styled.div`
   background-color: #1d252d;
   background-image: url(${formbackground});
-  background-size: cover; // Ajusta el tamaño de la imagen de fondo según el contenedor
-  background-repeat: no-repeat; // Evita la repetición de la imagen de fondo
-  background-position: center center; // Centra la imagen de fondo
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 
   min-height: 100vh;
   background-size: cover;
@@ -17,11 +17,10 @@ export const FormContainer = styled.div`
   position: absolute;
   width: 420px;
   height: auto;
-  margin-top: 5px;
-  padding: 25px 25px;
+  padding: 15px 25px;
   transform: translate(-50%, -50%);
   left: 32%;
-  top: 50%;
+  top: 46%;
   border-radius: 10px;
   text-align: center;
 
@@ -33,30 +32,33 @@ export const FormContainer = styled.div`
 `;
 
 export const InputContainer = styled.div`
-  margin-bottom: 10px; /* Espacio vertical entre elementos */
+  margin-top: 16px;
+  margin-bottom: 5px;
 `;
 
 export const StyledLabel = styled.label`
   color: #1d252d;
   font-size: 16px;
   font-weight: 300;
+  margin-right: 5px;
 `;
 
 export const StyledInput = styled.input`
-  height: 35px;
+  height: 20px;
   width: 65%;
   background-color: rgba(255, 255, 255, 0.07);
   border-radius: 3px;
   padding: 10px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 300;
   color: #1d252d;
-  border: 2px solid rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(234, 123, 54, 0.2);
   outline: none;
   box-sizing: border-box;
 
   &::placeholder {
     color: #e5e5e5;
+    font-size: 13px;
   }
 
   &:focus {
@@ -69,25 +71,22 @@ export const StyledInput = styled.input`
   }
 `;
 
-export const LeftColumn = styled.div`
-  flex: 1; /* La columna izquierda ocupará 1/2 del espacio disponible */
-  padding-right: 10px; /* Espacio entre las columnas */
-`;
-
 // Nueva imagen superpuesta
 export const ImageOverlay = styled.img`
   position: absolute;
-  top: 110px;
+  top: 80px;
   left: 180px;
   width: 65%;
-  height: 80%;
+  height: 85%;
 `;
 
 export const ErrorMsg = styled.p`
   position: absolute;
   color: red;
-  font-size: 14px;
-  margin: 0px;
+  font-size: 10px;
+  margin-left: 140px;
+  margin-right: 60px;
+  margin-top: 25px;
 
   @media screen and (max-width: 768px) {
     width: 250px;
