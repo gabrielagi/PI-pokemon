@@ -15,18 +15,14 @@ export const CreatePokemonContainer = styled.div`
 
 export const FormContainer = styled.div`
   position: absolute;
-  width: 600px;
+  width: 420px;
   height: auto;
-  margin-top: 60px;
-  padding: 25px 65px;
+  margin-top: 5px;
+  padding: 25px 25px;
   transform: translate(-50%, -50%);
-  left: 49%;
+  left: 32%;
   top: 50%;
-  background-color: rgba(255, 255, 255, 0.12);
   border-radius: 10px;
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 40px rgba(8, 7, 16, 0.4);
   text-align: center;
 
   @media screen and (max-width: 768px) {
@@ -37,7 +33,7 @@ export const FormContainer = styled.div`
 `;
 
 export const InputContainer = styled.div`
-  margin-bottom: 20px; /* Espacio vertical entre elementos */
+  margin-bottom: 10px; /* Espacio vertical entre elementos */
 `;
 
 export const StyledLabel = styled.label`
@@ -47,7 +43,7 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledInput = styled.input`
-  height: 45px;
+  height: 35px;
   width: 65%;
   background-color: rgba(255, 255, 255, 0.07);
   border-radius: 3px;
@@ -81,10 +77,10 @@ export const LeftColumn = styled.div`
 // Nueva imagen superpuesta
 export const ImageOverlay = styled.img`
   position: absolute;
-  top: 60px;
-  left: 150px;
-  width: 80%;
-  height: 90%;
+  top: 110px;
+  left: 180px;
+  width: 65%;
+  height: 80%;
 `;
 
 export const ErrorMsg = styled.p`
