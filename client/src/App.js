@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import Home from "./pages/Home/Home";
 import Nav from "./components/Nav/Nav";
+import CreatePokemon from "./pages/CreatePokemon/CreatePokemon";
 
 function App() {
   const location = useLocation();
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/createpokemon" element={<CreatePokemon />} />
       </Routes>
     </div>
   );
