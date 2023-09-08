@@ -21,6 +21,8 @@ import {
 
 import pokedex from "../../assets/pokedex.png";
 
+import defaultImage from "../../assets/basepokemon.png";
+
 const CreatePokemon = () => {
   const dispatch = useDispatch();
   const allTypes = useSelector((pokemonData) => pokemonData.pokemonTypes);
@@ -38,6 +40,7 @@ const CreatePokemon = () => {
   });
   const [errors, setError] = useState({
     name: "",
+    img: "",
     hp: "",
     attack: "",
     defense: "",
@@ -86,7 +89,7 @@ const CreatePokemon = () => {
         speed: Number(pokemonData.speed),
         height: Number(pokemonData.height),
         weight: Number(pokemonData.weight),
-        image: pokemonData.img,
+        img: pokemonData.img, //img: defaultImage
         types: pokemonData.types,
       };
 
@@ -96,13 +99,13 @@ const CreatePokemon = () => {
       // Restablecer el formulario
       setPokemonData({
         name: "",
+        img: "",
         hp: "",
         attack: "",
         defense: "",
         speed: "",
         height: "",
         weight: "",
-        img: "",
         types: [],
       });
     }
@@ -118,10 +121,10 @@ const CreatePokemon = () => {
 
     // Verifico si ya hay dos tipos seleccionados
     if (pokemonData.types.length < 2) {
-      // Agrego el tipo seleccionado a la lista de tipos
+      // Agrego el tipo seleccionado a la lista de tipos en el formato correcto
       setPokemonData({
         ...pokemonData,
-        types: [...pokemonData.types, selectedType],
+        types: [...pokemonData.types, { name: selectedType }],
       });
       // Limpio el error si se estaba mostrando uno
       setError({ ...errors, types: "" });
@@ -280,12 +283,13 @@ const CreatePokemon = () => {
               {/* Mostrar los tipos seleccionados con los estilos */}
               <SelectedTypesContainer>
                 {pokemonData.types.map((selected) => (
-                  <SelectedType key={selected}>
+                  <SelectedType key={selected.name}>
                     <SelectedTypeOption>
-                      {selected.charAt(0).toUpperCase() + selected.slice(1)}
+                      {selected.name.charAt(0).toUpperCase() +
+                        selected.name.slice(1)}
                     </SelectedTypeOption>
                     <SelectedTypeButtonOption
-                      id={selected}
+                      id={selected.name}
                       onClick={handleClick}
                     >
                       x
