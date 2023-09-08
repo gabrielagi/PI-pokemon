@@ -48,13 +48,26 @@ const CreatePokemon = () => {
   });
 
   const handleChange = (event) => {
-    setPokemonData({
-      ...pokemonData,
-      [event.target.name]: event.target.value,
-    });
-    setError(
-      validation({ ...pokemonData, [event.target.name]: event.target.value })
-    );
+    const { name, value } = event.target;
+
+    // Si el campo que estás cambiando es "types", crea un nuevo array de objetos
+    if (name === "types") {
+      const updatedTypes = pokemonData.types.map((type) => ({
+        name: type,
+      }));
+
+      setPokemonData({
+        ...pokemonData,
+        types: [...updatedTypes, { name: value }],
+      });
+    } else {
+      setPokemonData({
+        ...pokemonData,
+        [name]: value,
+      });
+    }
+
+    setError(validation({ ...pokemonData, [name]: value }));
   };
 
   const handleSubmit = (event) => {
@@ -62,43 +75,39 @@ const CreatePokemon = () => {
     const updatedErrors = validation(pokemonData); // Validar nuevamente antes de enviar los datos
     setError(updatedErrors);
 
-    // Verificar si ambos campos están llenos antes de enviar los datos al método login
-    // if (userData.email.trim() !== "" && userData.password.trim() !== "") {
-    //   if (Object.keys(updatedErrors).length === 0) {
-    //     login(userData);
-    //   }
-    // }
+    // Verifico si no hay errores en la validación
+    if (Object.keys(updatedErrors).length === 0) {
+      // Crear un pokemon con la información de pokemonData
+      const pokemon = {
+        name: pokemonData.name,
+        hp: Number(pokemonData.hp),
+        attack: Number(pokemonData.attack),
+        defense: Number(pokemonData.defense),
+        speed: Number(pokemonData.speed),
+        height: Number(pokemonData.height),
+        weight: Number(pokemonData.weight),
+        image: pokemonData.img,
+        types: pokemonData.types,
+      };
+
+      // Enviar los datos al servidor
+      dispatch(postPokemon(pokemon));
+      alert("Pokemon registrado con éxito");
+      // Restablecer el formulario
+      setPokemonData({
+        name: "",
+        hp: "",
+        attack: "",
+        defense: "",
+        speed: "",
+        height: "",
+        weight: "",
+        img: "",
+        types: [],
+      });
+    }
   };
 
-  // function handleChecked(event) {
-  //   if (event.target.checked) {
-  //     setPokemonData({
-  //       ...pokemonData,
-  //       types: [...pokemonData.types, event.target.value],
-  //     });
-
-  //     setError(
-  //       validation({
-  //         ...pokemonData,
-  //         types: [...pokemonData.types, event.target.value],
-  //       })
-  //     );
-  //   } else if (!event.target.checked) {
-  //     setPokemonData({
-  //       ...pokemonData,
-  //       types: pokemonData.types.filter((type) => type !== event.target.value),
-  //     });
-
-  //     setError(
-  //       validation({
-  //         ...pokemonData,
-  //         types: pokemonData.types.filter(
-  //           (type) => type !== event.target.value
-  //         ),
-  //       })
-  //     );
-  //   }
-  // }
   const handleTypeSelect = (event) => {
     const selectedType = event.target.value;
 
@@ -107,15 +116,17 @@ const CreatePokemon = () => {
       return;
     }
 
-    // Verifica si ya hay dos tipos seleccionados
+    // Verifico si ya hay dos tipos seleccionados
     if (pokemonData.types.length < 2) {
-      // Agrega el tipo seleccionado a la lista de tipos
+      // Agrego el tipo seleccionado a la lista de tipos
       setPokemonData({
         ...pokemonData,
         types: [...pokemonData.types, selectedType],
       });
+      // Limpio el error si se estaba mostrando uno
+      setError({ ...errors, types: "" });
     } else {
-      // Muestra un mensaje de error si ya se seleccionaron dos tipos
+      // Muestro un error si ya se seleccionaron dos tipos
       setError({ ...errors, types: "You can only select up to two types." });
     }
   };
@@ -142,6 +153,8 @@ const CreatePokemon = () => {
               value={pokemonData.name}
               name="name"
               placeholder="Pokemon Name"
+              pattern="[A-Za-z]+"
+              title="Only letters are allowed without special characters"
               required
               onChange={handleChange}
             />
@@ -169,6 +182,8 @@ const CreatePokemon = () => {
               name="hp"
               placeholder="Pokemon level of hp"
               required
+              pattern="[0-9]+"
+              title="Only numbers are allowed"
               onChange={handleChange}
             />
           </InputContainer>
@@ -181,6 +196,8 @@ const CreatePokemon = () => {
               value={pokemonData.attack}
               name="attack"
               placeholder="Pokemon level of attack"
+              pattern="[0-9]+"
+              title="Only numbers are allowed"
               required
               onChange={handleChange}
             />
@@ -194,6 +211,8 @@ const CreatePokemon = () => {
               value={pokemonData.defense}
               name="defense"
               placeholder="Pokemon level of defense"
+              pattern="[0-9]+"
+              title="Only numbers are allowed"
               required
               onChange={handleChange}
             />
@@ -207,6 +226,8 @@ const CreatePokemon = () => {
               value={pokemonData.speed}
               name="speed"
               placeholder="Pokemon speed"
+              pattern="[0-9]+"
+              title="Only numbers are allowed"
               onChange={handleChange}
             />
           </InputContainer>
@@ -219,6 +240,8 @@ const CreatePokemon = () => {
               value={pokemonData.height}
               name="height"
               placeholder="Pokemon height"
+              pattern="[0-9]+"
+              title="Only numbers are allowed"
               onChange={handleChange}
             />
           </InputContainer>
@@ -231,6 +254,8 @@ const CreatePokemon = () => {
               value={pokemonData.weight}
               name="weight"
               placeholder="Pokemon weight"
+              pattern="[0-9]+"
+              title="Only numbers are allowed"
               onChange={handleChange}
             />
           </InputContainer>
@@ -247,7 +272,7 @@ const CreatePokemon = () => {
                 </option>
                 {allTypes.map((type) => (
                   <option value={type.name} key={type.name}>
-                    {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
+                    {type.name}
                   </option>
                 ))}
               </StyledSelect>
