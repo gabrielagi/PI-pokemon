@@ -92,6 +92,7 @@ const CreatePokemon = () => {
         img: pokemonData.img, //img: defaultImage
         types: pokemonData.types,
       };
+      console.log("URL de la imagen:", pokemonData.img);
 
       // Enviar los datos al servidor
       dispatch(postPokemon(pokemon));
@@ -284,10 +285,7 @@ const CreatePokemon = () => {
               <SelectedTypesContainer>
                 {pokemonData.types.map((selected) => (
                   <SelectedType key={selected.name}>
-                    <SelectedTypeOption>
-                      {selected.name.charAt(0).toUpperCase() +
-                        selected.name.slice(1)}
-                    </SelectedTypeOption>
+                    <SelectedTypeOption>{selected.name}</SelectedTypeOption>
                     <SelectedTypeButtonOption
                       id={selected.name}
                       onClick={handleClick}
