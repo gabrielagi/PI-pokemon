@@ -10,6 +10,13 @@ import {
   StyledInput,
   ErrorMsg,
   ImageOverlay,
+  PokemonTypeContainer,
+  StyledSelect,
+  SelectedTypesContainer,
+  SelectedType,
+  SelectedTypeOption,
+  SelectedTypeButtonOption,
+  SubmitButton,
 } from "./CreatePokemon.styled-component";
 
 import pokedex from "../../assets/pokedex.png";
@@ -50,40 +57,6 @@ const CreatePokemon = () => {
     );
   };
 
-  //   const handleCheck = (event) => {
-  //     if (event.target.checked) {
-  //       setPokemonData({
-  //         ...pokemonData,
-  //         types: [...pokemonData.types, event.target.value],
-  //       });
-  //       setError(
-  //         validation({
-  //           ...pokemonData,
-  //           types: [...pokemonData.types, event.target.value],
-  //         })
-  //       );
-  //     } else {
-  //       setPokemonData({
-  //         ...pokemonData,
-  //         types: pokemonData.types.filter(
-  //           (c) =>
-  //             pokemonData.types.indexOf(c) !==
-  //             pokemonData.types.indexOf(event.target.value)
-  //         ),
-  //       });
-  //       setError(
-  //         validation({
-  //           ...pokemonData,
-  //           types: pokemonData.types.filter(
-  //             (c) =>
-  //               pokemonData.types.indexOf(c) !==
-  //               pokemonData.types.indexOf(event.target.value)
-  //           ),
-  //         })
-  //       );
-  //     }
-  //   };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const updatedErrors = validation(pokemonData); // Validar nuevamente antes de enviar los datos
@@ -97,34 +70,62 @@ const CreatePokemon = () => {
     // }
   };
 
-  function handleChecked(event) {
-    if (event.target.checked) {
-      setPokemonData({
-        ...pokemonData,
-        types: [...pokemonData.types, event.target.value],
-      });
+  // function handleChecked(event) {
+  //   if (event.target.checked) {
+  //     setPokemonData({
+  //       ...pokemonData,
+  //       types: [...pokemonData.types, event.target.value],
+  //     });
 
-      setError(
-        validation({
-          ...pokemonData,
-          types: [...pokemonData.types, event.target.value],
-        })
-      );
-    } else if (!event.target.checked) {
-      setPokemonData({
-        ...pokemonData,
-        types: pokemonData.types.filter((type) => type !== event.target.value),
-      });
+  //     setError(
+  //       validation({
+  //         ...pokemonData,
+  //         types: [...pokemonData.types, event.target.value],
+  //       })
+  //     );
+  //   } else if (!event.target.checked) {
+  //     setPokemonData({
+  //       ...pokemonData,
+  //       types: pokemonData.types.filter((type) => type !== event.target.value),
+  //     });
 
-      setError(
-        validation({
-          ...pokemonData,
-          types: pokemonData.types.filter(
-            (type) => type !== event.target.value
-          ),
-        })
-      );
+  //     setError(
+  //       validation({
+  //         ...pokemonData,
+  //         types: pokemonData.types.filter(
+  //           (type) => type !== event.target.value
+  //         ),
+  //       })
+  //     );
+  //   }
+  // }
+  const handleTypeSelect = (event) => {
+    const selectedType = event.target.value;
+
+    if (selectedType === "default") {
+      // No hagas nada si se selecciona el valor por defecto
+      return;
     }
+
+    // Verifica si ya hay dos tipos seleccionados
+    if (pokemonData.types.length < 2) {
+      // Agrega el tipo seleccionado a la lista de tipos
+      setPokemonData({
+        ...pokemonData,
+        types: [...pokemonData.types, selectedType],
+      });
+    } else {
+      // Muestra un mensaje de error si ya se seleccionaron dos tipos
+      setError({ ...errors, types: "You can only select up to two types." });
+    }
+  };
+
+  function handleClick(event) {
+    event.preventDefault();
+    setPokemonData({
+      ...pokemonData,
+      types: pokemonData.types.filter((type) => type !== event.target.id),
+    });
   }
 
   return (
@@ -206,7 +207,6 @@ const CreatePokemon = () => {
               value={pokemonData.speed}
               name="speed"
               placeholder="Pokemon speed"
-              required
               onChange={handleChange}
             />
           </InputContainer>
@@ -219,7 +219,6 @@ const CreatePokemon = () => {
               value={pokemonData.height}
               name="height"
               placeholder="Pokemon height"
-              required
               onChange={handleChange}
             />
           </InputContainer>
@@ -232,9 +231,45 @@ const CreatePokemon = () => {
               value={pokemonData.weight}
               name="weight"
               placeholder="Pokemon weight"
-              required
               onChange={handleChange}
             />
+          </InputContainer>
+          <InputContainer>
+            {/* Alinea "Pokemon Type" y el select a la izquierda */}
+            <PokemonTypeContainer>
+              <StyledSelect
+                value="default"
+                name="type"
+                onChange={handleTypeSelect}
+              >
+                <option disabled value="default">
+                  Select up to two Types
+                </option>
+                {allTypes.map((type) => (
+                  <option value={type.name} key={type.name}>
+                    {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
+                  </option>
+                ))}
+              </StyledSelect>
+
+              {/* Mostrar los tipos seleccionados con los estilos */}
+              <SelectedTypesContainer>
+                {pokemonData.types.map((selected) => (
+                  <SelectedType key={selected}>
+                    <SelectedTypeOption>
+                      {selected.charAt(0).toUpperCase() + selected.slice(1)}
+                    </SelectedTypeOption>
+                    <SelectedTypeButtonOption
+                      id={selected}
+                      onClick={handleClick}
+                    >
+                      x
+                    </SelectedTypeButtonOption>
+                  </SelectedType>
+                ))}
+              </SelectedTypesContainer>
+            </PokemonTypeContainer>
+            <SubmitButton type="submit">Crear Pokemon</SubmitButton>
           </InputContainer>
         </form>
       </FormContainer>
