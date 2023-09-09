@@ -23,9 +23,13 @@ import pokedex from "../../assets/pokedex.png";
 
 import defaultImage from "../../assets/basepokemon.png";
 
+import Notification from "../../components/Notification/Notification";
+
 const CreatePokemon = () => {
   const dispatch = useDispatch();
   const allTypes = useSelector((pokemonData) => pokemonData.pokemonTypes);
+
+  const [notificationVisible, setNotificationVisible] = useState(false);
 
   const [pokemonData, setPokemonData] = useState({
     name: "",
@@ -96,7 +100,10 @@ const CreatePokemon = () => {
 
       // Enviar los datos al servidor
       dispatch(postPokemon(pokemon));
-      alert("Pokemon registrado con éxito");
+
+      // Actualiza el mensaje de la notificación y muestra la notificación
+      setNotificationVisible(true);
+
       // Restablecer el formulario
       setPokemonData({
         name: "",
@@ -157,7 +164,6 @@ const CreatePokemon = () => {
               value={pokemonData.name}
               name="name"
               placeholder="Pokemon Name"
-              pattern="[A-Za-z]+"
               title="Only letters are allowed without special characters"
               required
               onChange={handleChange}
@@ -186,7 +192,6 @@ const CreatePokemon = () => {
               name="hp"
               placeholder="Pokemon level of hp"
               required
-              pattern="[0-9]+"
               title="Only numbers are allowed"
               onChange={handleChange}
             />
@@ -200,7 +205,6 @@ const CreatePokemon = () => {
               value={pokemonData.attack}
               name="attack"
               placeholder="Pokemon level of attack"
-              pattern="[0-9]+"
               title="Only numbers are allowed"
               required
               onChange={handleChange}
@@ -215,7 +219,6 @@ const CreatePokemon = () => {
               value={pokemonData.defense}
               name="defense"
               placeholder="Pokemon level of defense"
-              pattern="[0-9]+"
               title="Only numbers are allowed"
               required
               onChange={handleChange}
@@ -230,7 +233,6 @@ const CreatePokemon = () => {
               value={pokemonData.speed}
               name="speed"
               placeholder="Pokemon speed"
-              pattern="[0-9]+"
               title="Only numbers are allowed"
               onChange={handleChange}
             />
@@ -244,7 +246,6 @@ const CreatePokemon = () => {
               value={pokemonData.height}
               name="height"
               placeholder="Pokemon height"
-              pattern="[0-9]+"
               title="Only numbers are allowed"
               onChange={handleChange}
             />
@@ -258,7 +259,6 @@ const CreatePokemon = () => {
               value={pokemonData.weight}
               name="weight"
               placeholder="Pokemon weight"
-              pattern="[0-9]+"
               title="Only numbers are allowed"
               onChange={handleChange}
             />
@@ -299,6 +299,9 @@ const CreatePokemon = () => {
           </InputContainer>
         </form>
       </FormContainer>
+      {notificationVisible && (
+        <Notification onClose={() => setNotificationVisible(false)} />
+      )}
     </CreatePokemonContainer>
   );
 };

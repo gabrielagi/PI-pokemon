@@ -86,3 +86,20 @@ export const PaginationButton = styled.button`
 export const PrevNextButton = styled(PaginationButton)`
   margin: 0 10px;
 `;
+
+export const CloseButtonNotification = styled.button`
+  padding: 10px 15px;
+  background-color: red;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #df1414;
+  }
+`;
