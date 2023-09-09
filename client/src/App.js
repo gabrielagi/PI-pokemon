@@ -5,6 +5,7 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import Home from "./pages/Home/Home";
 import Nav from "./components/Nav/Nav";
 import CreatePokemon from "./pages/CreatePokemon/CreatePokemon";
+import Detail from "./pages/Detail/Detail";
 
 function App() {
   const location = useLocation();
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/createpokemon" element={<CreatePokemon />} />
+        <Route path="/:id" element={<Detail />} />
       </Routes>
     </div>
   );

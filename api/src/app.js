@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes/index.js");
 
-const { loadTypes } = require("./dataLoader.js");
+//const { loadTypes } = require("./dataLoader.js");
 
 require("./db.js");
 
@@ -28,7 +28,7 @@ server.use((req, res, next) => {
 });
 
 //Ejecuto la carga de los pokemons antes de iniciar el servidor
-loadTypes();
+//loadTypes();
 
 server.use("/", routes);
 

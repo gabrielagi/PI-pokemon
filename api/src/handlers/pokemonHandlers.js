@@ -61,7 +61,12 @@ const getPokemonByIdHandler = async (req, res) => {
 const postPokemonHandler = async (req, res) => {
   try {
     const pokemon = req.body;
-    console.log("Un type enviado", pokemon.type);
+    const typesFormat = req.body.types.map((type) => ({
+      name: type.name,
+    }));
+    pokemon.types = typesFormat;
+
+    console.log("Un type enviado", typesFormat);
     const response = await postPokemon(pokemon);
     console.log("response", response);
     res.status(200).json(response);

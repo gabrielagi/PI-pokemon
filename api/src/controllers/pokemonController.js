@@ -101,9 +101,15 @@ const postPokemon = async ({
   speed,
   height,
   weight,
-  type = [],
+  types = [],
 }) => {
   try {
+    console.log("Me llego un name:", name);
+    console.log("Me llego un img:", img);
+    console.log("Me llego un hp:", hp);
+    console.log("Me llego un attack:", attack);
+    console.log("Me llego un defense:", defense);
+
     if (!name || !img || !hp || !attack || !defense) {
       throw new Error("Faltan completar campos obligatorios");
     }
@@ -120,14 +126,18 @@ const postPokemon = async ({
       weight,
     });
 
-    // Obtener los registros de tipos según los nombres en el arreglo "type"
-    const typeNames = type.map((t) => t.name);
-    const pokemonTypes = await Type.findAll({
-      where: { name: typeNames },
-    });
+    if (types.length > 0) {
+      // Obtener los registros de tipos según los nombres en el arreglo "type"
+      const typeNames = types.map((t) => t.name);
+      console.log("Tynames", typeNames);
+      const pokemonTypes = await Type.findAll({
+        where: { name: typeNames },
+      });
 
-    // Asociar cada tipo encontrado al Pokémon
-    await pokemonCreated.addType(pokemonTypes);
+      // Asociar cada tipo encontrado al Pokémon
+      await pokemonCreated.addType(pokemonTypes);
+    }
+
     // Retorno true para la lógica de la action POST_POKEMON
     return true;
   } catch (error) {
