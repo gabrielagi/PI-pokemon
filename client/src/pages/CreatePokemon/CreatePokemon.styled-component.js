@@ -94,8 +94,8 @@ export const ErrorMsg = styled.p`
 
 export const PokemonTypeContainer = styled.div`
   display: flex;
-  align-items: center; // Alinea los elementos verticalmente al centro
-  justify-content: flex-start; // Alinea los elementos horizontalmente a la izquierda
+  align-items: center;
+  justify-content: flex-start;
 `;
 
 export const StyledSelect = styled.select`
@@ -106,6 +106,7 @@ export const StyledSelect = styled.select`
   border-radius: 3px;
   margin-left: 10px;
   margin-right: 10px;
+  margin-top: 10px;
   padding: 5px;
   font-size: 12px;
   font-weight: 300;

@@ -139,7 +139,7 @@ const CreatePokemon = () => {
     event.preventDefault();
     setPokemonData({
       ...pokemonData,
-      types: pokemonData.types.filter((type) => type !== event.target.id),
+      types: pokemonData.types.filter((type) => type.name !== event.target.id),
     });
   }
 
@@ -264,7 +264,6 @@ const CreatePokemon = () => {
             />
           </InputContainer>
           <InputContainer>
-            {/* Alinea "Pokemon Type" y el select a la izquierda */}
             <PokemonTypeContainer>
               <StyledSelect
                 value="default"
