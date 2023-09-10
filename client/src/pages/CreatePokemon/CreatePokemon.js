@@ -29,7 +29,7 @@ const CreatePokemon = () => {
   const dispatch = useDispatch();
   const allTypes = useSelector((pokemonData) => pokemonData.pokemonTypes);
 
-  const [notificationVisible, setNotificationVisible] = useState(false);
+  const [notificationVisible, setNotificationVisible] = useState(true);
 
   const [pokemonData, setPokemonData] = useState({
     name: "",

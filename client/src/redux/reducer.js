@@ -8,6 +8,7 @@ import {
   ORDERED_POKEMON,
   CLEAR_SEARCH,
   CLEAR_FILTER,
+  CLEAR_HOME_STATE,
 } from "./actions/action-types";
 
 const initialState = {
@@ -50,6 +51,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         pokemonBySearchbar: {},
+      };
+    case CLEAR_HOME_STATE:
+      return {
+        ...state,
+        allPokemons: [],
       };
     case FILTER_POKEMON_BY_TYPE:
       console.log("LLegue al reducer TYPE");

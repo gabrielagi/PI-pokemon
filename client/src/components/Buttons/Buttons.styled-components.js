@@ -91,13 +91,13 @@ export const CloseButtonNotification = styled.button`
   padding: 10px 15px;
   background-color: red;
   color: #ffffff;
-  border: none;
   cursor: pointer;
   font-size: 12px;
   border-radius: 15%;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid white;
 
   &:hover {
     background-color: #df1414;

@@ -27,6 +27,8 @@ export const NotificationContainer = styled.div`
   padding: 20px;
   text-align: center;
   color: #fff;
+  border: 5px solid white;
+  border-radius: 10px;
 `;
 
 export const Message = styled.p`

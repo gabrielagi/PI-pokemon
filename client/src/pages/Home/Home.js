@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getAllPokemons,
   clearSearch,
+  clearHomeState,
 } from "../../redux/actions/getPokemon/action";
 import { getTypes } from "../../redux/actions/getTypes/action";
 import CardPokemon from "../../components/CardPokemon/CardPokemon";
@@ -21,6 +22,8 @@ const Home = () => {
   useEffect(() => {
     dispatch(getAllPokemons());
     dispatch(getTypes());
+
+    return () => dispatch(clearHomeState());
   }, [dispatch]);
 
   const handleChange = () => {

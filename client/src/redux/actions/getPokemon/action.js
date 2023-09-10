@@ -2,6 +2,7 @@ import {
   GET_ALL_POKEMONS,
   GET_POKEMON_BY_SEARCHBAR,
   CLEAR_SEARCH,
+  CLEAR_HOME_STATE,
 } from "../action-types";
 
 import axios from "axios";
@@ -61,6 +62,18 @@ export const clearSearch = () => {
     try {
       dispatch({
         type: CLEAR_SEARCH,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const clearHomeState = () => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: CLEAR_HOME_STATE,
       });
     } catch (error) {
       console.log(error.message);
