@@ -1,8 +1,18 @@
 import styled from "styled-components";
 
+import detailbackground from "../../assets/detailbackground.jpg";
+
+export const DetailBackgroundContainer = styled.div`
+  background-color: #1d252d;
+  background-image: url(${detailbackground});
+  min-height: 100vh;
+  background-size: cover;
+  background-attachment: fixed;
+`;
+
 export const DetailContainer = styled.div`
-  padding: 50px 100px 15px 100px;
-  margin-top: 50px;
+  padding: 50px 250px 15px 250px;
+  margin-top: 30px;
 
   @media screen and (max-width: 768px) {
     padding: 70px 100px 15px 100px;
@@ -13,12 +23,12 @@ export const DetailContainer = styled.div`
 
 export const DetailCard = styled.div`
   display: flex;
-  background-color: rgba(0, 0, 0, 0.9); /* rgba(30, 13, 58, 0.92) */
   border-radius: 8px;
   overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.4); /* rgba(30, 13, 58, 0.92) */
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.6);
   margin-top: 30px;
-  border: 3px solid #ffffff;
+  border: 3px solid #fff;
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
@@ -42,7 +52,7 @@ export const DetailImage = styled.img`
   width: 400px;
   height: 400px;
   object-fit: cover;
-  margin: 20px 50px 80px 40px;
+  margin: 15px 50px 80px 40px;
 
   @media screen and (max-width: 768px) {
     color: #fff;
@@ -54,6 +64,15 @@ export const DetailImage = styled.img`
     object-fit: cover;
     border-radius: 50%;
   }
+`;
+
+export const TypeWrapper = styled.div`
+  margin-left: 30px;
+`;
+
+export const TypeImage = styled.img`
+  width: 60px;
+  height: 60px;
 `;
 
 export const InfoWrapper = styled.div`
@@ -71,19 +90,12 @@ export const InfoWrapper = styled.div`
   }
 `;
 
-export const AttributeWrapper = styled.div`
-  display: flex;
-  justify-content: left;
+export const AttributeTitle = styled.h1`
+  font-weight: 600px;
+  margin-left: 30px;
+  font-size: 50px;
+  font-family: consolas;
   align-items: center;
-  margin-top: 10px;
-  margin-bottom: 15px;
-`;
-
-export const AttributeTitle = styled.p`
-  font-weight: 300px;
-  margin: 0;
-  font-size: 18px;
-
   color: #1d252d;
 
   @media screen and (max-width: 768px) {
@@ -99,22 +111,5 @@ export const AttributeValue = styled.h2`
 
   @media screen and (max-width: 768px) {
     font-size: 25px;
-  }
-`;
-
-export const BackButton = styled.button`
-  background-color: red;
-  color: #ffffff;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
-  border-radius: 3px;
-  margin-top: 50px;
-  width: 70px;
-  height: 30px;
-  @media screen and (max-width: 768px) {
-    margin-top: 25px;
-    margin-bottom: 2px;
   }
 `;

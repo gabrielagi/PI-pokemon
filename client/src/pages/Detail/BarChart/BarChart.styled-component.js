@@ -9,7 +9,7 @@ export const BarChartContainer = styled.div`
 export const BarContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 10px;
+  margin: 0px 10px 6px 30px;
 `;
 
 export const Bar = styled.div`
@@ -22,6 +22,13 @@ export const Bar = styled.div`
 
 export const BarLabel = styled.span`
   font-size: 16px;
+  font-weight: bold;
   color: #1d252d;
-  margin-right: 5px;
+  margin-left: 10px;
+`;
+
+export const BarLabelValue = styled.span`
+  font-size: 16px;
+  color: #1d252d;
+  margin-left: 5px;
 `;

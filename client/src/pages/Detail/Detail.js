@@ -7,6 +7,8 @@ import {
   clearSearch,
 } from "../../redux/actions/getPokemon/action";
 
+import { BackButton } from "../../components/Buttons/Buttons.styled-components";
+
 import BarChart from "./BarChart/BarChart";
 
 import { NavLink } from "react-router-dom";
@@ -15,12 +17,13 @@ import {
   DetailCard,
   DetailInfo,
   DetailImage,
-  TitleWrapper,
-  AttributeWrapper,
   AttributeTitle,
-  AttributeValue,
-  BackButton,
+  DetailBackgroundContainer,
+  TypeImage,
+  TypeWrapper,
 } from "./Detail.styled-component";
+
+import typeImages from "../../components/CardPokemon/TypesImages";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -32,21 +35,47 @@ const Detail = () => {
     return () => dispatch(clearSearch());
   }, [id]);
 
+  // Poner la primera letra en mayúscula
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   return (
-    <DetailContainer>
-      {pokemonByDetail.name && (
-        <DetailCard>
-          <DetailImage src={pokemonByDetail.image} alt="" />
-          <DetailInfo>
-            <h1>{pokemonByDetail.name}</h1>
-            <BarChart pokemon={pokemonByDetail} />{" "}
-            <NavLink to={`/home`}>
-              <BackButton>Cerrar</BackButton>
-            </NavLink>
-          </DetailInfo>
-        </DetailCard>
-      )}
-    </DetailContainer>
+    <DetailBackgroundContainer>
+      <DetailContainer>
+        {pokemonByDetail.name && (
+          <DetailCard>
+            <DetailImage src={pokemonByDetail.image} alt="" />
+            <DetailInfo>
+              <AttributeTitle>
+                {capitalizeFirstLetter(pokemonByDetail.name)}
+              </AttributeTitle>
+              <BarChart pokemon={pokemonByDetail} />{" "}
+              <TypeWrapper>
+                <p>
+                  {/* Pokemon Types:{" "} */}
+                  {pokemonByDetail.types &&
+                    pokemonByDetail.types.map((type, index) => (
+                      <span key={index}>
+                        <TypeImage
+                          src={typeImages[type.name.toLowerCase()]}
+                          alt={type.name}
+                          title={`The Pokémon ${pokemonByDetail.name} is type: ${type.name}`}
+                        />
+                        {/* {type.name}
+                  {index < pokemon.types.length - 1 ? ", " : ""} */}
+                      </span>
+                    ))}
+                </p>
+              </TypeWrapper>
+              <NavLink to={`/home`}>
+                <BackButton>Cerrar</BackButton>
+              </NavLink>
+            </DetailInfo>
+          </DetailCard>
+        )}
+      </DetailContainer>
+    </DetailBackgroundContainer>
   );
 };
 

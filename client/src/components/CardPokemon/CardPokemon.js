@@ -1,5 +1,5 @@
 import React from "react";
-//import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   PokemonName,
   CardContentWrapper,
@@ -21,10 +21,16 @@ const CardPokemon = ({ pokemon }) => {
       > */}
       <CardWrapper>
         <PokemonImage src={pokemon.image} alt={pokemon.name} />
-        <PokemonName>
-          {pokemon.name &&
-            pokemon.name[0].toUpperCase().concat(pokemon.name.slice(1))}
-        </PokemonName>
+        <NavLink
+          to={`/detail/${pokemon.id}`}
+          title={`More information about Pokemon ${pokemon.name}`}
+          alt={`Information about Pokemon ${pokemon.name}`}
+        >
+          <PokemonName>
+            {pokemon.name &&
+              pokemon.name[0].toUpperCase().concat(pokemon.name.slice(1))}
+          </PokemonName>
+        </NavLink>
         {/* </NavLink> */}
         <CardContentWrapper>
           <p>

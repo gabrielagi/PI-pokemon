@@ -61,6 +61,23 @@ export const NavButtonLogOut = styled(NavButton)`
   }
 `;
 
+// Detail component for Back button
+
+export const BackButton = styled(NavButtonLogOut)`
+  background-color: red;
+  color: #fff;
+  margin-left: 160px;
+  border: none;
+
+  &:hover {
+    background-color: #c20000;
+
+    box-shadow: none;
+    border: none;
+    color: #fff;
+  }
+`;
+
 // Pagination Buttons
 
 export const PaginationButton = styled.button`

@@ -3,6 +3,7 @@ import {
   BarChartContainer,
   Bar,
   BarLabel,
+  BarLabelValue,
   BarContainer,
 } from "./BarChart.styled-component";
 
@@ -10,34 +11,51 @@ const BarChart = ({ pokemon }) => {
   return (
     <BarChartContainer>
       <BarContainer>
-        <BarLabel>Hp:</BarLabel>
-        <Bar style={{ width: `${pokemon.hp}px` }}></Bar>
-        <BarLabel>{pokemon.hp}</BarLabel>
+        <Bar style={{ width: `${pokemon.hp + 100}px` }}></Bar>
+        <BarLabelValue>({pokemon.hp})</BarLabelValue>
+        <BarLabel>Hp</BarLabel>
       </BarContainer>
       <BarContainer>
-        <BarLabel>Attack:</BarLabel>
-        <Bar style={{ width: `${pokemon.attack}px` }}></Bar>
-        <BarLabel>{pokemon.attack}</BarLabel>
+        <Bar style={{ width: `${pokemon.attack + 100}px` }}></Bar>
+        <BarLabelValue>({pokemon.attack})</BarLabelValue>
+        <BarLabel>Attack</BarLabel>
       </BarContainer>
       <BarContainer>
-        <BarLabel>Defense:</BarLabel>
-        <Bar style={{ width: `${pokemon.defense}px` }}></Bar>
-        <BarLabel>{pokemon.defense}</BarLabel>
+        <Bar style={{ width: `${pokemon.defense + 100}px` }}></Bar>
+        <BarLabelValue>({pokemon.defense})</BarLabelValue>
+        <BarLabel>Defense</BarLabel>
       </BarContainer>
       <BarContainer>
-        <BarLabel>Speed:</BarLabel>
-        <Bar style={{ width: `${pokemon.speed}px` }}></Bar>
-        <BarLabel>{pokemon.speed}</BarLabel>
+        <Bar style={{ width: `${pokemon.speed + 100}px` }}></Bar>
+        <BarLabelValue>({pokemon.speed})</BarLabelValue>
+        <BarLabel>Speed</BarLabel>
       </BarContainer>
       <BarContainer>
-        <BarLabel>Height:</BarLabel>
-        <Bar style={{ width: `${pokemon.height}px` }}></Bar>
-        <BarLabel>{pokemon.height}</BarLabel>
+        <Bar style={{ width: `${pokemon.height + 100}px` }}></Bar>
+        <BarLabelValue>({pokemon.height})</BarLabelValue>
+        <BarLabel>Height</BarLabel>
       </BarContainer>
       <BarContainer>
-        <BarLabel>Weight:</BarLabel>
-        <Bar style={{ width: `${pokemon.weight}px` }}></Bar>
-        <BarLabel>{pokemon.weight}</BarLabel>
+        {pokemon.weight > 170 ? (
+          <>
+            <Bar
+              style={{
+                width: `20px`,
+                display: "block",
+                backgroundColor: "pink",
+              }}
+            ></Bar>
+            <BarLabelValue>({pokemon.weight})</BarLabelValue>
+          </>
+        ) : (
+          <>
+            <Bar
+              style={{ width: `${pokemon.weight + 100}px`, display: "block" }}
+            ></Bar>
+            <BarLabelValue>({pokemon.weight})</BarLabelValue>
+          </>
+        )}
+        <BarLabel>Weight</BarLabel>
       </BarContainer>
     </BarChartContainer>
   );
