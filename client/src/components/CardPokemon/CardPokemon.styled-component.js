@@ -14,6 +14,10 @@ export const CardWrapper = styled.div`
   box-shadow: rgba(100, 100, 111, 0.6) 0px 7px 18px 2px;
   transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Centrar verticalmente los contenidos
+  justify-content: space-between;
 
   &:hover {
     transform: scale(1.05);
@@ -28,15 +32,12 @@ export const CardWrapper = styled.div`
 
 export const PokemonName = styled.h2`
   font-size: 22px;
-  margin: 10px;
+  margin: 20px;
   color: #08bae3;
   font-family: Roboto, sans-serif;
   font-weight: 600;
   -webkit-text-stroke: 0.01px #fff765;
   text-align: center;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 `;
 
 export const PokemonTypes = styled.p`
@@ -67,15 +68,18 @@ export const DetailsButton = styled.button`
 
 export const CardContentWrapper = styled.div`
   display: flex;
+  margin: 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Centrar verticalmente los contenidos
+  justify-content: space-between;
 `;
 
 export const PokemonImage = styled.img`
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 0px 0px 8px 8px;
-  margin-top: 14px;
+  height: 120px; // Altura de 120px
+  border-radius: 50%; // Borde redondeado
+  margin-top: 10px; // Margen superior de 10px
 `;

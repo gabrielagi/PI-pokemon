@@ -3,10 +3,12 @@ import React from "react";
 import {
   PokemonName,
   CardContentWrapper,
-  // PokemonImage,
+  PokemonImage,
   // PokemonTypes,
   CardWrapper,
 } from "./CardPokemon.styled-component";
+
+import typeImages from "./TypesImages";
 
 const CardPokemon = ({ pokemon }) => {
   // Recibe el objeto Pokémon como prop
@@ -18,7 +20,7 @@ const CardPokemon = ({ pokemon }) => {
         alt="Más información sobre el personaje"
       > */}
       <CardWrapper>
-        <img src={pokemon.image} alt="imagen" width="120px" height="120px" />
+        <PokemonImage src={pokemon.image} alt="imagen" />
         <PokemonName>
           {pokemon.name &&
             pokemon.name[0].toUpperCase().concat(pokemon.name.slice(1))}
@@ -30,15 +32,33 @@ const CardPokemon = ({ pokemon }) => {
             {pokemon.types &&
               pokemon.types.map((type, index) => (
                 <span key={index}>
+                  <img
+                    src={typeImages[type.name.toLowerCase()]}
+                    alt={type.name}
+                    style={{ width: "35px", height: "35px" }}
+                  />
                   {type.name}
                   {index < pokemon.types.length - 1 ? ", " : ""}
                 </span>
               ))}
           </p>
+        </CardContentWrapper>
 
-          {
-            //Si quiero agregar una imagen por cada tipo
-            /* <p>
+        {/* <CardContentWrapper>
+          <p>
+            Pokemon Types:{" "}
+            {pokemon.types &&
+              pokemon.types.map((type, index) => (
+                <span key={index}>
+                  {type.name}
+                  {index < pokemon.types.length - 1 ? ", " : ""}
+                </span>
+              ))}
+          </p> */}
+
+        {
+          //Si quiero agregar una imagen por cada tipo
+          /* <p>
             Pokemon Types:{" "}
             {pokemon.types &&
               pokemon.types.map((type, index) => (
@@ -53,13 +73,13 @@ const CardPokemon = ({ pokemon }) => {
                 </span>
               ))}
           </p> */
-          }
-          {/* <PokemonImage
+        }
+        {/* <PokemonImage
             // src={`images/sprites/${pokemon.image}`}
             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/2.gif"
             alt={`Imagen de ${pokemon.name}`}
           /> */}
-        </CardContentWrapper>
+        {/* </CardContentWrapper> */}
       </CardWrapper>
     </div>
   );
