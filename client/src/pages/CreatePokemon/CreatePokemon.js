@@ -299,7 +299,7 @@ const CreatePokemon = () => {
                   ))}
                 </SelectedTypesContainer>
               </PokemonTypeContainer>
-              <SubmitButton type="submit">Crear Pokemon</SubmitButton>
+              <SubmitButton type="submit">Create Pokemon</SubmitButton>
             </InputContainer>
           </form>
         </FormContainer>
