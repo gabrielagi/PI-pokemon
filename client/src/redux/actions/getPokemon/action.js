@@ -37,7 +37,7 @@ export const getPokemonByName = (name) => {
         alert("El Pokemon no se encuentra en la lista de Pokemons");
       }
     } catch (error) {
-      alert("Hubo un error al buscar el Pokemon");
+      alert("Hubo un error al buscar el Pokemon por el name");
     }
   };
 };
