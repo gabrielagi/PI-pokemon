@@ -17,6 +17,8 @@ import {
   SelectedTypeOption,
   SelectedTypeButtonOption,
   SubmitButton,
+  PreviewImage,
+  PreviewImageContainer,
 } from "./CreatePokemon.styled-component";
 
 import pokedex from "../../assets/pokedex.png";
@@ -152,155 +154,165 @@ const CreatePokemon = () => {
   return (
     <CreatePokemonContainer>
       <ImageOverlay src={pokedex} />
-      <FormContainer>
-        <form action="POST" onSubmit={handleSubmit}>
-          <InputContainer>
-            {errors.name && <ErrorMsg>{errors.name}</ErrorMsg>}
-            <StyledLabel>Pokemon Name:</StyledLabel>
-            <StyledInput
-              autoComplete="off"
-              type="text"
-              value={pokemonData.name}
-              name="name"
-              placeholder="Pokemon Name"
-              title="Only letters are allowed without special characters"
-              required
-              onChange={handleChange}
-            />
-          </InputContainer>
-          <InputContainer>
-            {errors.img && <ErrorMsg>{errors.img}</ErrorMsg>}
-            <StyledLabel>Pokemon Image:</StyledLabel>
-            <StyledInput
-              placeholder="Pokemon image Link"
-              autoComplete="off"
-              type="text"
-              value={pokemonData.img}
-              name="img"
-              required
-              onChange={handleChange}
-            />
-          </InputContainer>
-          <InputContainer>
-            {errors.hp && <ErrorMsg>{errors.hp}</ErrorMsg>}
-            <StyledLabel>Pokemon hp:</StyledLabel>
-            <StyledInput
-              autoComplete="off"
-              type="text"
-              value={pokemonData.hp}
-              name="hp"
-              placeholder="Pokemon level of hp"
-              required
-              title="Only numbers are allowed"
-              onChange={handleChange}
-            />
-          </InputContainer>
-          <InputContainer>
-            {errors.attack && <ErrorMsg>{errors.attack}</ErrorMsg>}
-            <StyledLabel>Pokemon attack:</StyledLabel>
-            <StyledInput
-              autoComplete="off"
-              type="text"
-              value={pokemonData.attack}
-              name="attack"
-              placeholder="Pokemon level of attack"
-              title="Only numbers are allowed"
-              required
-              onChange={handleChange}
-            />
-          </InputContainer>
-          <InputContainer>
-            {errors.defense && <ErrorMsg>{errors.defense}</ErrorMsg>}
-            <StyledLabel>Pokemon defense:</StyledLabel>
-            <StyledInput
-              autoComplete="off"
-              type="text"
-              value={pokemonData.defense}
-              name="defense"
-              placeholder="Pokemon level of defense"
-              title="Only numbers are allowed"
-              required
-              onChange={handleChange}
-            />
-          </InputContainer>
-          <InputContainer>
-            {errors.speed && <ErrorMsg>{errors.speed}</ErrorMsg>}
-            <StyledLabel>Pokemon speed:</StyledLabel>
-            <StyledInput
-              autoComplete="off"
-              type="text"
-              value={pokemonData.speed}
-              name="speed"
-              placeholder="Pokemon speed"
-              title="Only numbers are allowed"
-              onChange={handleChange}
-            />
-          </InputContainer>
-          <InputContainer>
-            {errors.height && <ErrorMsg>{errors.height}</ErrorMsg>}
-            <StyledLabel>Pokemon height:</StyledLabel>
-            <StyledInput
-              autoComplete="off"
-              type="decimal"
-              value={pokemonData.height}
-              name="height"
-              placeholder="Pokemon height"
-              title="Only numbers are allowed"
-              onChange={handleChange}
-            />
-          </InputContainer>
-          <InputContainer>
-            {errors.weight && <ErrorMsg>{errors.weight}</ErrorMsg>}
-            <StyledLabel>Pokemon weight:</StyledLabel>
-            <StyledInput
-              autoComplete="off"
-              type="decimal"
-              value={pokemonData.weight}
-              name="weight"
-              placeholder="Pokemon weight"
-              title="Only numbers are allowed"
-              onChange={handleChange}
-            />
-          </InputContainer>
-          <InputContainer>
-            <PokemonTypeContainer>
-              <StyledSelect
-                value="default"
-                name="type"
-                onChange={handleTypeSelect}
-              >
-                <option disabled value="default">
-                  Select up to two Types
-                </option>
-                {allTypes.map((type) => (
-                  <option value={type.name} key={type.name}>
-                    {type.name}
+      {/* Contenedor dividido en dos secciones con estilo flex */}
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {/* Contenedor para campos del formulario */}
+        <FormContainer>
+          <form action="POST" onSubmit={handleSubmit}>
+            <InputContainer>
+              {errors.name && <ErrorMsg>{errors.name}</ErrorMsg>}
+              <StyledLabel>Pokemon Name:</StyledLabel>
+              <StyledInput
+                autoComplete="off"
+                type="text"
+                value={pokemonData.name}
+                name="name"
+                placeholder="Pokemon Name"
+                title="Only letters are allowed without special characters"
+                required
+                onChange={handleChange}
+              />
+            </InputContainer>
+            <InputContainer>
+              {errors.img && <ErrorMsg>{errors.img}</ErrorMsg>}
+              <StyledLabel>Pokemon Image:</StyledLabel>
+              <StyledInput
+                placeholder="Pokemon image Link"
+                autoComplete="off"
+                type="text"
+                value={pokemonData.img}
+                name="img"
+                required
+                onChange={handleChange}
+              />
+            </InputContainer>
+            <InputContainer>
+              {errors.hp && <ErrorMsg>{errors.hp}</ErrorMsg>}
+              <StyledLabel>Pokemon hp:</StyledLabel>
+              <StyledInput
+                autoComplete="off"
+                type="text"
+                value={pokemonData.hp}
+                name="hp"
+                placeholder="Pokemon level of hp"
+                required
+                title="Only numbers are allowed"
+                onChange={handleChange}
+              />
+            </InputContainer>
+            <InputContainer>
+              {errors.attack && <ErrorMsg>{errors.attack}</ErrorMsg>}
+              <StyledLabel>Pokemon attack:</StyledLabel>
+              <StyledInput
+                autoComplete="off"
+                type="text"
+                value={pokemonData.attack}
+                name="attack"
+                placeholder="Pokemon level of attack"
+                title="Only numbers are allowed"
+                required
+                onChange={handleChange}
+              />
+            </InputContainer>
+            <InputContainer>
+              {errors.defense && <ErrorMsg>{errors.defense}</ErrorMsg>}
+              <StyledLabel>Pokemon defense:</StyledLabel>
+              <StyledInput
+                autoComplete="off"
+                type="text"
+                value={pokemonData.defense}
+                name="defense"
+                placeholder="Pokemon level of defense"
+                title="Only numbers are allowed"
+                required
+                onChange={handleChange}
+              />
+            </InputContainer>
+            <InputContainer>
+              {errors.speed && <ErrorMsg>{errors.speed}</ErrorMsg>}
+              <StyledLabel>Pokemon speed:</StyledLabel>
+              <StyledInput
+                autoComplete="off"
+                type="text"
+                value={pokemonData.speed}
+                name="speed"
+                placeholder="Pokemon speed"
+                title="Only numbers are allowed"
+                onChange={handleChange}
+              />
+            </InputContainer>
+            <InputContainer>
+              {errors.height && <ErrorMsg>{errors.height}</ErrorMsg>}
+              <StyledLabel>Pokemon height:</StyledLabel>
+              <StyledInput
+                autoComplete="off"
+                type="decimal"
+                value={pokemonData.height}
+                name="height"
+                placeholder="Pokemon height"
+                title="Only numbers are allowed"
+                onChange={handleChange}
+              />
+            </InputContainer>
+            <InputContainer>
+              {errors.weight && <ErrorMsg>{errors.weight}</ErrorMsg>}
+              <StyledLabel>Pokemon weight:</StyledLabel>
+              <StyledInput
+                autoComplete="off"
+                type="decimal"
+                value={pokemonData.weight}
+                name="weight"
+                placeholder="Pokemon weight"
+                title="Only numbers are allowed"
+                onChange={handleChange}
+              />
+            </InputContainer>
+            <InputContainer>
+              <PokemonTypeContainer>
+                <StyledSelect
+                  value="default"
+                  name="type"
+                  onChange={handleTypeSelect}
+                >
+                  <option disabled value="default">
+                    Select up to two Types
                   </option>
-                ))}
-              </StyledSelect>
+                  {allTypes.map((type) => (
+                    <option value={type.name} key={type.name}>
+                      {type.name}
+                    </option>
+                  ))}
+                </StyledSelect>
 
-              {/* Mostrar los tipos seleccionados con los estilos */}
-              <SelectedTypesContainer>
-                {pokemonData.types.map((selected) => (
-                  <SelectedType key={selected.name}>
-                    <SelectedTypeOption>{selected.name}</SelectedTypeOption>
-                    <SelectedTypeButtonOption
-                      id={selected.name}
-                      onClick={handleClick}
-                    >
-                      x
-                    </SelectedTypeButtonOption>
-                  </SelectedType>
-                ))}
-              </SelectedTypesContainer>
-            </PokemonTypeContainer>
-            <SubmitButton type="submit">Crear Pokemon</SubmitButton>
-          </InputContainer>
-        </form>
-      </FormContainer>
-      {notificationVisible && (
-        <Notification onClose={() => setNotificationVisible(false)} />
-      )}
+                {/* Mostrar los tipos seleccionados con los estilos */}
+                <SelectedTypesContainer>
+                  {pokemonData.types.map((selected) => (
+                    <SelectedType key={selected.name}>
+                      <SelectedTypeOption>{selected.name}</SelectedTypeOption>
+                      <SelectedTypeButtonOption
+                        id={selected.name}
+                        onClick={handleClick}
+                      >
+                        x
+                      </SelectedTypeButtonOption>
+                    </SelectedType>
+                  ))}
+                </SelectedTypesContainer>
+              </PokemonTypeContainer>
+              <SubmitButton type="submit">Crear Pokemon</SubmitButton>
+            </InputContainer>
+          </form>
+        </FormContainer>
+        {/* Contenedor para previsualización de la imagen (en el lado derecho) */}
+        <PreviewImageContainer>
+          {pokemonData.img && (
+            <PreviewImage src={pokemonData.img} alt="Preview" />
+          )}
+        </PreviewImageContainer>
+        {notificationVisible && (
+          <Notification onClose={() => setNotificationVisible(false)} />
+        )}
+      </div>
     </CreatePokemonContainer>
   );
 };

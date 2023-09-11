@@ -23,6 +23,7 @@ export const FormContainer = styled.div`
   top: 51%;
   border-radius: 10px;
   text-align: center;
+  z-index: 3;
 
   @media screen and (max-width: 768px) {
     width: 250px;
@@ -183,4 +184,26 @@ export const SubmitButton = styled.button`
     background-color: #aeff00;
     box-shadow: -5px 5px 0px #658b14, 1px 1px 0px black;
   }
+`;
+
+export const PreviewImageContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 20px;
+  margin-top: 140px;
+  position: relative;
+  height: 50vh;
+`;
+
+// Estilos para la previsualización de la imagen
+export const PreviewImage = styled.img`
+  max-width: 15%;
+  height: auto;
+  position: absolute;
+  z-index: 999;
+  bottom: 0;
+  transform: translate(-50%, 0);
+  left: 65%;
 `;
