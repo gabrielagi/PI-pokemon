@@ -98,10 +98,10 @@ const CreatePokemon = () => {
       };
       console.log("URL de la imagen:", pokemonData.img);
 
-      // Enviar los datos al servidor
+      // Envio los datos al servidor
       dispatch(postPokemon(pokemon));
 
-      // Actualiza el mensaje de la notificación y muestra la notificación
+      // Actualizo el mensaje de la notificación
       setNotificationVisible(true);
 
       // Restablecer el formulario
@@ -123,18 +123,17 @@ const CreatePokemon = () => {
     const selectedType = event.target.value;
 
     if (selectedType === "default") {
-      // No hagas nada si se selecciona el valor por defecto
       return;
     }
 
     // Verifico si ya hay dos tipos seleccionados
     if (pokemonData.types.length < 2) {
-      // Agrego el tipo seleccionado a la lista de tipos en el formato correcto
+      // Agrego el tipo seleccionado a la lista de tipos formateado como objeto
       setPokemonData({
         ...pokemonData,
         types: [...pokemonData.types, { name: selectedType }],
       });
-      // Limpio el error si se estaba mostrando uno
+      // Limpio el error si se estaba mostrando
       setError({ ...errors, types: "" });
     } else {
       // Muestro un error si ya se seleccionaron dos tipos

@@ -57,36 +57,27 @@ const validation = (pokemonData) => {
   if (!regexNumber.test(pokemonData.speed)) {
     errors.speed = "Invalid value for speed";
   }
-  if (!pokemonData.speed) {
-    errors.speed = "You must enter a speed level";
-  }
   if (pokemonData.speed < 1 || pokemonData.speed > 100) {
     errors.speed = "Speed must be between 1 and 100";
   }
 
-  // Validación por la velocidad: height
+  // Validación por la altura: height
   if (!regexDecimal.test(pokemonData.height)) {
     errors.height = "Invalid value for height";
-  }
-  if (!pokemonData.height) {
-    errors.height = "You must enter a height value";
   }
   if (pokemonData.height < 1 || pokemonData.height > 80) {
     errors.height = "Height must be between 1 and 80";
   }
 
-  // Validación por la velocidad: weight
+  // Validación por el ancho: weight
   if (!regexDecimal.test(pokemonData.weight)) {
     errors.weight = "Invalid value for weight";
-  }
-  if (!pokemonData.weight) {
-    errors.weight = "You must enter a weight value";
   }
   if (pokemonData.weight < 1 || pokemonData.weight > 1200) {
     errors.weight = "Weight must be between 1 and 1200";
   }
 
-  // Validación por la velocidad: weight
+  // Validación por los tipos: types
   if (!pokemonData.types.length) {
     errors.types = "You must choose at least one type of pokemon";
   }

@@ -39,15 +39,7 @@ const Detail = () => {
           <DetailImage src={pokemonByDetail.image} alt="" />
           <DetailInfo>
             <h1>{pokemonByDetail.name}</h1>
-            <BarChart
-              pokemonByDetail={pokemonByDetail}
-              data={[
-                pokemonByDetail.hp,
-                pokemonByDetail.defense,
-                pokemonByDetail.attack,
-                pokemonByDetail.speed,
-              ]}
-            />{" "}
+            <BarChart pokemon={pokemonByDetail} />{" "}
             <NavLink to={`/home`}>
               <BackButton>Cerrar</BackButton>
             </NavLink>
