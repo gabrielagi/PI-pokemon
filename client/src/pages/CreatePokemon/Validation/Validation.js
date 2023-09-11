@@ -54,27 +54,33 @@ const validation = (pokemonData) => {
   }
 
   // Validación por la velocidad: speed
-  if (!regexNumber.test(pokemonData.speed)) {
-    errors.speed = "Invalid value for speed";
-  }
-  if (pokemonData.speed < 1 || pokemonData.speed > 100) {
-    errors.speed = "Speed must be between 1 and 100";
+  if (pokemonData.speed !== "") {
+    if (!regexNumber.test(pokemonData.speed)) {
+      errors.speed = "Invalid value for speed";
+    }
+    if (pokemonData.speed < 1 || pokemonData.speed > 100) {
+      errors.speed = "Speed must be between 1 and 100";
+    }
   }
 
   // Validación por la altura: height
-  if (!regexDecimal.test(pokemonData.height)) {
-    errors.height = "Invalid value for height";
-  }
-  if (pokemonData.height < 1 || pokemonData.height > 80) {
-    errors.height = "Height must be between 1 and 80";
+  if (pokemonData.height !== "") {
+    if (!regexDecimal.test(pokemonData.height)) {
+      errors.height = "Invalid value for height";
+    }
+    if (pokemonData.height < 1 || pokemonData.height > 80) {
+      errors.height = "Height must be between 1 and 80";
+    }
   }
 
-  // Validación por el ancho: weight
-  if (!regexDecimal.test(pokemonData.weight)) {
-    errors.weight = "Invalid value for weight";
-  }
-  if (pokemonData.weight < 1 || pokemonData.weight > 1200) {
-    errors.weight = "Weight must be between 1 and 1200";
+  // Validación por el peso: weight
+  if (pokemonData.weight !== "") {
+    if (!regexDecimal.test(pokemonData.weight)) {
+      errors.weight = "Invalid value for weight";
+    }
+    if (pokemonData.weight < 1 || pokemonData.weight > 1200) {
+      errors.weight = "Weight must be between 1 and 1200";
+    }
   }
 
   // Validación por los tipos: types

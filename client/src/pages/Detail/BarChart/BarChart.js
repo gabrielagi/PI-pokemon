@@ -31,7 +31,7 @@ const BarChart = ({ pokemon }) => {
         <BarLabel>Speed</BarLabel>
       </BarContainer>
       <BarContainer>
-        <Bar style={{ width: `${pokemon.height + 100}px` }}></Bar>
+        <Bar style={{ width: `${pokemon.height + 30}px` }}></Bar>
         <BarLabelValue>({pokemon.height})</BarLabelValue>
         <BarLabel>Height</BarLabel>
       </BarContainer>

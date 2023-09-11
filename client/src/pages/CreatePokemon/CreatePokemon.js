@@ -90,9 +90,9 @@ const CreatePokemon = () => {
         hp: Number(pokemonData.hp),
         attack: Number(pokemonData.attack),
         defense: Number(pokemonData.defense),
-        speed: Number(pokemonData.speed),
-        height: Number(pokemonData.height),
-        weight: Number(pokemonData.weight),
+        speed: Number(pokemonData.speed) || 0,
+        height: Number(pokemonData.height) || 0,
+        weight: Number(pokemonData.weight) || 0,
         img: pokemonData.img, //img: defaultImage
         types: pokemonData.types,
       };
