@@ -9,22 +9,26 @@ import {
 
 import typeImages from "./TypesImages";
 
+import defaultImage from "../../assets/basepokemon.png";
+
 const CardPokemon = ({ pokemon }) => {
   // Recibe el objeto Pokémon como prop
   return (
     <div>
-      {/* <NavLink
-        to={`/detail/${pokemon.id}`}
-        title={`Más información sobre ${pokemon.name}`}
-        alt="Más información sobre el personaje"
-      > */}
       <CardWrapper>
         <StyledNavLink
           to={`/detail/${pokemon.id}`}
           title={`More information about Pokemon ${pokemon.name}`}
           alt={`Information about Pokemon ${pokemon.name}`}
         >
-          <PokemonImage src={pokemon.image} alt={pokemon.name} />
+          <PokemonImage
+            src={pokemon.image || pokemon.img}
+            alt={pokemon.name}
+            onError={(e) => {
+              e.target.src = defaultImage; // Utilizo la imagen de respaldo de assets
+            }}
+          />
+
           <PokemonName>
             {pokemon.name &&
               pokemon.name[0].toUpperCase().concat(pokemon.name.slice(1))}

@@ -45,7 +45,10 @@ const Detail = () => {
       <DetailContainer>
         {pokemonByDetail.name && (
           <DetailCard>
-            <DetailImage src={pokemonByDetail.image} alt="" />
+            <DetailImage
+              src={pokemonByDetail.image || pokemonByDetail.img}
+              alt=""
+            />
             <DetailInfo>
               <AttributeTitle>
                 {capitalizeFirstLetter(pokemonByDetail.name)}

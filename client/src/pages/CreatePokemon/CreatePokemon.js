@@ -23,8 +23,6 @@ import {
 
 import pokedex from "../../assets/pokedex.png";
 
-import defaultImage from "../../assets/basepokemon.png";
-
 import Notification from "../../components/Notification/Notification";
 
 const CreatePokemon = () => {
