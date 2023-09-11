@@ -20,7 +20,7 @@ const CardPokemon = ({ pokemon }) => {
         alt="Más información sobre el personaje"
       > */}
       <CardWrapper>
-        <PokemonImage src={pokemon.image} alt="imagen" />
+        <PokemonImage src={pokemon.image} alt={pokemon.name} />
         <PokemonName>
           {pokemon.name &&
             pokemon.name[0].toUpperCase().concat(pokemon.name.slice(1))}
@@ -28,7 +28,7 @@ const CardPokemon = ({ pokemon }) => {
         {/* </NavLink> */}
         <CardContentWrapper>
           <p>
-            Pokemon Types:{" "}
+            {/* Pokemon Types:{" "} */}
             {pokemon.types &&
               pokemon.types.map((type, index) => (
                 <span key={index}>
@@ -36,9 +36,10 @@ const CardPokemon = ({ pokemon }) => {
                     src={typeImages[type.name.toLowerCase()]}
                     alt={type.name}
                     style={{ width: "35px", height: "35px" }}
+                    title={`The Pokémon ${pokemon.name} is type: ${type.name}`}
                   />
-                  {type.name}
-                  {index < pokemon.types.length - 1 ? ", " : ""}
+                  {/* {type.name}
+                  {index < pokemon.types.length - 1 ? ", " : ""} */}
                 </span>
               ))}
           </p>
