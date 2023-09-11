@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const CardWrapper = styled.div`
   position: relative;
@@ -81,6 +82,10 @@ export const CardContentWrapper = styled.div`
 
 export const PokemonImage = styled.img`
   height: 120px;
-  border-radius: 50%;
   margin-top: 0px;
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  text-decoration: none; /* Elimina el subrayado del enlace */
+  /* Otros estilos que desees aplicar al NavLink */
 `;
