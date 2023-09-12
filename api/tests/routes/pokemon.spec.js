@@ -88,4 +88,10 @@ describe("Pokemon routes", () => {
       expect(response.status).to.equal(200);
     });
   });
+
+  describe("GET /types", () => {
+    it("Response with status: 200", async () => {
+      await agent.get("/types").expect(200);
+    });
+  });
 });
