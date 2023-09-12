@@ -1,6 +1,6 @@
 import { ORDERED_POKEMON } from "../action-types";
 
-export const orderedPokemons = (orderedPokemons) => {
+export const orderedPokemon = (orderedPokemons) => {
   return async (dispatch) => {
     try {
       console.log("LLegue al dispatch de Order");

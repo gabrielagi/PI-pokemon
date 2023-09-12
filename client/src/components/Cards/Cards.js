@@ -9,11 +9,13 @@ import FilterOrder from "../../components/FilterOrder/FilterOrder";
 const Cards = () => {
   const allPokemons = useSelector((state) => state.allPokemons);
 
+  const isFiltered = useSelector((state) => state.isFiltered);
+  const isOrdered = useSelector((state) => state.isOrdered);
+
   const pokemonsFilteredByType = useSelector(
     (state) => state.pokemonsFilteredByType
   );
-
-  const isFiltered = useSelector((state) => state.isFiltered);
+  const orderedPokemons = useSelector((state) => state.pokemonsOrdered);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemons, setPokemons] = useState([]);
@@ -37,6 +39,14 @@ const Cards = () => {
       <PokemonCardContainer>
         {isFiltered
           ? pokemonsFilteredByType
+              .map((pokemon) => (
+                <div key={pokemon.id}>
+                  <CardPokemon key={pokemon.id} pokemon={pokemon} />
+                </div>
+              ))
+              .slice(firstIndex, lastIndex)
+          : isOrdered
+          ? orderedPokemons
               .map((pokemon) => (
                 <div key={pokemon.id}>
                   <CardPokemon key={pokemon.id} pokemon={pokemon} />
