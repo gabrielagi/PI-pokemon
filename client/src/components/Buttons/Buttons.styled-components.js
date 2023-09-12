@@ -8,7 +8,7 @@ export const FilterButton = styled.button`
   font-size: 14px;
   text-align: center;
   background-color: ${(props) =>
-    props.showContent ? "red" : "#C788F3"}; /* #A06CC5  #C788F3  #A468CF */
+    props.showcontent ? "red" : "#C788F3"}; /* #A06CC5  #C788F3  #A468CF */
   color: white;
   border: none;
   border-radius: 6px;
@@ -17,7 +17,7 @@ export const FilterButton = styled.button`
 
   &:hover {
     background-color: ${(props) =>
-      props.showContent ? "red" : "#9A37DF"}; /* #9ce5b8 #adfec6 #A468CF */
+      props.showcontent ? "red" : "#9A37DF"}; /* #9ce5b8 #adfec6 #A468CF */
   }
 `;
 

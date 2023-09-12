@@ -295,6 +295,7 @@ const CreatePokemon = () => {
                       </SelectedTypeButtonOption>
                     </SelectedType>
                   ))}
+                  
                 </SelectedTypesContainer>
               </PokemonTypeContainer>
               <SubmitButton type="submit">Create Pokemon</SubmitButton>
