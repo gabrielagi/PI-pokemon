@@ -5,7 +5,7 @@ export const NavBar = styled.nav`
   top: 0;
   width: 100%;
   z-index: 100;
-  background-color: #08225f;
+  background-color: #08225f; /* background-color: #323377 #08225f */
   padding: 3px 0px;
   display: flex;
   flex-direction: column;

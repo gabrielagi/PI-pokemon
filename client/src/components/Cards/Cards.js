@@ -4,6 +4,8 @@ import CardPokemon from "../CardPokemon/CardPokemon";
 import { PokemonCardContainer } from "./Cards.styled-component";
 import Pagination from "../Pagination/Pagination";
 
+import EmptyCard from "../CardPokemon/EmptyCard";
+
 import FilterOrder from "../../components/FilterOrder/FilterOrder";
 
 const Cards = () => {
@@ -22,7 +24,7 @@ const Cards = () => {
 
   const pokemonsPerPage = 12;
   const totalPokemons = isFiltered
-    ? pokemonsFilteredByType.length // Uso la longitud del pokemons filtrados por type
+    ? pokemonsFilteredByType.length + 1 // Uso la longitud del pokemons filtrados por type
     : allPokemons.length; // Uso la longitud de todos los pokemones
 
   //const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
@@ -37,29 +39,35 @@ const Cards = () => {
     <>
       <FilterOrder />
       <PokemonCardContainer>
-        {isFiltered
-          ? pokemonsFilteredByType
+        {isFiltered ? (
+          pokemonsFilteredByType.length === 0 ? (
+            <EmptyCard />
+          ) : (
+            pokemonsFilteredByType
               .map((pokemon) => (
                 <div key={pokemon.id}>
                   <CardPokemon key={pokemon.id} pokemon={pokemon} />
                 </div>
               ))
               .slice(firstIndex, lastIndex)
-          : isOrdered
-          ? orderedPokemons
-              .map((pokemon) => (
-                <div key={pokemon.id}>
-                  <CardPokemon key={pokemon.id} pokemon={pokemon} />
-                </div>
-              ))
-              .slice(firstIndex, lastIndex)
-          : pokemons
-              .map((pokemon) => (
-                <div key={pokemon.id}>
-                  <CardPokemon key={pokemon.id} pokemon={pokemon} />
-                </div>
-              ))
-              .slice(firstIndex, lastIndex)}
+          )
+        ) : isOrdered ? (
+          orderedPokemons
+            .map((pokemon) => (
+              <div key={pokemon.id}>
+                <CardPokemon key={pokemon.id} pokemon={pokemon} />
+              </div>
+            ))
+            .slice(firstIndex, lastIndex)
+        ) : (
+          pokemons
+            .map((pokemon) => (
+              <div key={pokemon.id}>
+                <CardPokemon key={pokemon.id} pokemon={pokemon} />
+              </div>
+            ))
+            .slice(firstIndex, lastIndex)
+        )}
 
         <Pagination
           pokemonsPerPage={pokemonsPerPage}
