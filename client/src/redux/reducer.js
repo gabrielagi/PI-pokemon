@@ -18,7 +18,7 @@ const initialState = {
   pokemonsOrdered: [],
   pokemonBySearchbar: {},
   pokemonTypes: [],
-  isFilteredByType: false,
+  isFiltered: false,
   isFilteredByOrigin: false,
   isOrdered: false,
 };
@@ -62,29 +62,29 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         pokemonsFilteredByType: action.payload,
-        isFilteredByType: true,
+        isFiltered: true,
       };
     case FILTER_POKEMON_BY_ORIGIN:
       console.log("LLegue al reducer ORIGIN");
       return {
         ...state,
-        pokemonsFilteredByOrigin: action.payload,
-        isFilteredByOrigin: true,
+        pokemonsFilteredByType: action.payload,
+        isFiltered: true,
       };
     case CLEAR_FILTER:
-      console.log("Todos los pokemons", state.allPokemons);
+      console.log("Todos los filtros limpios", state.allPokemons);
       return {
         ...state,
         pokemonsFilteredByType: [],
         pokemonsFilteredByOrigin: [],
-        isFilteredByType: false,
+        isFiltered: false,
       };
     case ORDERED_POKEMON:
-      console.log("Llegue a Ordered");
+      console.log("Llegue al reducer Ordered");
       return {
         ...state,
-        pokemonsOrdered: action.payload,
         isOrdered: true,
+        pokemonsOrdered: action.payload,
       };
     default:
       return {

@@ -65,8 +65,7 @@ const Detail = () => {
                           alt={type.name}
                           title={`The Pokémon ${pokemonByDetail.name} is type: ${type.name}`}
                         />
-                        {/* {type.name}
-                  {index < pokemon.types.length - 1 ? ", " : ""} */}
+                        
                       </span>
                     ))}
                 </p>

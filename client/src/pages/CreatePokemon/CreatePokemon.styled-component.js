@@ -200,7 +200,7 @@ export const PreviewImageContainer = styled.div`
 // Estilos para la previsualización de la imagen
 export const PreviewImage = styled.img`
   max-width: 15%;
-  height: auto;
+  height: 210px;
   position: absolute;
   z-index: 999;
   bottom: 0;

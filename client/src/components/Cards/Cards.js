@@ -13,7 +13,7 @@ const Cards = () => {
     (state) => state.pokemonsFilteredByType
   );
 
-  const isFiltered = useSelector((state) => state.isFilteredByType);
+  const isFiltered = useSelector((state) => state.isFiltered);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemons, setPokemons] = useState([]);
