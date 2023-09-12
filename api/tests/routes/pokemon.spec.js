@@ -24,6 +24,7 @@
 // });
 
 // const { describe } = require('node:test')
+const { expect } = require("chai");
 const app = require("../../src/app");
 const request = require("supertest");
 const agent = request(app);
@@ -32,6 +33,29 @@ describe("Pokemon routes", () => {
   describe("GET /pokemons/:id", () => {
     it("Response with status: 200", async () => {
       await agent.get("/pokemons/1").expect(200);
+    });
+    // Evaluar si la petición devuelve los campos del objeto Pokemon correctos
+    it(`Response a object with the following properties: "id", "name", "image", "hp", "attack", "defense", "speed", "height", "weight", "types" `, async () => {
+      const { body } = await agent.get("/pokemons/1");
+      // console.log("Pokemon body", body);
+      const attributes = [
+        "id",
+        "name",
+        "image",
+        "hp",
+        "attack",
+        "defense",
+        "speed",
+        "height",
+        "weight",
+        "types",
+      ];
+
+      const keys = Object.keys(body);
+
+      attributes.forEach((attribute) => {
+        expect(keys).contain(attribute);
+      });
     });
   });
 });

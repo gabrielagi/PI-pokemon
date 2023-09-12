@@ -5,7 +5,7 @@ const API_BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 // Obtener todos los pokemones de la Api (hasta 40)
 const getPokemonsApi = async () => {
   try {
-    console.log("Obteniendo Pokémon de la API...");
+    //console.log("Obteniendo Pokémon de la API...");
     const response = await axios.get(`${API_BASE_URL}?limit=70`);
     const pokemonsApi = response.data.results;
 
@@ -17,13 +17,13 @@ const getPokemonsApi = async () => {
       pokemonsApi.map(async (pokemon) => {
         try {
           const res = await axios.get(pokemon.url);
-          console.log(`Obteniendo información de ${res.data.name}...`);
+          // //console.log(`Obteniendo información de ${res.data.name}...`);
           return res.data;
         } catch (error) {
-          console.log(
-            `Error obteniendo información de ${pokemon.url}:`,
-            error.message
-          );
+          // //console.log(
+          //   `Error obteniendo información de ${pokemon.url}:`,
+          //   error.message
+          // );
           return null;
         }
       })
@@ -33,7 +33,7 @@ const getPokemonsApi = async () => {
       (pokemon) => pokemon !== null
     );
 
-    console.log("Pokémon de la API obtenidos exitosamente.");
+    //console.log("Pokémon de la API obtenidos exitosamente.");
     return filteredNullPokemons.map((pokemon) => ({
       id: pokemon.id,
       name: pokemon.name,
@@ -49,7 +49,7 @@ const getPokemonsApi = async () => {
       }),
     }));
   } catch (error) {
-    console.log("Error en getPokemonsApi:", error.message);
+    //console.log("Error en getPokemonsApi:", error.message);
     return [];
   }
 };
@@ -67,11 +67,11 @@ const getPokemonsDb = async () => {
       },
     });
 
-    console.log("Pokémon de la DB obtenidos exitosamente.");
-    console.log("Pokemons db", pokemonsDb);
+    //console.log("Pokémon de la DB obtenidos exitosamente.");
+    //console.log("Pokemons db", pokemonsDb);
     return pokemonsDb;
   } catch (error) {
-    console.log(error.message);
+    //console.log(error.message);
     return [];
   }
 };
@@ -84,10 +84,10 @@ const getAllPokemons = async () => {
 
     const allPokemons = [...pokemonsApi, ...pokemonsDb];
 
-    console.log("Encontro todos los Pokémon (completa).");
+    //console.log("Encontro todos los Pokémon (completa).");
     return allPokemons;
   } catch (error) {
-    console.log("Error en getAllPokemons:", error.message);
+    //console.log("Error en getAllPokemons:", error.message);
     return [];
   }
 };
@@ -104,11 +104,11 @@ const postPokemon = async ({
   types = [],
 }) => {
   try {
-    console.log("Me llego un name:", name);
-    console.log("Me llego un img:", img);
-    console.log("Me llego un hp:", hp);
-    console.log("Me llego un attack:", attack);
-    console.log("Me llego un defense:", defense);
+    //console.log("Me llego un name:", name);
+    //console.log("Me llego un img:", img);
+    //console.log("Me llego un hp:", hp);
+    //console.log("Me llego un attack:", attack);
+    //console.log("Me llego un defense:", defense);
 
     if (!name || !img || !hp || !attack || !defense) {
       throw new Error("Faltan completar campos obligatorios");
@@ -129,7 +129,7 @@ const postPokemon = async ({
     if (types.length > 0) {
       // Obtener los registros de tipos según los nombres en el arreglo "type"
       const typeNames = types.map((t) => t.name);
-      console.log("Tynames", typeNames);
+      //console.log("Tynames", typeNames);
       const pokemonTypes = await Type.findAll({
         where: { name: typeNames },
       });
@@ -141,7 +141,7 @@ const postPokemon = async ({
     // Retorno true para la lógica de la action POST_POKEMON
     return true;
   } catch (error) {
-    console.log("Error en postPokemon:", error.message);
+    //console.log("Error en postPokemon:", error.message);
     return false;
   }
 };
