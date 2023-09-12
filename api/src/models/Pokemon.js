@@ -34,12 +34,15 @@ module.exports = (sequelize) => {
       },
       speed: {
         type: DataTypes.INTEGER,
+        defaultValue: 0,
       },
       height: {
         type: DataTypes.DECIMAL,
+        defaultValue: 0,
       },
       weight: {
         type: DataTypes.DECIMAL,
+        defaultValue: 0,
       },
       createdInDb: {
         type: DataTypes.BOOLEAN,
