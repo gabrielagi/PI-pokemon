@@ -45,7 +45,7 @@ const FilterOrder = () => {
               <option value="" disabled selected>
                 Filter x Type
               </option>
-              <option value="none">All Pokemons</option>
+              <option value="none">Clear Filter</option>
               {allTypes.map((type) => (
                 <option key={type.id} value={type.name}>
                   {type.name}
@@ -67,6 +67,7 @@ const FilterOrder = () => {
               <option value="" disabled selected>
                 Filter x Origin
               </option>
+              <option value="none">Clear Filter</option>
               <option value="db">From Db</option>
               <option value="api">From Api</option>
             </CustomSelect>
@@ -85,6 +86,7 @@ const FilterOrder = () => {
               <option value="" disabled selected>
                 Order
               </option>
+              <option value="none">Clear Order</option>
               <option value="A">Name Ascendent</option>
               <option value="D">Name Descendent</option>
               <option value="AA">Attack Ascendent</option>

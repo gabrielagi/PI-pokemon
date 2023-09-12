@@ -8,4 +8,5 @@ export const CHANGE_PAGE = "CHANGE_PAGE";
 export const ORDERED_POKEMON = "ORDERED_POKEMON";
 export const CLEAR_FILTER = "CLEAR_FILTER";
 export const CLEAR_SEARCH = "CLEAR_SEARCH";
+export const CLEAR_ORDER = "CLEAR_ORDER";
 export const CLEAR_HOME_STATE = "CLEAR_HOME_STATE";

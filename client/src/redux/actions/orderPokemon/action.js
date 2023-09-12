@@ -1,4 +1,4 @@
-import { ORDERED_POKEMON } from "../action-types";
+import { ORDERED_POKEMON, CLEAR_ORDER } from "../action-types";
 
 export const orderedPokemon = (orderedPokemons) => {
   return async (dispatch) => {
@@ -14,3 +14,14 @@ export const orderedPokemon = (orderedPokemons) => {
   };
 };
 
+export const clearOrder = () => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: CLEAR_ORDER,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};

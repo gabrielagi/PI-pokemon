@@ -27,7 +27,7 @@ export const handleFilterType = ({ allPokemons, type, dispatch }) => {
 
 // Handler de Origin
 export const handleFilterByOrigin = ({ allPokemons, origin, dispatch }) => {
-  if (origin) {
+  if (origin !== "none") {
     const filteredPokemons = pokemonsByOrigin({
       allPokemons: allPokemons,
       origin: origin,

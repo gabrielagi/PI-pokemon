@@ -8,6 +8,7 @@ import {
   ORDERED_POKEMON,
   CLEAR_SEARCH,
   CLEAR_FILTER,
+  CLEAR_ORDER,
   CLEAR_HOME_STATE,
 } from "./actions/action-types";
 
@@ -36,26 +37,26 @@ const reducer = (state = initialState, action) => {
         ...state,
         allPokemons: action.payload,
       };
-    case GET_POKEMON_BY_SEARCHBAR:
-      console.log("pokemon por nombre", action.payload);
+    case CLEAR_HOME_STATE:
       return {
         ...state,
-        pokemonBySearchbar: action.payload,
+        allPokemons: [],
       };
     case GET_TYPES:
       return {
         ...state,
         pokemonTypes: action.payload,
       };
+    case GET_POKEMON_BY_SEARCHBAR:
+      console.log("pokemon por nombre", action.payload);
+      return {
+        ...state,
+        pokemonBySearchbar: action.payload,
+      };
     case CLEAR_SEARCH:
       return {
         ...state,
         pokemonBySearchbar: {},
-      };
-    case CLEAR_HOME_STATE:
-      return {
-        ...state,
-        allPokemons: [],
       };
     case FILTER_POKEMON_BY_TYPE:
       console.log("LLegue al reducer TYPE");
@@ -76,7 +77,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         pokemonsFilteredByType: [],
-        pokemonsFilteredByOrigin: [],
         isFiltered: false,
       };
     case ORDERED_POKEMON:
@@ -85,6 +85,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         isOrdered: true,
         pokemonsOrdered: action.payload,
+        isFiltered: false,
+      };
+    case CLEAR_ORDER:
+      console.log("Pokemons Ordered en CLEAR ORDER");
+      return {
+        ...state,
+        pokemonsOrdered: [],
+        isOrdered: false,
       };
     default:
       return {
