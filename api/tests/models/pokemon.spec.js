@@ -67,6 +67,31 @@ describe("Pokemon Model", () => {
     }
   });
 
+  it("should create a new Type", async () => {
+    // Creo un nuevo Type en la base de datos
+    const type = await db.Type.create({
+      name: "darkFire",
+    });
+
+    // Verifica que el Type se haya creado correctamente
+    expect(type.id).to.exist;
+    expect(type.name).to.equal("darkFire");
+  });
+
+  it("should not allow duplicate type names", async () => {
+    // Intenta crear un Type con el mismo nombre que uno existente
+    try {
+      await db.Type.create({
+        name: "darkFire",
+      });
+      // Si el Type se crea con éxito, la prueba debería fallar
+      fail("Creating duplicate Type should throw an error");
+    } catch (error) {
+      // Verifica que se haya lanzado un error de validación
+      expect(error.name).to.equal("SequelizeUniqueConstraintError");
+    }
+  });
+
   // Esta función debería cierra la conexión con la base de datos
   afterAll(async () => {
     await db.conn.close();
