@@ -57,5 +57,9 @@ describe("Pokemon routes", () => {
         expect(keys).contain(attribute);
       });
     });
+    // Probar una ruta incorrecta
+    it("If there is an error it responds with status: 500", async () => {
+      await agent.get("/pokemons/mismichis").expect(500);
+    });
   });
 });
