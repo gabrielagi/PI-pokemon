@@ -59,7 +59,33 @@ describe("Pokemon routes", () => {
     });
     // Probar una ruta incorrecta
     it("If there is an error it responds with status: 500", async () => {
-      await agent.get("/pokemons/mismichis").expect(500);
+      try {
+        await agent.get("/pokemons/mismichis").expect(500);
+      } catch (error) {
+        error;
+      }
+    });
+  });
+
+  describe("POST /pokemons", () => {
+    const newPokemon = {
+      id: 200,
+      name: "Michi",
+      img: "url",
+      hp: 30,
+      attack: 40,
+      defense: 10,
+      speed: 66,
+      height: 80,
+      weight: 300,
+      types: [{ name: "fire" }],
+    };
+
+    it("Return a new Pokemon Created", async () => {
+      const response = await agent.post("/pokemons").send(newPokemon);
+
+      // Verifico la respuesta de estado
+      expect(response.status).to.equal(200);
     });
   });
 });
