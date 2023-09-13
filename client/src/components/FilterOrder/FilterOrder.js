@@ -15,22 +15,22 @@ import { handleOrder } from "./Handlers/handlerOrder";
 import { useDispatch, useSelector } from "react-redux";
 
 const FilterOrder = () => {
-  const [showontent, setShowContent] = useState(false);
+  const [showContent, setShowContent] = useState(false);
   const dispatch = useDispatch();
   const allTypes = useSelector((state) => state.pokemonTypes);
   const allPokemons = useSelector((state) => state.allPokemons);
 
   const toggleContent = () => {
-    setShowContent(!showontent);
+    setShowContent(!showContent);
   };
 
   return (
     <PageContainer>
-      <FilterButton showontent={showontent} onClick={toggleContent}>
-        {showontent ? "Hide Filter / Order" : "Filter / Order"}
+      <FilterButton showContent={showContent} onClick={toggleContent}>
+        {showContent ? "Hide Filter / Order" : "Filter / Order"}
       </FilterButton>
 
-      {showontent && (
+      {showContent && (
         <SelectorContainer>
           <SelectorWrapper>
             <CustomSelect

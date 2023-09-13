@@ -8,7 +8,7 @@ export const FilterButton = styled.button`
   font-size: 14px;
   text-align: center;
   background-color: ${(props) =>
-    props.showcontent ? "red" : "#C788F3"}; /* #A06CC5  #C788F3  #A468CF */
+    props.showContent ? "red" : "#C788F3"}; /* #A06CC5  #C788F3  #A468CF */
   color: white;
   border: none;
   border-radius: 6px;
@@ -118,5 +118,24 @@ export const CloseButtonNotification = styled.button`
 
   &:hover {
     background-color: #df1414;
+  }
+`;
+
+export const DeleteButton = styled.button`
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  border-radius: 6px;
+  background-color: red;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px 4px 6px;
+  font-size: 12px;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  color: #fff;
+
+  &:hover {
+    background-color: #c40825;
   }
 `;
