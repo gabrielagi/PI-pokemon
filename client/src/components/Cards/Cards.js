@@ -19,9 +19,9 @@ const Cards = () => {
   );
   const orderedPokemons = useSelector((state) => state.pokemonsOrdered);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1); 
   const [pokemons, setPokemons] = useState([]);
-
+  const [previousPage, setPreviousPage] = useState(1); 
   const pokemonsPerPage = 12;
   const totalPokemons = isFiltered
     ? pokemonsFilteredByType.length + 1 // Uso la longitud del pokemons filtrados por type
@@ -34,6 +34,11 @@ const Cards = () => {
   useEffect(() => {
     setPokemons(allPokemons);
   }, [allPokemons]);
+
+  useEffect(() => {
+    setPreviousPage(currentPage);
+    setCurrentPage(previousPage);
+  }, [isFiltered]);
 
   return (
     <>
