@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import pokebola from "../../assets/pokebola.png";
 
 export const CardWrapper = styled.div`
   position: relative;
@@ -86,6 +87,19 @@ export const PokemonImage = styled.img`
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  text-decoration: none; /* Elimina el subrayado del enlace */
-  /* Otros estilos que desees aplicar al NavLink */
+  text-decoration: none;
+`;
+
+export const ActionButtons = styled.div`
+  position: relative;
+`;
+
+export const Pokebola = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-image: url(${pokebola});
+  background-size: cover;
+  width: 18px;
+  height: 18px;
 `;

@@ -5,6 +5,8 @@ import {
   PokemonImage,
   StyledNavLink,
   CardWrapper,
+  ActionButtons,
+  Pokebola,
 } from "./CardPokemon.styled-component";
 
 import typeImages from "./TypesImages";
@@ -16,6 +18,12 @@ const CardPokemon = ({ pokemon }) => {
   return (
     <div>
       <CardWrapper>
+        {pokemon.createdInDb && ( // Renderizo los botones solo si createdInDb es verdadero
+          <Pokebola
+            title={`The Pokemon ${pokemon.name} was created by a form`}
+            alt={`The Pokemon ${pokemon.name} was created by a form`}
+          />
+        )}
         <StyledNavLink
           to={`/detail/${pokemon.id}`}
           title={`More information about Pokemon ${pokemon.name}`}

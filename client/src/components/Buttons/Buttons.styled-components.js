@@ -121,6 +121,7 @@ export const CloseButtonNotification = styled.button`
   }
 `;
 
+// Pokemon from DB
 export const DeleteButton = styled.button`
   position: absolute;
   top: 10px;
