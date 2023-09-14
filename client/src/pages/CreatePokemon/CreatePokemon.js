@@ -23,13 +23,15 @@ import {
 
 import pokedex from "../../assets/pokedex.png";
 
-import Notification from "../../components/Notification/Notification";
+import Notification from "../../components/Notification/NotificationSuccess/NotificationSuccess";
+import NotificationError from "../../components/Notification/NotificationError/NotificationError";
 
 const CreatePokemon = () => {
   const dispatch = useDispatch();
   const allTypes = useSelector((pokemonData) => pokemonData.pokemonTypes);
 
   const [notificationVisible, setNotificationVisible] = useState(false);
+  const [stateResponse, setStateResponse] = useState(false);
 
   const [pokemonData, setPokemonData] = useState({
     name: "",
@@ -42,6 +44,7 @@ const CreatePokemon = () => {
     weight: "",
     types: [],
   });
+
   const [errors, setError] = useState({
     name: "",
     img: "",
@@ -77,7 +80,7 @@ const CreatePokemon = () => {
     setError(validation({ ...pokemonData, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const updatedErrors = validation(pokemonData); // Validar nuevamente antes de enviar los datos
     setError(updatedErrors);
@@ -98,24 +101,35 @@ const CreatePokemon = () => {
       };
       console.log("URL de la imagen:", pokemonData.img);
 
-      // Envio los datos al servidor
-      dispatch(postPokemon(pokemon));
+      try {
+        const response = await dispatch(postPokemon(pokemon));
+        console.log("Mi response", response);
+        if (response === false) {
+          // La creación no tuvo éxito, establece la notificación de error
+          setNotificationVisible(true);
+          setStateResponse(false);
+        } else {
+          // La creación fue exitosa, establece la notificación de éxito
+          setNotificationVisible(true);
+          setStateResponse(true);
+        }
 
-      // Actualizo el mensaje de la notificación
-      setNotificationVisible(true);
-
-      // Restablecer el formulario
-      setPokemonData({
-        name: "",
-        img: "",
-        hp: "",
-        attack: "",
-        defense: "",
-        speed: "",
-        height: "",
-        weight: "",
-        types: [],
-      });
+        // Restablecer el formulario
+        setPokemonData({
+          name: "",
+          img: "",
+          hp: "",
+          attack: "",
+          defense: "",
+          speed: "",
+          height: "",
+          weight: "",
+          types: [],
+        });
+      } catch (error) {
+        console.error("Error al crear el Pokémon:", error);
+        // Manejar el error si ocurre
+      }
     }
   };
 
@@ -307,9 +321,18 @@ const CreatePokemon = () => {
             <PreviewImage src={pokemonData.img} alt="Preview" />
           )}
         </PreviewImageContainer>
-        {notificationVisible && (
+        {/* {notificationVisible && (
           <Notification onClose={() => setNotificationVisible(false)} />
         )}
+        {notificationErrorVisible && (
+          <Notification onClose={() => setNotificationErrorVisible(false)} />
+        )} */}
+        {notificationVisible &&
+          (stateResponse === false ? (
+            <NotificationError onClose={() => setNotificationVisible(false)} />
+          ) : (
+            <Notification onClose={() => setNotificationVisible(false)} />
+          ))}
       </div>
     </CreatePokemonContainer>
   );

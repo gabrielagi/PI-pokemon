@@ -19,6 +19,7 @@ const typeImages = {
   fairy: require("../../assets/fairy.png"),
   ground: require("../../assets/ground.png"),
   fighting: require("../../assets/fighting.png"),
+  rock: require("../../assets/rock.png"),
 };
 
 export default typeImages;

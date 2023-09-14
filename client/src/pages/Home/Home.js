@@ -18,10 +18,13 @@ import {
 const Home = () => {
   const dispatch = useDispatch();
   const pokemonBySearchbar = useSelector((state) => state.pokemonBySearchbar);
+  const types = useSelector((state) => state.pokemonTypes);
 
   useEffect(() => {
     dispatch(getAllPokemons());
-    dispatch(getTypes());
+    if (types.length < 1) {
+      dispatch(getTypes());
+    }
 
     return () => dispatch(clearHomeState());
   }, [dispatch]);

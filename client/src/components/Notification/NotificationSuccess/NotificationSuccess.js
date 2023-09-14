@@ -6,9 +6,9 @@ import {
   NotificationContainer,
   Message,
   CloseButton,
-} from "./Notification.styled-component";
+} from "./NotificationSuccess.styled-component";
 
-import { CloseButtonNotification } from "../Buttons/Buttons.styled-components";
+import { CloseButtonNotification } from "../../Buttons/Buttons.styled-components";
 
 const Notification = ({ onClose }) => {
   return (

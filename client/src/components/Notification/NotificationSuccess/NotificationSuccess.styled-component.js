@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import pikachuCheerUp from "../../assets/pikachuCheerUp.gif";
+import pikachuCheerUp from "../../../assets/pikachuCheerUp.gif";
 
 export const CenteredNotification = styled.div`
   position: fixed;
