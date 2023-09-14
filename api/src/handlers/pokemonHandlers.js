@@ -69,7 +69,11 @@ const postPokemonHandler = async (req, res) => {
     console.log("Un type enviado", typesFormat);
     const response = await postPokemon(pokemon);
     console.log("response", response);
-    res.status(200).json(response);
+    if (response !== false) {
+      res.status(200).json(response);
+    } else {
+      res.status(404).json({ error: "No se pudo crear el Pokémon" });
+    }
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
