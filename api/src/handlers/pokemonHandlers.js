@@ -90,7 +90,23 @@ const postPokemonHandler = async (req, res) => {
   }
 };
 
+const deletePokemonHandler = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const success = await deletePokemon(id);
 
+    if (success) {
+      res.status(200).json({ message: "Pokémon eliminado exitosamente" });
+    } else {
+      res
+        .status(404)
+        .json({ error: `No se encontró un Pokémon con el ID ${id}` });
+    }
+  } catch (error) {
+    console.error("Error en deletePokemonHandler:", error.message);
+    res.status(500).json({ error: "Error en el servidor" });
+  }
+};
 
 module.exports = {
   getAllPokemonsHandler,
