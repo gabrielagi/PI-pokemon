@@ -146,7 +146,24 @@ const postPokemon = async ({
   }
 };
 
+const deletePokemon = async (pokemonId) => {
+  try {
+    // Busca el Pokémon por su ID en la base de datos
+    const pokemonToDelete = await Pokemon.findByPk(pokemonId);
 
+    if (!pokemonToDelete) {
+      throw new Error(`No se encontró un Pokémon con el ID ${pokemonId}`);
+    }
+
+    // Elimina el Pokémon de la base de datos
+    await pokemonToDelete.destroy();
+
+    return true; // Éxito
+  } catch (error) {
+    console.error("Error en deletePokemon:", error.message);
+    return false; // Error
+  }
+};
 
 module.exports = {
   getAllPokemons,
