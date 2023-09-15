@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+
 import {
   PokemonName,
   CardContentWrapper,
@@ -9,20 +11,42 @@ import {
   Pokebola,
 } from "./CardPokemon.styled-component";
 
+import { DeleteButton } from "../Buttons/Buttons.styled-components";
+
 import typeImages from "./TypesImages";
 
 import defaultImage from "../../assets/basepokemon.png";
 
+import { deletePokemonById } from "../../redux/actions/DeletePokemon/action";
+
 const CardPokemon = ({ pokemon }) => {
   // Recibe el objeto Pokémon como prop
+  const dispatch = useDispatch();
+
+  const handleDelete = (id) => {
+    // Muestra un cuadro de confirmación antes de eliminar
+    const confirmDelete = window.confirm(
+      "Are you sure you want to remove this Pokémon?"
+    );
+
+    if (confirmDelete) {
+      dispatch(deletePokemonById(id));
+    }
+  };
+
   return (
     <div>
       <CardWrapper>
         {pokemon.createdInDb && ( // Renderizo los botones solo si createdInDb es verdadero
-          <Pokebola
-            title={`The Pokemon ${pokemon.name} was created by a form`}
-            alt={`The Pokemon ${pokemon.name} was created by a form`}
-          />
+          <ActionButtons>
+            <Pokebola
+              title={`The Pokemon ${pokemon.name} was created by a form`}
+              alt={`The Pokemon ${pokemon.name} was created by a form`}
+            />
+            <DeleteButton onClick={() => handleDelete(pokemon.id)}>
+              Delete
+            </DeleteButton>
+          </ActionButtons>
         )}
         <StyledNavLink
           to={`/detail/${pokemon.id}`}

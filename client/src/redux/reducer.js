@@ -10,6 +10,7 @@ import {
   CLEAR_FILTER,
   CLEAR_ORDER,
   CLEAR_HOME_STATE,
+  DELETE_POKEMON_BY_ID,
 } from "./actions/action-types";
 
 const initialState = {
@@ -94,6 +95,16 @@ const reducer = (state = initialState, action) => {
         pokemonsOrdered: [],
         isOrdered: false,
       };
+    case DELETE_POKEMON_BY_ID:
+      const deletedPokemonId = action.payload;
+      const updatedPokemons = state.allPokemons.filter(
+        (pokemon) => pokemon.id !== deletedPokemonId
+      );
+      return {
+        ...state,
+        allPokemons: updatedPokemons,
+      };
+
     default:
       return {
         ...state,
