@@ -23,6 +23,8 @@ import {
   TypeWrapper,
 } from "./Detail.styled-component";
 
+import defaultImage from "../../assets/basepokemon.png";
+
 import typeImages from "../../components/CardPokemon/TypesImages";
 
 const Detail = () => {
@@ -47,7 +49,10 @@ const Detail = () => {
           <DetailCard>
             <DetailImage
               src={pokemonByDetail.image || pokemonByDetail.img}
-              alt=""
+              alt={pokemonByDetail.name}
+              onError={(e) => {
+                e.target.src = defaultImage; // Utilizo la imagen de respaldo de assets
+              }}
             />
             <DetailInfo>
               <AttributeTitle>
@@ -65,7 +70,6 @@ const Detail = () => {
                           alt={type.name}
                           title={`The Pokémon ${pokemonByDetail.name} is type: ${type.name}`}
                         />
-                        
                       </span>
                     ))}
                 </p>

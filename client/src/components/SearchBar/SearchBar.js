@@ -12,20 +12,27 @@ import {
 
 export default function SearchBar() {
   const [inputValue, setInputValue] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (isNaN(inputValue)) {
+    const input = inputValue.trim();
+
+    if (/^[a-zA-Z]+$/.test(input)) {
       dispatch(getPokemonByName(inputValue));
     } else {
       dispatch(getPokemonById(inputValue));
     }
     setInputValue("");
+    setIsButtonDisabled(true);
   };
 
   const handleChange = (event) => {
-    setInputValue(event.target.value);
+    const value = event.target.value;
+    setInputValue(value);
+    setIsButtonDisabled(value.trim() === "");
   };
 
   return (
@@ -37,7 +44,9 @@ export default function SearchBar() {
           value={inputValue}
           placeholder="Ingrese el ID o nombre del Pokemon a buscar"
         />
-        <SearchButton onClick={handleSubmit}>Buscar</SearchButton>
+        <SearchButton onClick={handleSubmit} disabled={isButtonDisabled}>
+          Buscar
+        </SearchButton>
       </SearchContainer>
     </div>
   );
