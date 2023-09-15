@@ -146,9 +146,12 @@ const postPokemon = async ({
   }
 };
 
+
+
 module.exports = {
   getAllPokemons,
   getPokemonsDb,
   getPokemonsApi,
   postPokemon,
+  deletePokemon,
 };

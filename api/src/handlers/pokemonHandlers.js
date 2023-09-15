@@ -4,6 +4,7 @@ const {
   getPokemonsDb,
   getPokemonsApi,
   postPokemon,
+  deletePokemon,
 } = require("../controllers/pokemonController");
 
 // Función para obtener pokemones filtrados por nombre y origen ("db" o "api")
@@ -89,8 +90,11 @@ const postPokemonHandler = async (req, res) => {
   }
 };
 
+
+
 module.exports = {
   getAllPokemonsHandler,
   getPokemonByIdHandler,
   postPokemonHandler,
+  deletePokemonHandler,
 };
