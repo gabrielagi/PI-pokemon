@@ -91,7 +91,8 @@ export const StyledNavLink = styled(NavLink)`
 `;
 
 export const ActionButtons = styled.div`
-  position: relative;
+  display: flex;
+  align-items: center;
 `;
 
 export const Pokebola = styled.div`

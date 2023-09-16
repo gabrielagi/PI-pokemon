@@ -125,7 +125,7 @@ export const CloseButtonNotification = styled.button`
 export const DeleteButton = styled.button`
   position: absolute;
   top: 10px;
-  left: 8px;
+  left: 6px;
   border-radius: 6px;
   background-color: red;
   border: none;

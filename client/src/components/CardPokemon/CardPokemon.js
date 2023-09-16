@@ -39,10 +39,6 @@ const CardPokemon = ({ pokemon }) => {
       <CardWrapper>
         {pokemon.createdInDb && ( // Renderizo los botones solo si createdInDb es verdadero
           <ActionButtons>
-            <Pokebola
-              title={`The Pokemon ${pokemon.name} was created by a form`}
-              alt={`The Pokemon ${pokemon.name} was created by a form`}
-            />
             <DeleteButton onClick={() => handleDelete(pokemon.id)}>
               Delete
             </DeleteButton>
@@ -60,12 +56,17 @@ const CardPokemon = ({ pokemon }) => {
               e.target.src = defaultImage; // Utilizo la imagen de respaldo de assets
             }}
           />
-
           <PokemonName>
             {pokemon.name &&
               pokemon.name[0].toUpperCase().concat(pokemon.name.slice(1))}
           </PokemonName>
         </StyledNavLink>
+        {pokemon.createdInDb && ( // Renderiza la Pokebola solo si createdInDb es verdadero
+          <Pokebola
+            title={`The Pokemon ${pokemon.name} was created by a form`}
+            alt={`The Pokemon ${pokemon.name} was created by a form`}
+          />
+        )}
         <CardContentWrapper>
           <p>
             {pokemon.types &&
