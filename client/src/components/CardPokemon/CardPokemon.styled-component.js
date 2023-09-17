@@ -104,3 +104,11 @@ export const Pokebola = styled.div`
   width: 18px;
   height: 18px;
 `;
+
+export const FavoriteButton = styled.div`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-size: cover;
+  font-size: 15px;
+`;

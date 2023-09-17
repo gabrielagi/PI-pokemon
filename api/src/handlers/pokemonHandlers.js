@@ -108,9 +108,71 @@ const deletePokemonHandler = async (req, res) => {
   }
 };
 
+let myFavorites = []; // Declaración de la lista de favoritos
+
+// Handler para agregar un Pokémon a la lista de favoritos
+const addToFavorites = async (req, res) => {
+  try {
+    const { id } = req.body; // Suponemos que el cuerpo de la solicitud contiene el ID del Pokémon que se va a agregar
+
+    let pokemonFound;
+    const allPokemons = await getAllPokemons();
+
+    // Verificar si el id es un número
+    if (/^\d+$/.test(id)) {
+      pokemonFound = allPokemons.find((pokemon) => pokemon.id === +id);
+    }
+    // Verificar si el id es un UUID
+    else {
+      // const allPokemons = await getPokemonsDb();
+      pokemonFound = allPokemons.find((pokemon) => pokemon.id === id);
+    }
+    console.log("Mi pokemon favorito", pokemonFound);
+    if (!pokemonFound) {
+      throw new Error(`No se encontró al Pokemon con id: ${id}`);
+    }
+
+    // Agrega el Pokémon a la lista de favoritos
+    myFavorites.push(pokemonFound);
+    console.log("Mis pokemones favoritos", myFavorites);
+    return res.status(200).json(myFavorites);
+  } catch (error) {
+    console.error("Error en addToFavorites:", error.message);
+    return res.status(500).json({
+      error: "Ha ocurrido un error al agregar el Pokémon a favoritos",
+    });
+  }
+};
+
+// Handler para eliminar un Pokémon de la lista de favoritos
+const removeFromFavorites = (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Verificar si el id es un número
+    if (/^\d+$/.test(id)) {
+      myFavorites = myFavorites.filter((favorite) => favorite.id !== +id);
+    }
+    // Verificar si el id es un UUID
+    else {
+      // const allPokemons = await getPokemonsDb();
+      myFavorites = myFavorites.filter((favorite) => favorite.id !== id);
+    }
+
+    return res.status(200).json(myFavorites);
+  } catch (error) {
+    console.error("Error en removeFromFavorites:", error.message);
+    return res.status(500).json({
+      error: "Ha ocurrido un error al eliminar el Pokémon de favoritos",
+    });
+  }
+};
+
 module.exports = {
   getAllPokemonsHandler,
   getPokemonByIdHandler,
   postPokemonHandler,
   deletePokemonHandler,
+  addToFavorites,
+  removeFromFavorites,
 };

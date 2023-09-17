@@ -61,6 +61,16 @@ export const NavButtonLogOut = styled(NavButton)`
   }
 `;
 
+export const NavButtonFavorites = styled(NavButton)`
+  &:hover {
+    background-color: #ffa4b2;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-right: 10px;
+  }
+`;
+
 // Detail component for Back button
 
 export const BackButton = styled(NavButtonLogOut)`

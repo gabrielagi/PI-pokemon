@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home";
 import Nav from "./components/Nav/Nav";
 import CreatePokemon from "./pages/CreatePokemon/CreatePokemon";
 import Detail from "./pages/Detail/Detail";
+import Favorites from "./pages/Favorites/Favorites";
 
 function App() {
   const location = useLocation();
@@ -18,6 +19,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/createpokemon" element={<CreatePokemon />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
     </div>
   );

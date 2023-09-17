@@ -1,5 +1,7 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { addFav, removeFav } from "../../redux/actions/Favorites/action";
 
 import {
   PokemonName,
@@ -8,7 +10,8 @@ import {
   StyledNavLink,
   CardWrapper,
   ActionButtons,
-  Pokebola,
+  // Pokebola,
+  FavoriteButton,
 } from "./CardPokemon.styled-component";
 
 import { DeleteButton } from "../Buttons/Buttons.styled-components";
@@ -23,6 +26,28 @@ const CardPokemon = ({ pokemon }) => {
   // Recibe el objeto Pokémon como prop
   const dispatch = useDispatch();
 
+  const myFavorites = useSelector((state) => state.allFavPokemons);
+
+  const [isFav, setIsFav] = useState(false);
+
+  const handleFavorite = (pokemon) => {
+    console.log("pokefav id", pokemon);
+    if (isFav) {
+      setIsFav(false);
+      dispatch(removeFav(pokemon)); // Utiliza dispatch para llamar a la acción
+    } else {
+      setIsFav(true);
+      dispatch(addFav(pokemon)); // Utiliza dispatch para llamar a la acción
+    }
+  };
+
+  useEffect(() => {
+    // Comprueba si el Pokémon actual está en la lista de favoritos
+    const isPokemonFavorite = myFavorites.some((fav) => fav.id === pokemon.id);
+    setIsFav(isPokemonFavorite);
+  }, [myFavorites, pokemon]);
+
+  // Eliminar un Pokemon
   const handleDelete = (id) => {
     // Muestra un cuadro de confirmación antes de eliminar
     const confirmDelete = window.confirm(
@@ -37,6 +62,12 @@ const CardPokemon = ({ pokemon }) => {
   return (
     <div>
       <CardWrapper>
+        <FavoriteButton
+          onClick={() => handleFavorite(pokemon)}
+          title={`Añadir/Quitar a ${pokemon.name} de Favoritos `}
+        >
+          {isFav ? "❤️" : "🤍"}
+        </FavoriteButton>
         {pokemon.createdInDb && ( // Renderizo los botones solo si createdInDb es verdadero
           <ActionButtons>
             <DeleteButton onClick={() => handleDelete(pokemon.id)}>
@@ -61,12 +92,12 @@ const CardPokemon = ({ pokemon }) => {
               pokemon.name[0].toUpperCase().concat(pokemon.name.slice(1))}
           </PokemonName>
         </StyledNavLink>
-        {pokemon.createdInDb && ( // Renderiza la Pokebola solo si createdInDb es verdadero
+        {/* {pokemon.createdInDb && ( // Renderiza la Pokebola solo si createdInDb es verdadero
           <Pokebola
             title={`The Pokemon ${pokemon.name} was created by a form`}
             alt={`The Pokemon ${pokemon.name} was created by a form`}
           />
-        )}
+        )} */}
         <CardContentWrapper>
           <p>
             {pokemon.types &&

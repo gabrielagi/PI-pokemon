@@ -11,4 +11,6 @@ export const CLEAR_SEARCH = "CLEAR_SEARCH";
 export const CLEAR_ORDER = "CLEAR_ORDER";
 export const CLEAR_HOME_STATE = "CLEAR_HOME_STATE";
 export const DELETE_POKEMON_BY_ID = "DELETE_POKEMON_BY_ID";
+export const ADD_FAV = "ADD_FAV";
+export const REMOVE_FAV = "REMOVE_FAV";
 // export const UPDATE_POKEMON_BY_ID = "UPDATE_POKEMON_BY_ID";

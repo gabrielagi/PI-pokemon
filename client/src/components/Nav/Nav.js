@@ -4,6 +4,7 @@ import { NavBar, NavContainer } from "./Nav.styled.components";
 import {
   NavButton,
   NavButtonLogOut,
+  NavButtonFavorites,
 } from "../Buttons/Buttons.styled-components";
 
 import SearchBar from "../SearchBar/SearchBar";
@@ -19,6 +20,9 @@ const Navbar = () => {
         </NavLink>
         <NavLink to="/createpokemon" className="home">
           <NavButton>Crear Pokemon</NavButton>
+        </NavLink>
+        <NavLink to="/favorites">
+          <NavButtonFavorites>❤️</NavButtonFavorites>
         </NavLink>
       </NavContainer>
       <NavContainer>

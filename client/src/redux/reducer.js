@@ -11,6 +11,8 @@ import {
   CLEAR_ORDER,
   CLEAR_HOME_STATE,
   DELETE_POKEMON_BY_ID,
+  ADD_FAV,
+  REMOVE_FAV,
 } from "./actions/action-types";
 
 const initialState = {
@@ -23,6 +25,7 @@ const initialState = {
   isFiltered: false,
   isFilteredByOrigin: false,
   isOrdered: false,
+  allFavPokemons: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -104,7 +107,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         allPokemons: updatedPokemons,
       };
-
+    case ADD_FAV:
+      return {
+        ...state,
+        allFavPokemons: action.payload,
+      };
+    case REMOVE_FAV:
+      return {
+        ...state,
+        allFavPokemons: action.payload,
+      };
     default:
       return {
         ...state,
