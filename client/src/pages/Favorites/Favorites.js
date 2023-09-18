@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 
 import CardPokemon from "../../components/CardPokemon/CardPokemon";
 import { HomeContainer } from "../Home/Home.styled-components";
@@ -7,7 +7,6 @@ import { HomeContainer } from "../Home/Home.styled-components";
 import { PokemonCardContainer } from "../../components/Cards/Cards.styled-component";
 
 const Favorites = () => {
-  const dispatch = useDispatch();
   const pokemonsFav = useSelector((state) => state.allFavPokemons);
 
   return (
