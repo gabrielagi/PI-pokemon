@@ -2,10 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import CardPokemon from "../../components/CardPokemon/CardPokemon";
-import {
-  HomeContainer,
-  PokemonCardContainer,
-} from "../Home/Home.styled-components";
+import { HomeContainer } from "../Home/Home.styled-components";
+
+import { PokemonCardContainer } from "../../components/Cards/Cards.styled-component";
 
 const Favorites = () => {
   const dispatch = useDispatch();
