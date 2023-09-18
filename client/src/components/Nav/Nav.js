@@ -21,13 +21,13 @@ const Navbar = () => {
         <NavLink to="/createpokemon" className="home">
           <NavButton>Crear Pokemon</NavButton>
         </NavLink>
-        <NavLink to="/favorites">
-          <NavButtonFavorites>❤️</NavButtonFavorites>
-        </NavLink>
       </NavContainer>
       <NavContainer>
         <SearchBar />
       </NavContainer>
+      <NavLink to="/favorites">
+        <NavButtonFavorites>💕</NavButtonFavorites>
+      </NavLink>
       <NavLink to="/" className="home">
         <NavButtonLogOut>Salir</NavButtonLogOut>
       </NavLink>

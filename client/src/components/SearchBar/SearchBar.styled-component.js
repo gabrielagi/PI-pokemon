@@ -19,9 +19,8 @@ export const SearchButton = styled.button`
   font-weight: 700px;
 
   &:hover {
-    background-color: #e4c0be;
+    background-color: #ffa4b2;
   }
-
   &:active {
     transform: translateY(0);
   }

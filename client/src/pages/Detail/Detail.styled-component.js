@@ -5,7 +5,7 @@ import detailbackground from "../../assets/detailbackground.jpg";
 export const DetailBackgroundContainer = styled.div`
   background-color: #1d252d;
   background-image: url(${detailbackground});
-  min-height: 100vh;
+  min-height: 96vh;
   background-size: cover;
   background-attachment: fixed;
 `;

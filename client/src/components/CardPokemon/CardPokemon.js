@@ -12,6 +12,7 @@ import {
   ActionButtons,
   // Pokebola,
   FavoriteButton,
+  FavImage,
 } from "./CardPokemon.styled-component";
 
 import { DeleteButton } from "../Buttons/Buttons.styled-components";
@@ -19,6 +20,10 @@ import { DeleteButton } from "../Buttons/Buttons.styled-components";
 import typeImages from "./TypesImages";
 
 import defaultImage from "../../assets/basepokemon.png";
+
+import heartgrey from "../../assets/heartgrey.png";
+
+import heartred from "../../assets/heartred.png";
 
 import { deletePokemonById } from "../../redux/actions/DeletePokemon/action";
 
@@ -66,7 +71,10 @@ const CardPokemon = ({ pokemon }) => {
           onClick={() => handleFavorite(pokemon)}
           title={`Añadir/Quitar a ${pokemon.name} de Favoritos `}
         >
-          {isFav ? "❤️" : "🤍"}
+          <FavImage
+            src={isFav ? heartred : heartgrey}
+            alt={isFav ? "Favorito" : "No favorito"}
+          />
         </FavoriteButton>
         {pokemon.createdInDb && ( // Renderizo los botones solo si createdInDb es verdadero
           <ActionButtons>

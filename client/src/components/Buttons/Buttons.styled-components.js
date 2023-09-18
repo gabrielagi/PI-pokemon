@@ -28,7 +28,7 @@ export const NavButton = styled.button`
   padding: 5px 18px;
   font-size: 14px;
   text-align: center;
-  background-color: #e4c0be;
+  background-color: #c788f3;
   color: white;
   border: none;
   border-radius: 6px;
@@ -37,7 +37,7 @@ export const NavButton = styled.button`
   margin-left: 40px;
 
   &:hover {
-    background-color: #adfec6;
+    background-color: #ffa4b2;
   }
 
   &:active {
@@ -62,10 +62,18 @@ export const NavButtonLogOut = styled(NavButton)`
 `;
 
 export const NavButtonFavorites = styled(NavButton)`
+  background-color: transparent;
+  margin-top: 0px;
+  font-size: 26px;
+  padding: 0px 15px;
+  color: inherit; /* Para mantener el color del texto heredado */
+  border: none; /* Para quitar cualquier borde */
+
   &:hover {
-    background-color: #ffa4b2;
+    background-color: transparent;
   }
 
+  /* Resto de tu estilo */
   @media screen and (min-width: 768px) {
     margin-right: 10px;
   }

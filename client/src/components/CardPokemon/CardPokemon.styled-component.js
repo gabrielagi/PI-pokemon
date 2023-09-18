@@ -112,3 +112,8 @@ export const FavoriteButton = styled.div`
   background-size: cover;
   font-size: 15px;
 `;
+
+export const FavImage = styled.img`
+  height: 18px;
+  margin-top: 0px;
+`;
